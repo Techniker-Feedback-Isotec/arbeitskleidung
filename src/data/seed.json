@@ -1,0 +1,1987 @@
+{
+ "articles": [
+  {
+   "id": "shirt",
+   "name": "T-Shirt",
+   "category": "Oberteile",
+   "icon": "👕",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": 20.73,
+   "basisQty": 5,
+   "soll": {
+    "S": 15,
+    "M": 15,
+    "L": 15,
+    "XL": 15,
+    "XXL": 15
+   },
+   "minOrder": 4,
+   "active": true
+  },
+  {
+   "id": "sweatshirt",
+   "name": "Sweatshirt",
+   "category": "Oberteile",
+   "icon": "🧥",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": 26.73,
+   "basisQty": 2,
+   "soll": {
+    "S": 4,
+    "M": 10,
+    "L": 10,
+    "XL": 10,
+    "XXL": 10
+   },
+   "minOrder": 4,
+   "active": true
+  },
+  {
+   "id": "fleecejacke",
+   "name": "Fleecejacke",
+   "category": "Oberteile",
+   "icon": "🧥",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": 28.44,
+   "basisQty": 2,
+   "soll": {
+    "S": 4,
+    "M": 4,
+    "L": 4,
+    "XL": 4,
+    "XXL": 4
+   },
+   "minOrder": 10,
+   "active": true
+  },
+  {
+   "id": "jacke",
+   "name": "Softshelljacke",
+   "category": "Oberteile",
+   "icon": "🧥",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": 84.73,
+   "basisQty": 1,
+   "soll": {
+    "M": 1,
+    "L": 1,
+    "XL": 1,
+    "XXL": 1
+   },
+   "minOrder": 4,
+   "active": true
+  },
+  {
+   "id": "weste",
+   "name": "Weste",
+   "category": "Oberteile",
+   "icon": "🦺",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": 60.73,
+   "basisQty": 1,
+   "soll": {
+    "S": 2,
+    "M": 2,
+    "L": 2,
+    "XL": 2,
+    "XXL": 2
+   },
+   "minOrder": 4,
+   "active": true
+  },
+  {
+   "id": "softshellweste",
+   "name": "Softshell Weste",
+   "category": "Oberteile",
+   "icon": "🦺",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": null,
+   "basisQty": 0,
+   "soll": {
+    "S": 2,
+    "M": 2,
+    "L": 2,
+    "XL": 2,
+    "XXL": 2
+   },
+   "minOrder": 4,
+   "active": true
+  },
+  {
+   "id": "stretchhose-grau",
+   "name": "Stretchhose grau",
+   "category": "Hosen",
+   "icon": "👖",
+   "sizes": [
+    "42",
+    "44",
+    "46",
+    "48",
+    "50",
+    "52",
+    "54",
+    "56",
+    "58",
+    "60",
+    "62",
+    "64"
+   ],
+   "price": 59.9,
+   "basisQty": 4,
+   "soll": {
+    "48": 6,
+    "50": 6,
+    "52": 6,
+    "54": 6,
+    "56": 6,
+    "58": 6
+   },
+   "minOrder": 10,
+   "active": true
+  },
+  {
+   "id": "stretchhose-weiss",
+   "name": "Stretchhose weiß",
+   "category": "Hosen",
+   "icon": "👖",
+   "sizes": [
+    "42",
+    "44",
+    "46",
+    "48",
+    "50",
+    "52",
+    "54",
+    "56",
+    "58",
+    "60",
+    "62",
+    "64"
+   ],
+   "price": null,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true
+  },
+  {
+   "id": "bundhose-weiss",
+   "name": "Bundhose weiß",
+   "category": "Hosen",
+   "icon": "👖",
+   "sizes": [
+    "R - 38",
+    "R - 40",
+    "R - 42",
+    "R - 44",
+    "R - 46",
+    "R - 48",
+    "R - 50",
+    "R - 52",
+    "R - 54",
+    "R - 56",
+    "R - 58",
+    "R - 60",
+    "R - 62",
+    "R - 64",
+    "R - 66",
+    "R - 68"
+   ],
+   "price": null,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true
+  },
+  {
+   "id": "short",
+   "name": "Short",
+   "category": "Hosen",
+   "icon": "🩳",
+   "sizes": [
+    "42",
+    "44",
+    "46",
+    "48",
+    "50",
+    "52",
+    "54",
+    "56",
+    "58",
+    "60",
+    "62",
+    "64"
+   ],
+   "price": 47.73,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true
+  },
+  {
+   "id": "schuhe-low",
+   "name": "S3 Sicherheitshalbschuhe Kastra II Low",
+   "category": "Schuhe",
+   "icon": "👟",
+   "sizes": [
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50"
+   ],
+   "price": 96.9,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true
+  },
+  {
+   "id": "schuhe-mid",
+   "name": "S3 Sicherheitsschuhe Kastra II Mid",
+   "category": "Schuhe",
+   "icon": "🥾",
+   "sizes": [
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50"
+   ],
+   "price": 106.9,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true
+  },
+  {
+   "id": "muetze",
+   "name": "Strickmütze",
+   "category": "Kopfbedeckung",
+   "icon": "🧢",
+   "sizes": [
+    "S/M",
+    "L/XL"
+   ],
+   "price": 20.73,
+   "basisQty": 1,
+   "soll": {},
+   "minOrder": 4,
+   "active": true
+  },
+  {
+   "id": "cap",
+   "name": "Cap",
+   "category": "Kopfbedeckung",
+   "icon": "🧢",
+   "sizes": [
+    "S/M",
+    "L/XL"
+   ],
+   "price": 21.73,
+   "basisQty": 1,
+   "soll": {},
+   "minOrder": 4,
+   "active": true
+  }
+ ],
+ "employees": [
+  {
+   "id": "alban-deliu",
+   "name": "Alban Deliu",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "52",
+    "stretchhose-weiss": "52",
+    "bundhose-weiss": "52",
+    "short": "52",
+    "sweatshirt": "XL",
+    "fleecejacke": "XL",
+    "schuhe-low": "45",
+    "schuhe-mid": "45",
+    "jacke": "XL",
+    "shirt": "XL",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "XL",
+    "weste": "XL"
+   }
+  },
+  {
+   "id": "aptula-cholak",
+   "name": "Aptula Cholak",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "58",
+    "stretchhose-weiss": "58",
+    "bundhose-weiss": "58",
+    "short": "58",
+    "sweatshirt": "XXL",
+    "fleecejacke": "XXL",
+    "schuhe-low": "45",
+    "schuhe-mid": "45",
+    "jacke": "XXL",
+    "shirt": "XXL",
+    "muetze": "L/XL",
+    "cap": "L/XL",
+    "softshellweste": "XXL",
+    "weste": "XXL"
+   }
+  },
+  {
+   "id": "dardan-zogaj",
+   "name": "Dardan Zogaj",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "56",
+    "stretchhose-weiss": "56",
+    "bundhose-weiss": "56",
+    "short": "56",
+    "sweatshirt": "L",
+    "fleecejacke": "XL",
+    "schuhe-low": "47",
+    "schuhe-mid": "47",
+    "jacke": "XL",
+    "shirt": "XL",
+    "muetze": "L/XL",
+    "cap": "L/XL",
+    "softshellweste": "XL",
+    "weste": "XL"
+   }
+  },
+  {
+   "id": "edmond-gjonai",
+   "name": "Edmond Gjonai",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "52",
+    "stretchhose-weiss": "52",
+    "bundhose-weiss": "52",
+    "short": "52",
+    "sweatshirt": "M",
+    "fleecejacke": "M",
+    "schuhe-low": "43",
+    "schuhe-mid": "43",
+    "jacke": "M",
+    "shirt": "M",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "M",
+    "weste": "M"
+   }
+  },
+  {
+   "id": "john-herich",
+   "name": "John Herich",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "52",
+    "stretchhose-weiss": "52",
+    "bundhose-weiss": "52",
+    "short": "52",
+    "sweatshirt": "L",
+    "fleecejacke": "L",
+    "schuhe-low": "43",
+    "schuhe-mid": "43",
+    "jacke": "L",
+    "shirt": "L",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "L",
+    "weste": "L"
+   }
+  },
+  {
+   "id": "markeljan-becurri",
+   "name": "Markeljan Becurri",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "52",
+    "stretchhose-weiss": "52",
+    "bundhose-weiss": "52",
+    "short": "52",
+    "sweatshirt": "L",
+    "fleecejacke": "L",
+    "schuhe-low": "43",
+    "schuhe-mid": "43",
+    "jacke": "L",
+    "shirt": "L",
+    "muetze": "L/XL",
+    "cap": "L/XL",
+    "softshellweste": "L/XL",
+    "weste": "L"
+   }
+  },
+  {
+   "id": "mohammad-jawad-sharifi",
+   "name": "Mohammad Jawad Sharifi",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "48",
+    "stretchhose-weiss": "48",
+    "bundhose-weiss": "48",
+    "short": "48",
+    "sweatshirt": "M",
+    "fleecejacke": "M",
+    "schuhe-low": "43",
+    "schuhe-mid": "43",
+    "jacke": "M",
+    "shirt": "M",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "M",
+    "weste": "M"
+   }
+  },
+  {
+   "id": "niko-pepa",
+   "name": "Niko Pepa",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "52",
+    "stretchhose-weiss": "52",
+    "bundhose-weiss": "52",
+    "short": "52",
+    "sweatshirt": "L",
+    "fleecejacke": "L",
+    "schuhe-low": "43",
+    "schuhe-mid": "43",
+    "jacke": "L",
+    "shirt": "L",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "L",
+    "weste": "L"
+   }
+  },
+  {
+   "id": "rrahman-tasholli",
+   "name": "Rrahman Tasholli",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "50",
+    "stretchhose-weiss": "50",
+    "bundhose-weiss": "50",
+    "short": "50",
+    "sweatshirt": "M",
+    "fleecejacke": "M",
+    "schuhe-low": "42",
+    "schuhe-mid": "42",
+    "jacke": "M",
+    "shirt": "M",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "M",
+    "weste": "M"
+   }
+  },
+  {
+   "id": "sebastian-dunski",
+   "name": "Sebastian Dunski",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "58",
+    "stretchhose-weiss": "58",
+    "bundhose-weiss": "58",
+    "short": "58",
+    "sweatshirt": "XXL",
+    "fleecejacke": "XXL",
+    "schuhe-low": "43",
+    "schuhe-mid": "43",
+    "jacke": "XXL",
+    "shirt": "XXL",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "XXL",
+    "weste": "XXL"
+   }
+  },
+  {
+   "id": "shkodran-salihu",
+   "name": "Shkodran Salihu",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "50",
+    "stretchhose-weiss": "50",
+    "bundhose-weiss": "50",
+    "short": "50",
+    "sweatshirt": "XL",
+    "fleecejacke": "XL",
+    "schuhe-low": "42",
+    "schuhe-mid": "42",
+    "jacke": "XL",
+    "shirt": "XL",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "XL",
+    "weste": "XL"
+   }
+  },
+  {
+   "id": "valbon-kamberi",
+   "name": "Valbon Kamberi",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "48",
+    "stretchhose-weiss": "48",
+    "bundhose-weiss": "48",
+    "short": "48",
+    "sweatshirt": "M",
+    "fleecejacke": "M",
+    "schuhe-low": "43",
+    "schuhe-mid": "43",
+    "jacke": "M",
+    "shirt": "M",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "M",
+    "weste": "M"
+   }
+  },
+  {
+   "id": "valon-krasniqi",
+   "name": "Valon Krasniqi",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "54",
+    "stretchhose-weiss": "54",
+    "bundhose-weiss": "54",
+    "short": "54",
+    "sweatshirt": "L",
+    "fleecejacke": "L",
+    "schuhe-low": "45",
+    "schuhe-mid": "45",
+    "jacke": "L",
+    "shirt": "L",
+    "muetze": "L/XL",
+    "cap": "L/XL",
+    "softshellweste": "L",
+    "weste": "L"
+   }
+  },
+  {
+   "id": "dzevit",
+   "name": "Dzevit",
+   "active": true,
+   "sizes": {}
+  },
+  {
+   "id": "xholian-bajrami",
+   "name": "Xholian Bajrami",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "56",
+    "stretchhose-weiss": "56",
+    "bundhose-weiss": "56",
+    "short": "56",
+    "sweatshirt": "XL",
+    "fleecejacke": "XL",
+    "schuhe-low": "44",
+    "schuhe-mid": "44",
+    "jacke": "XL",
+    "shirt": "XL",
+    "muetze": "L/XL",
+    "cap": "L/XL",
+    "softshellweste": "L/XL",
+    "weste": "XL"
+   }
+  },
+  {
+   "id": "zenin-cholakov",
+   "name": "Zenin Cholakov",
+   "active": true,
+   "sizes": {
+    "stretchhose-grau": "58",
+    "stretchhose-weiss": "58",
+    "bundhose-weiss": "58",
+    "short": "58",
+    "sweatshirt": "XL",
+    "fleecejacke": "XL",
+    "schuhe-low": "45",
+    "schuhe-mid": "45",
+    "jacke": "XL",
+    "shirt": "XL",
+    "muetze": "S/M",
+    "cap": "S/M",
+    "softshellweste": "XL",
+    "weste": "XL"
+   }
+  }
+ ],
+ "stock": {
+  "shirt": {
+   "XS": 0,
+   "S": 0,
+   "M": 1,
+   "L": 0,
+   "XL": 0,
+   "XXL": 11,
+   "3XL": 0
+  },
+  "sweatshirt": {
+   "XS": 0,
+   "S": 4,
+   "M": 4,
+   "L": 2,
+   "XL": 8,
+   "XXL": 2,
+   "3XL": 0
+  },
+  "fleecejacke": {
+   "XS": 0,
+   "S": 4,
+   "M": 12,
+   "L": 2,
+   "XL": 6,
+   "XXL": 2,
+   "3XL": 0
+  },
+  "jacke": {
+   "S": 0,
+   "M": 1,
+   "L": 1,
+   "XL": 1,
+   "XXL": 0,
+   "3XL": 0
+  },
+  "weste": {
+   "S": 1,
+   "M": 2,
+   "L": 2,
+   "XL": 2,
+   "XXL": 3,
+   "3XL": 0
+  },
+  "softshellweste": {
+   "S": 1,
+   "M": 2,
+   "L": 1,
+   "XL": 2,
+   "XXL": 3,
+   "3XL": 0
+  },
+  "stretchhose-grau": {
+   "42": 0,
+   "44": 0,
+   "46": 0,
+   "48": 1,
+   "50": 5,
+   "52": 9,
+   "54": 1,
+   "56": 4,
+   "58": 8,
+   "60": 0
+  },
+  "stretchhose-weiss": {
+   "42": 0,
+   "44": 0,
+   "46": 0,
+   "48": 0,
+   "50": 0,
+   "52": 0,
+   "54": 0,
+   "56": 0,
+   "58": 0,
+   "60": 0
+  },
+  "bundhose-weiss": {
+   "R - 38": 0,
+   "R - 40": 0,
+   "R - 42": 0,
+   "R - 44": 0,
+   "R - 46": 0,
+   "R - 48": 0,
+   "R - 50": 0,
+   "R - 52": 0,
+   "R - 54": 0,
+   "R - 56": 0,
+   "R - 58": 0,
+   "R - 60": 0,
+   "R - 62": 0,
+   "R - 64": 0,
+   "R - 66": 0,
+   "R - 68": 0
+  },
+  "short": {
+   "42": 0,
+   "44": 0,
+   "46": 0,
+   "48": 0,
+   "50": 0,
+   "52": 0,
+   "54": 0,
+   "56": 0,
+   "58": 0,
+   "60": 0
+  },
+  "schuhe-low": {
+   "38": 0,
+   "39": 0,
+   "40": 0,
+   "41": 0,
+   "42": 0,
+   "43": 0,
+   "44": 0,
+   "45": 0,
+   "46": 0,
+   "47": 0,
+   "48": 0,
+   "49": 0,
+   "50": 0
+  },
+  "muetze": {
+   "S/M": 0,
+   "L/XL": 0
+  },
+  "cap": {
+   "S/M": 0,
+   "L/XL": 0
+  }
+ },
+ "issues": [
+  {
+   "employee": "Dardan Zogaj",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Dardan Zogaj",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Dardan Zogaj",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "XL",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Dardan Zogaj",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "L",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Dardan Zogaj",
+   "articleId": "fleecejacke",
+   "qty": 1,
+   "size": "L",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Xholian Bajrami",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "56",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Xholian Bajrami",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Xholian Bajrami",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Xholian Bajrami",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "XL",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Xholian Bajrami",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "XL",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Xholian Bajrami",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "XL",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Xholian Bajrami",
+   "articleId": "short",
+   "qty": 2,
+   "size": "56",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Edmond Gjonai",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "52",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Edmond Gjonai",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "M",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Edmond Gjonai",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "M",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Edmond Gjonai",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "M",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Edmond Gjonai",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "M",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Edmond Gjonai",
+   "articleId": "fleecejacke",
+   "qty": 1,
+   "size": "M",
+   "date": "2026-06-11"
+  },
+  {
+   "employee": "Edmond Gjonai",
+   "articleId": "short",
+   "qty": 2,
+   "size": "52",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Aptula Cholak",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "XXL",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Aptula Cholak",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "XXL",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Aptula Cholak",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "XXL",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Aptula Cholak",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "XXL",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Aptula Cholak",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "XXL",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Aptula Cholak",
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "45",
+   "date": "2026-04-25"
+  },
+  {
+   "employee": "Alban Deliu",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "52",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Alban Deliu",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Alban Deliu",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Alban Deliu",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "XL",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Alban Deliu",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "XL",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Alban Deliu",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "XL",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Alban Deliu",
+   "articleId": "short",
+   "qty": 2,
+   "size": "52",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Rrahman Tasholli",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "50",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Rrahman Tasholli",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "M",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "Rrahman Tasholli",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "M",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "Rrahman Tasholli",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "M",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "Rrahman Tasholli",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "M",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "Rrahman Tasholli",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "M",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "Rrahman Tasholli",
+   "articleId": "short",
+   "qty": 2,
+   "size": "50",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Zenin Cholakov",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "58",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Zenin Cholakov",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-05-21"
+  },
+  {
+   "employee": "Zenin Cholakov",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-05-21"
+  },
+  {
+   "employee": "Zenin Cholakov",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "XL",
+   "date": "2026-05-21"
+  },
+  {
+   "employee": "Zenin Cholakov",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "XL",
+   "date": "2026-05-21"
+  },
+  {
+   "employee": "Zenin Cholakov",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "XL",
+   "date": "2026-05-21"
+  },
+  {
+   "employee": "Zenin Cholakov",
+   "articleId": "short",
+   "qty": 2,
+   "size": "58",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Mohammad Jawad Sharifi",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "48",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Mohammad Jawad Sharifi",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "M",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Mohammad Jawad Sharifi",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "M",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Mohammad Jawad Sharifi",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "M",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Mohammad Jawad Sharifi",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "M",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Mohammad Jawad Sharifi",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "M",
+   "date": "2026-04-23"
+  },
+  {
+   "employee": "Mohammad Jawad Sharifi",
+   "articleId": "short",
+   "qty": 2,
+   "size": "48",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Valbon Kamberi",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "48",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Valbon Kamberi",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "M",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Valbon Kamberi",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "M",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Valbon Kamberi",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "M",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Valbon Kamberi",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "M",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Valbon Kamberi",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "M",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Valbon Kamberi",
+   "articleId": "short",
+   "qty": 2,
+   "size": "48",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Shkodran Salihu",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Shkodran Salihu",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "XL",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Shkodran Salihu",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "XL",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Shkodran Salihu",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "XL",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Shkodran Salihu",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "XL",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Shkodran Salihu",
+   "articleId": "short",
+   "qty": 2,
+   "size": "50",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Markeljan Becurri",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "52",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Markeljan Becurri",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "L",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Markeljan Becurri",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "L",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Markeljan Becurri",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "L",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Markeljan Becurri",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "L",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Markeljan Becurri",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "L",
+   "date": "2026-05-11"
+  },
+  {
+   "employee": "Markeljan Becurri",
+   "articleId": "short",
+   "qty": 2,
+   "size": "52",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Niko Pepa",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "52",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Niko Pepa",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "L",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Niko Pepa",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "L",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Niko Pepa",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "L",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Niko Pepa",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "L",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Niko Pepa",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "L",
+   "date": "2026-05-13"
+  },
+  {
+   "employee": "Niko Pepa",
+   "articleId": "short",
+   "qty": 2,
+   "size": "52",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "Valon Krasniqi",
+   "articleId": "stretchhose-grau",
+   "qty": 4,
+   "size": "54",
+   "date": "2026-07-10"
+  },
+  {
+   "employee": "Valon Krasniqi",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "L",
+   "date": "2026-04-17"
+  },
+  {
+   "employee": "Valon Krasniqi",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "L",
+   "date": "2026-04-17"
+  },
+  {
+   "employee": "Valon Krasniqi",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "L",
+   "date": "2026-04-17"
+  },
+  {
+   "employee": "Valon Krasniqi",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "L",
+   "date": "2026-04-17"
+  },
+  {
+   "employee": "Valon Krasniqi",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "L",
+   "date": "2026-04-17"
+  },
+  {
+   "employee": "Valon Krasniqi",
+   "articleId": "short",
+   "qty": 2,
+   "size": "54",
+   "date": "2026-07-23"
+  },
+  {
+   "employee": "John Herich",
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "L",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "John Herich",
+   "articleId": "weste",
+   "qty": 1,
+   "size": "L",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "John Herich",
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "L",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "John Herich",
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "L",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "John Herich",
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "L",
+   "date": "2026-04-22"
+  },
+  {
+   "employee": "John Herich",
+   "articleId": "short",
+   "qty": 2,
+   "size": "52",
+   "date": "2026-07-23"
+  }
+ ],
+ "orders": [
+  {
+   "articleId": "softshellweste",
+   "qty": 3,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "S",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "softshellweste",
+   "qty": 2,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 2,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 4,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "weste",
+   "qty": 1,
+   "size": "S",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "weste",
+   "qty": 2,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "weste",
+   "qty": 3,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 2,
+   "size": "S",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 7,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 2,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 12,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 12,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 4,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 8,
+   "size": "52",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 12,
+   "size": "56",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 16,
+   "size": "58",
+   "status": "Geliefert",
+   "date": "2026-04-01"
+  },
+  {
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "S",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "softshellweste",
+   "qty": 6,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "softshellweste",
+   "qty": 5,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "softshellweste",
+   "qty": 5,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "weste",
+   "qty": 1,
+   "size": "S",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "weste",
+   "qty": 6,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "weste",
+   "qty": 5,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "weste",
+   "qty": 5,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "weste",
+   "qty": 1,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "S",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 5,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 4,
+   "size": "S",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 4,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 2,
+   "size": "46",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 17,
+   "size": "48",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 14,
+   "size": "50",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 18,
+   "size": "52",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 10,
+   "size": "54",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 2,
+   "size": "56",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 2,
+   "size": "58",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 4,
+   "size": "S",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 2,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 4,
+   "size": "XXL",
+   "status": "Geliefert",
+   "date": "2026-03-31"
+  },
+  {
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-03-17"
+  },
+  {
+   "articleId": "softshellweste",
+   "qty": 1,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-03-17"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 1,
+   "size": "48",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 10,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 10,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 10,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 6,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 6,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 6,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "stretchhose-weiss",
+   "qty": 3,
+   "size": "48",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "stretchhose-weiss",
+   "qty": 3,
+   "size": "50",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "stretchhose-weiss",
+   "qty": 3,
+   "size": "52",
+   "status": "Geliefert",
+   "date": "2026-03-02"
+  },
+  {
+   "articleId": "stretchhose-weiss",
+   "qty": 2,
+   "size": "52",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "stretchhose-weiss",
+   "qty": 2,
+   "size": "48",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "weste",
+   "qty": 1,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "weste",
+   "qty": 1,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "bundhose-weiss",
+   "qty": 2,
+   "size": "48",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "bundhose-weiss",
+   "qty": 2,
+   "size": "52",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "jacke",
+   "qty": 1,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "jacke",
+   "qty": 1,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "jacke",
+   "qty": 1,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 10,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 10,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "fleecejacke",
+   "qty": 10,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 6,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 6,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "sweatshirt",
+   "qty": 6,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 10,
+   "size": "XL",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 10,
+   "size": "L",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  },
+  {
+   "articleId": "shirt",
+   "qty": 10,
+   "size": "M",
+   "status": "Geliefert",
+   "date": "2026-01-14"
+  }
+ ],
+ "exportedFrom": "Arbeitsausstattung neu.xlsm",
+ "seedDate": "2026-08-06"
+}
