@@ -4,7 +4,6 @@ import { useStore } from '../store'
 import {
   articleById,
   employeeById,
-  equipmentOf,
   fmtDate,
   fmtEuro,
   fmtEuroCent,
@@ -54,17 +53,7 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
   const missingQty = shortages.reduce((s, r) => s + r.fehlt, 0)
   const openOrders = db.orders.filter((o) => o.status === 'Bestellt')
   const openQty = openOrders.reduce((s, o) => s + o.qty, 0)
-  const activeEmployees = db.employees.filter((e) => e.active)
   const value = stockValue(db)
-  const avgPieces =
-    activeEmployees.length > 0
-      ? Math.round(
-          activeEmployees.reduce(
-            (s, e) => s + [...equipmentOf(db, e.id).values()].reduce((x, v) => x + Math.max(0, v), 0),
-            0,
-          ) / activeEmployees.length,
-        )
-      : 0
 
   const months = issuesPerMonth(db, 9)
   const bullets = db.articles
@@ -98,11 +87,6 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
           <p className="kpi-label">Lagerwert</p>
           <p className="kpi-value">{fmtEuro(value)}</p>
           <p className="kpi-sub">auf Basis der Einkaufspreise</p>
-        </div>
-        <div className="kpi" onClick={() => go({ name: 'mitarbeiter' })}>
-          <p className="kpi-label">Mitarbeiter</p>
-          <p className="kpi-value">{activeEmployees.length}</p>
-          <p className="kpi-sub">aktiv · Ø {avgPieces} Teile im Einsatz</p>
         </div>
       </div>
 
