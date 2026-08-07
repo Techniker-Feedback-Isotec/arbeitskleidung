@@ -70,6 +70,8 @@ export interface Employee {
   /** Konfektionsgröße je Artikel-ID */
   sizes: Record<string, string>
   note?: string
+  /** Über das Tool hochgeladenes Foto (Data-URL); hat Vorrang vor gebündelten Fotos */
+  photo?: string
 }
 
 export type IssueType = 'ausgabe' | 'rueckgabe'

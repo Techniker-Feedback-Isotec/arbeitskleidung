@@ -93,9 +93,21 @@ export function Initials({ name, big, small }: { name: string; big?: boolean; sm
   return <span className={`initials${big ? ' big' : small ? ' small' : ''}`}>{text.toUpperCase()}</span>
 }
 
-/** Mitarbeiter-Avatar: echtes Foto, wenn vorhanden, sonst Initialen */
-export function Avatar({ id, name, big, small }: { id: string; name: string; big?: boolean; small?: boolean }) {
-  const url = PHOTOS.get(id)
+/** Mitarbeiter-Avatar: hochgeladenes Foto > gebündeltes Foto > Initialen */
+export function Avatar({
+  id,
+  name,
+  photo,
+  big,
+  small,
+}: {
+  id: string
+  name: string
+  photo?: string
+  big?: boolean
+  small?: boolean
+}) {
+  const url = photo ?? PHOTOS.get(id)
   const cls = big ? ' big' : small ? ' small' : ''
   if (url) return <img className={`avatar${cls}`} src={url} alt={name} />
   return <Initials name={name} big={big} small={small} />

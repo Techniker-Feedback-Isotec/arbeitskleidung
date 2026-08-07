@@ -60,7 +60,7 @@ export default function Mitarbeiter({ go }: { go: (p: Page) => void }) {
               className={`person-card${e.active ? '' : ' inactive'}`}
               onClick={() => go({ name: 'mitarbeiterDetail', id: e.id })}
             >
-              <Avatar id={e.id} name={e.name} />
+              <Avatar id={e.id} name={e.name} photo={e.photo} />
               <div style={{ minWidth: 0 }}>
                 <p className="person-name">{e.name}</p>
                 <p className="person-sub">

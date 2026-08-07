@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import type { Article, Category, Supplier } from '../types'
 import { CATEGORIES, SIZE_PRESETS, SUPPLIERS } from '../types'
 import { useStore } from '../store'
 import { fmtEuroCent, totalSollOf, totalStockOf } from '../lib/selectors'
+import { fileToDataUrl } from '../lib/image'
 import { ArtThumb, Modal, useToast } from './ui'
 
 /** Artikelverwaltung: einfach neue Artikel anlegen, Soll-Bestände & Preise pflegen */
@@ -140,6 +141,7 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
   const [supplier, setSupplier] = useState<Supplier | ''>(article?.supplier ?? '')
   const [shopUrl, setShopUrl] = useState(article?.shopUrl ?? '')
   const [imageUrl, setImageUrl] = useState(article?.imageUrl ?? '')
+  const photoInputRef = useRef<HTMLInputElement>(null)
 
   const sizes = sizesText.split(',').map((s) => s.trim()).filter(Boolean)
 
@@ -223,10 +225,44 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
       </div>
 
       <div className="form-row" style={{ marginBottom: 14, alignItems: 'center' }}>
-        <div className="field" style={{ flex: '1 1 260px' }}>
-          <label>Foto-Link (Bild-URL)</label>
-          <input type="text" value={imageUrl} style={{ width: '100%' }} placeholder="https://…"
-            onChange={(e) => setImageUrl(e.target.value)} />
+        <div className="field">
+          <label>Foto</label>
+          <div className="page-actions">
+            <button className="btn-secondary btn-sm" onClick={() => photoInputRef.current?.click()}>
+              Foto hochladen …
+            </button>
+            {imageUrl.trim() && (
+              <button className="btn-ghost btn-sm" onClick={() => setImageUrl('')}>
+                Foto entfernen
+              </button>
+            )}
+          </div>
+          <input
+            ref={photoInputRef}
+            type="file"
+            accept="image/*"
+            style={{ display: 'none' }}
+            onChange={async (e) => {
+              const f = e.target.files?.[0]
+              if (f) {
+                try {
+                  setImageUrl(await fileToDataUrl(f))
+                } catch {
+                  toast('Foto konnte nicht verarbeitet werden.', 'error')
+                }
+              }
+              e.target.value = ''
+            }}
+          />
+          <p className="field-hint">Alternativ eine Bild-URL eintragen:</p>
+          <input
+            type="text"
+            value={imageUrl.startsWith('data:') ? '(hochgeladenes Foto)' : imageUrl}
+            style={{ width: '100%' }}
+            placeholder="https://…"
+            disabled={imageUrl.startsWith('data:')}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
         </div>
         {imageUrl.trim() && <img className="thumb-lg" src={imageUrl.trim()} alt="Vorschau" />}
       </div>

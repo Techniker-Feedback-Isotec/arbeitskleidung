@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import type { Page } from '../types'
 import { useStore, today } from '../store'
 import { articleById, equipmentOf, fmtDate, issuesOf, stockOf } from '../lib/selectors'
+import { fileToDataUrl } from '../lib/image'
 import { ArtThumb, Avatar, Modal, useToast } from './ui'
 
 /** Profil eines Mitarbeiters: Größen, aktuelle Ausstattung, Historie */
@@ -10,6 +11,19 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
   const toast = useToast()
   const employee = db.employees.find((e) => e.id === id)
   const [showBasis, setShowBasis] = useState(false)
+  const photoInputRef = useRef<HTMLInputElement>(null)
+
+  async function uploadPhoto(file: File) {
+    if (!employee) return
+    try {
+      const photo = await fileToDataUrl(file)
+      dispatch({ type: 'EMPLOYEE_SAVE', employee: { ...employee, photo } })
+      toast('Foto gespeichert.')
+    } catch (err) {
+      console.error(err)
+      toast('Foto konnte nicht verarbeitet werden.', 'error')
+    }
+  }
 
   if (!employee) {
     return (
@@ -32,12 +46,41 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
     <>
       <div className="page-head">
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <Avatar id={employee.id} name={employee.name} big />
+          <Avatar id={employee.id} name={employee.name} photo={employee.photo} big />
           <div>
             <h1>{employee.name}{!employee.active && <span className="badge" style={{ marginLeft: 10 }}>ehemalig</span>}</h1>
             <p className="page-sub">
-              {equipment.reduce((s, r) => s + r.qty, 0)} Teile im Einsatz
+              {equipment.reduce((s, r) => s + r.qty, 0)} Teile im Einsatz ·{' '}
+              <button className="link-btn" onClick={() => photoInputRef.current?.click()}>
+                Foto hochladen
+              </button>
+              {employee.photo && (
+                <>
+                  {' · '}
+                  <button
+                    className="link-btn"
+                    onClick={() => {
+                      const { photo, ...rest } = employee
+                      dispatch({ type: 'EMPLOYEE_SAVE', employee: rest })
+                      toast('Hochgeladenes Foto entfernt.')
+                    }}
+                  >
+                    Foto entfernen
+                  </button>
+                </>
+              )}
             </p>
+            <input
+              ref={photoInputRef}
+              type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={(e) => {
+                const f = e.target.files?.[0]
+                if (f) uploadPhoto(f)
+                e.target.value = ''
+              }}
+            />
           </div>
         </div>
         <div className="page-actions">

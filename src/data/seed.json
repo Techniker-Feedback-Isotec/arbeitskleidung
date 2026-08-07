@@ -85,7 +85,7 @@
    "active": true,
    "supplier": "Engelbert Strauss",
    "shopUrl": "https://www.strauss.com/de/de/fleecejacken-strickjacken/microfleece-jacke-dryplexx-micro-3132360-77820-145.html",
-   "imageUrl": "https://cdn.strauss.com/de/assets/pdp/images/Original/product/1.Release.3132360/Microfleece_Jacke_dryplexx_micro-8795-2-637967705344295613.png"
+   "imageUrl": "artikel/fleecejacke.png"
   },
   {
    "id": "jacke",
@@ -596,7 +596,7 @@
    "active": true,
    "supplier": "Amazon",
    "shopUrl": "https://www.amazon.de/dp/B07GSQBJ4Z",
-   "imageUrl": "https://m.media-amazon.com/images/I/81VD+Mg0WRL._AC_SY450_.jpg"
+   "imageUrl": "artikel/knieschoner-fento.jpg"
   },
   {
    "id": "bundhose-motion-ten",
@@ -624,7 +624,7 @@
    "active": true,
    "supplier": "Engelbert Strauss",
    "shopUrl": "https://www.strauss.com/de/de/bundhosen/bundhose-e-s-motion-ten-3311140-66091-2.html",
-   "imageUrl": "https://cdn.strauss.com/de/assets/pdp/images/Original/product/1.Release.3311140/Bundhose_e_s_motion_ten-205891-0-637624683297450392.png"
+   "imageUrl": "artikel/bundhose-motion-ten.png"
   }
  ],
  "employees": [

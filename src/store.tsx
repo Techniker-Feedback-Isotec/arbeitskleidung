@@ -239,11 +239,17 @@ function migrateDb(db: DB): DB {
   const merged = db.articles.map((a) => {
     const s = seedById.get(a.id)
     if (!s) return a
+    // Remote-Bildlinks werden durch lokal gebündelte Fotos ersetzt;
+    // über das Tool hochgeladene Fotos (data:) bleiben unangetastet
+    const localizedImage =
+      a.imageUrl?.startsWith('http') && s.imageUrl?.startsWith('artikel/')
+        ? s.imageUrl
+        : (a.imageUrl ?? s.imageUrl)
     return {
       ...a,
       supplier: a.supplier ?? s.supplier,
       shopUrl: a.shopUrl ?? s.shopUrl,
-      imageUrl: a.imageUrl ?? s.imageUrl,
+      imageUrl: localizedImage,
       price: a.price ?? s.price,
     }
   })

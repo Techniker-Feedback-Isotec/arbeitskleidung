@@ -116,7 +116,7 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
                     <td>{fmtDate(i.date)}</td>
                     <td>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                        {emp && <Avatar id={emp.id} name={emp.name} small />}
+                        {emp && <Avatar id={emp.id} name={emp.name} photo={emp.photo} small />}
                         {emp?.name ?? '?'}
                       </span>
                     </td>

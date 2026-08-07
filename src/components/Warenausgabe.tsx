@@ -50,7 +50,7 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
 
       <div className="card">
         <div className="form-row">
-          {employee && <Avatar id={employee.id} name={employee.name} />}
+          {employee && <Avatar id={employee.id} name={employee.name} photo={employee.photo} />}
           <div className="field">
             <label>Mitarbeiter</label>
             <select value={empId} onChange={(e) => setEmpId(e.target.value)}>
@@ -82,7 +82,7 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
       {employee ? (
         <div className="card">
           <h2 style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <Avatar id={employee.id} name={employee.name} />
+            <Avatar id={employee.id} name={employee.name} photo={employee.photo} />
             {type === 'ausgabe' ? 'Ausgabe an' : 'Rückgabe von'} {employee.name}
           </h2>
           <p className="card-hint">
