@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import type { Page } from './types'
+import { INTRANET_SHOP_URL } from './types'
 import { useStore } from './store'
 import { shortageRows } from './lib/selectors'
 import { ToastProvider } from './components/ui'
@@ -51,6 +52,18 @@ export default function App() {
                 {n.page === 'bestellliste' && missing > 0 && <span className="nav-badge">{missing}</span>}
               </button>
             ))}
+            <hr className="nav-sep" />
+            <a
+              className="nav-item nav-extern"
+              href={INTRANET_SHOP_URL}
+              target="_blank"
+              rel="noreferrer"
+              title="ISOTEC-Intranet, Lieferantenbereich Strauss (Login erforderlich)"
+            >
+              <span className="nav-icon">🛍️</span>
+              Intranet-Shop
+              <span className="nav-extern-arrow">↗</span>
+            </a>
           </nav>
           <div className="sidebar-foot">IMMER BESSER.</div>
         </aside>

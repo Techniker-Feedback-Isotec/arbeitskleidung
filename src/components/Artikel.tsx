@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import type { Article, Category } from '../types'
-import { CATEGORIES, SIZE_PRESETS } from '../types'
+import type { Article, Category, Supplier } from '../types'
+import { CATEGORIES, SIZE_PRESETS, SUPPLIERS } from '../types'
 import { useStore } from '../store'
 import { fmtEuroCent, totalSollOf, totalStockOf } from '../lib/selectors'
 import { Modal, useToast } from './ui'
@@ -42,6 +42,7 @@ export default function Artikel() {
                 <th></th>
                 <th>Artikel</th>
                 <th>Kategorie</th>
+                <th>Bestellweg</th>
                 <th>Größen</th>
                 <th className="num">Bestand</th>
                 <th className="num">Soll gesamt</th>
@@ -53,12 +54,29 @@ export default function Artikel() {
             <tbody>
               {articles.map((a) => (
                 <tr key={a.id} className="clickable" onClick={() => setEditing(a)}>
-                  <td className="article-icon">{a.icon}</td>
+                  <td className="article-icon">
+                    {a.imageUrl ? <img className="thumb" src={a.imageUrl} alt="" /> : a.icon}
+                  </td>
                   <td>
                     <b>{a.name}</b>
                     {!a.active && <span className="badge" style={{ marginLeft: 8 }}>deaktiviert</span>}
+                    {a.shopUrl && (
+                      <>
+                        {' '}
+                        <a
+                          className="shop-link"
+                          href={a.shopUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Shop ↗
+                        </a>
+                      </>
+                    )}
                   </td>
                   <td>{a.category}</td>
+                  <td className="muted small">{a.supplier ?? '–'}</td>
                   <td className="muted small">
                     {a.sizes.length > 6 ? `${a.sizes[0]} – ${a.sizes[a.sizes.length - 1]}` : a.sizes.join(', ')}
                   </td>
@@ -113,6 +131,9 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
   const [minOrder, setMinOrder] = useState(article?.minOrder ?? 0)
   const [soll, setSoll] = useState<Record<string, number>>(article?.soll ?? {})
   const [active, setActive] = useState(article?.active ?? true)
+  const [supplier, setSupplier] = useState<Supplier | ''>(article?.supplier ?? '')
+  const [shopUrl, setShopUrl] = useState(article?.shopUrl ?? '')
+  const [imageUrl, setImageUrl] = useState(article?.imageUrl ?? '')
 
   const sizes = sizesText.split(',').map((s) => s.trim()).filter(Boolean)
 
@@ -135,6 +156,9 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
       price: priceNum != null && !Number.isNaN(priceNum) ? priceNum : null,
       basisQty,
       active,
+      supplier: supplier || undefined,
+      shopUrl: shopUrl.trim() || undefined,
+      imageUrl: imageUrl.trim() || undefined,
     }
     dispatch({ type: 'ARTICLE_SAVE', article: next })
     toast(isNew ? `Artikel „${trimmed}" angelegt.` : 'Artikel gespeichert.')
@@ -181,6 +205,30 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
       <div className="field">
         <label>Größen (kommagetrennt, anpassbar)</label>
         <input type="text" value={sizesText} style={{ width: '100%' }} onChange={(e) => setSizesText(e.target.value)} />
+      </div>
+
+      <div className="form-row" style={{ marginBottom: 14 }}>
+        <div className="field">
+          <label>Bestellweg</label>
+          <select value={supplier} onChange={(e) => setSupplier(e.target.value as Supplier | '')}>
+            <option value="">–</option>
+            {SUPPLIERS.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </div>
+        <div className="field" style={{ flex: '1 1 260px' }}>
+          <label>Shop-Link (Produktseite)</label>
+          <input type="text" value={shopUrl} style={{ width: '100%' }} placeholder="https://…"
+            onChange={(e) => setShopUrl(e.target.value)} />
+        </div>
+      </div>
+
+      <div className="form-row" style={{ marginBottom: 14, alignItems: 'center' }}>
+        <div className="field" style={{ flex: '1 1 260px' }}>
+          <label>Foto-Link (Bild-URL)</label>
+          <input type="text" value={imageUrl} style={{ width: '100%' }} placeholder="https://…"
+            onChange={(e) => setImageUrl(e.target.value)} />
+        </div>
+        {imageUrl.trim() && <img className="thumb-lg" src={imageUrl.trim()} alt="Vorschau" />}
       </div>
 
       <div className="form-row" style={{ marginBottom: 14 }}>

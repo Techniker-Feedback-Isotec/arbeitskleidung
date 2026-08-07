@@ -222,7 +222,10 @@ function IssueRow({
   return (
     <tr>
       <td>
-        <span className="article-icon">{article.icon}</span> {article.name}
+        {article.imageUrl
+          ? <img className="thumb" src={article.imageUrl} alt="" style={{ marginRight: 8 }} />
+          : <span className="article-icon">{article.icon}</span>}{' '}
+        {article.name}
         {profileSize && !article.sizes.includes(profileSize) && (
           <span className="badge badge-warn" title="Profilgröße passt nicht zum Größenraster"> Profil: {profileSize}</span>
         )}

@@ -76,7 +76,10 @@
     "XXL": 4
    },
    "minOrder": 10,
-   "active": true
+   "active": true,
+   "supplier": "Engelbert Strauss",
+   "shopUrl": "https://www.strauss.com/de/de/fleecejacken-strickjacken/microfleece-jacke-dryplexx-micro-3132360-77820-145.html",
+   "imageUrl": "https://cdn.strauss.com/de/assets/pdp/images/Original/product/1.Release.3132360/Microfleece_Jacke_dryplexx_micro-8795-2-637967705344295613.png"
   },
   {
    "id": "jacke",
@@ -185,7 +188,8 @@
     "58": 6
    },
    "minOrder": 10,
-   "active": true
+   "active": true,
+   "supplier": "Mascot"
   },
   {
    "id": "stretchhose-weiss",

@@ -120,6 +120,47 @@ body {
   border-top: 1px solid var(--grey);
 }
 
+.nav-item.nav-extern {
+  text-decoration: none;
+  color: var(--red);
+}
+
+.nav-extern-arrow {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+/* Artikelfoto-Thumbnails */
+.thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid var(--grey);
+  background: var(--white);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.thumb-lg {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid var(--grey);
+  background: var(--white);
+}
+
+.shop-link {
+  font-size: 0.8rem;
+  color: var(--red);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.shop-link:hover { text-decoration: underline; }
+
 .sidebar-foot {
   margin-top: auto;
   padding: 12px 18px;

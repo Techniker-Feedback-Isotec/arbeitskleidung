@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import type { OrderStatus } from '../types'
+import { INTRANET_SHOP_URL } from '../types'
 import { useStore, today } from '../store'
 import { articleById, fmtDate } from '../lib/selectors'
 import { Modal, useToast } from './ui'
@@ -28,6 +29,9 @@ export default function Bestellungen() {
           </p>
         </div>
         <div className="page-actions">
+          <a className="btn-secondary" style={{ textDecoration: 'none' }} href={INTRANET_SHOP_URL} target="_blank" rel="noreferrer">
+            🛍️ Intranet-Shop öffnen ↗
+          </a>
           <button className="btn-primary" onClick={() => setShowNew(true)}>+ Bestellung erfassen</button>
         </div>
       </div>

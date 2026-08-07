@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import type { Page } from '../types'
+import { INTRANET_SHOP_URL } from '../types'
 import { useStore, today } from '../store'
 import { shortageRows } from '../lib/selectors'
 import { useToast } from './ui'
@@ -49,6 +50,9 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
           </p>
         </div>
         <div className="page-actions">
+          <a className="btn-secondary" style={{ textDecoration: 'none' }} href={INTRANET_SHOP_URL} target="_blank" rel="noreferrer">
+            🛍️ Intranet-Shop öffnen ↗
+          </a>
           <button className="btn-primary" disabled={selected.size === 0} onClick={orderSelected}>
             🛒 {selected.size > 0 ? `${selected.size} Positionen bestellen` : 'Auswahl bestellen'}
           </button>
@@ -100,7 +104,25 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
                         />
                       )}
                     </td>
-                    <td>{r.article.icon} {r.article.name}</td>
+                    <td>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        {r.article.imageUrl
+                          ? <img className="thumb" src={r.article.imageUrl} alt="" />
+                          : <span className="article-icon">{r.article.icon}</span>}
+                        <span>
+                          {r.article.name}
+                          {r.article.shopUrl && (
+                            <>
+                              {' '}
+                              <a className="shop-link" href={r.article.shopUrl} target="_blank" rel="noreferrer">
+                                Shop ↗
+                              </a>
+                            </>
+                          )}
+                          {r.article.supplier && <span className="badge" style={{ marginLeft: 6 }}>{r.article.supplier}</span>}
+                        </span>
+                      </span>
+                    </td>
                     <td><span className="badge">{r.size}</span></td>
                     <td className="num">{r.ist}</td>
                     <td className="num">{r.unterwegs > 0 ? r.unterwegs : '–'}</td>

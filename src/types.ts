@@ -2,6 +2,13 @@ export type Category = 'Oberteile' | 'Hosen' | 'Schuhe' | 'Kopfbedeckung' | 'Zub
 
 export const CATEGORIES: Category[] = ['Oberteile', 'Hosen', 'Schuhe', 'Kopfbedeckung', 'Zubehör']
 
+/** Bestellwege für Arbeitskleidung */
+export const SUPPLIERS = ['Intranet (Strauss)', 'Engelbert Strauss', 'Mascot', 'Sonstige'] as const
+export type Supplier = (typeof SUPPLIERS)[number]
+
+/** ISOTEC-Intranet: Strauss-Lieferantenbereich (Login erforderlich) */
+export const INTRANET_SHOP_URL = 'https://de-shop.isotec.info/Lieferanten/STRAUSS/'
+
 /** Vordefinierte Größenraster für neue Artikel */
 export const SIZE_PRESETS: Record<string, string[]> = {
   'Konfektion (XS–3XL)': ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL'],
@@ -25,6 +32,12 @@ export interface Article {
   /** Menge in der Basisausstattung für neue Mitarbeiter */
   basisQty: number
   active: boolean
+  /** Bestellweg (Intranet, Strauss direkt, Mascot …) */
+  supplier?: Supplier
+  /** Link zur Produktseite im Shop */
+  shopUrl?: string
+  /** Link zum Produktfoto */
+  imageUrl?: string
 }
 
 export interface Employee {

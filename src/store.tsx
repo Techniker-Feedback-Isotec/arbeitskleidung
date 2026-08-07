@@ -232,12 +232,30 @@ export function reducer(db: DB, action: Action): DB {
 
 /* ---------- Context ---------- */
 
+/** Neue optionale Artikel-Felder aus dem Seed in eine bestehende DB übernehmen */
+function migrateDb(db: DB): DB {
+  const seedArticles = new Map(buildSeedDb().articles.map((a) => [a.id, a]))
+  return {
+    ...db,
+    articles: db.articles.map((a) => {
+      const s = seedArticles.get(a.id)
+      if (!s) return a
+      return {
+        ...a,
+        supplier: a.supplier ?? s.supplier,
+        shopUrl: a.shopUrl ?? s.shopUrl,
+        imageUrl: a.imageUrl ?? s.imageUrl,
+      }
+    }),
+  }
+}
+
 function loadDb(): DB {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw) {
       const db = JSON.parse(raw) as DB
-      if (db && db.version === 1 && Array.isArray(db.articles)) return db
+      if (db && db.version === 1 && Array.isArray(db.articles)) return migrateDb(db)
     }
   } catch (err) {
     console.error('DB konnte nicht geladen werden, Seed wird genutzt:', err)
