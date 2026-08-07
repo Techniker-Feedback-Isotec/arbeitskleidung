@@ -232,22 +232,27 @@ export function reducer(db: DB, action: Action): DB {
 
 /* ---------- Context ---------- */
 
-/** Neue optionale Artikel-Felder aus dem Seed in eine bestehende DB übernehmen */
+/** Neue Artikel-Felder und neu hinzugekommene Seed-Artikel in eine bestehende DB übernehmen */
 function migrateDb(db: DB): DB {
-  const seedArticles = new Map(buildSeedDb().articles.map((a) => [a.id, a]))
-  return {
-    ...db,
-    articles: db.articles.map((a) => {
-      const s = seedArticles.get(a.id)
-      if (!s) return a
-      return {
-        ...a,
-        supplier: a.supplier ?? s.supplier,
-        shopUrl: a.shopUrl ?? s.shopUrl,
-        imageUrl: a.imageUrl ?? s.imageUrl,
-      }
-    }),
+  const seedArticles = buildSeedDb().articles
+  const seedById = new Map(seedArticles.map((a) => [a.id, a]))
+  const dbIds = new Set(db.articles.map((a) => a.id))
+  const merged = db.articles.map((a) => {
+    const s = seedById.get(a.id)
+    if (!s) return a
+    return {
+      ...a,
+      supplier: a.supplier ?? s.supplier,
+      shopUrl: a.shopUrl ?? s.shopUrl,
+      imageUrl: a.imageUrl ?? s.imageUrl,
+      price: a.price ?? s.price,
+    }
+  })
+  // Artikel, die es im Seed inzwischen gibt, in der DB aber noch fehlen (z. B. Intranet-Import)
+  for (const s of seedArticles) {
+    if (!dbIds.has(s.id)) merged.push({ ...s })
   }
+  return { ...db, articles: merged }
 }
 
 function loadDb(): DB {

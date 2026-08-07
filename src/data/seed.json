@@ -24,7 +24,10 @@
     "XXL": 15
    },
    "minOrder": 4,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/T-Shirt-Cotton-E.S.-Active-mit-ISOTEC-Stick/SW10780",
+   "imageUrl": "https://de-shop.isotec.info/media/66/b3/4a/1760955538/89650%20inkl.%20Logo.png"
   },
   {
    "id": "sweatshirt",
@@ -50,7 +53,10 @@
     "XXL": 10
    },
    "minOrder": 4,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/E.S.-Sweatshirt-Poly-Cotton-mit-ISOTEC-Stick/SW10783",
+   "imageUrl": "https://de-shop.isotec.info/media/fa/72/44/1760954299/89330%20inkl.%20Logo.png"
   },
   {
    "id": "fleecejacke",
@@ -104,7 +110,10 @@
     "XXL": 1
    },
    "minOrder": 4,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Softshelljacke-E.S.-Motion-mit-ISOTEC-Stick/SW10775",
+   "imageUrl": "https://de-shop.isotec.info/media/9c/67/0f/1760955844/65287%20inkl.%20Logo.png"
   },
   {
    "id": "weste",
@@ -130,7 +139,10 @@
     "XXL": 2
    },
    "minOrder": 4,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Weste-E.S.-Motion-Ten-mit-ISOTEC-Stick/SW10779",
+   "imageUrl": "https://de-shop.isotec.info/media/c9/02/ec/1760955797/66114%20inkl.%20Logo.png"
   },
   {
    "id": "softshellweste",
@@ -146,7 +158,7 @@
     "XXL",
     "3XL"
    ],
-   "price": null,
+   "price": 40.73,
    "basisQty": 0,
    "soll": {
     "S": 2,
@@ -156,7 +168,10 @@
     "XXL": 2
    },
    "minOrder": 4,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Softshell-Weste-Dryplexx-Softlight-mit-ISOTEC-Stick/SW10777",
+   "imageUrl": "https://de-shop.isotec.info/media/1d/dc/f5/1757336406/77989.png"
   },
   {
    "id": "stretchhose-grau",
@@ -239,11 +254,14 @@
     "R - 66",
     "R - 68"
    ],
-   "price": null,
+   "price": 60.73,
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Bundhose-E.S.-Motion-mit-ISOTEC-Stick/65181",
+   "imageUrl": "https://de-shop.isotec.info/media/e9/22/e8/1760954470/65281%20inkl.%20Logo.png"
   },
   {
    "id": "short",
@@ -268,7 +286,10 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Short-E.S.-Motion-mit-ISOTEC-Stick/SW10774",
+   "imageUrl": "https://de-shop.isotec.info/thumbnail/65/ab/93/1757332957/Shorts_400x400.png"
   },
   {
    "id": "schuhe-low",
@@ -294,7 +315,10 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/S3-Sicherheitshalbschuhe-E.S.-Kastra-II-Low/93954",
+   "imageUrl": "https://de-shop.isotec.info/thumbnail/f4/84/b0/1757340873/93954_400x400.png"
   },
   {
    "id": "schuhe-mid",
@@ -320,7 +344,10 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/S3-Sicherheitsschuhe-E.S.-Kastra-II-Mid/93964",
+   "imageUrl": "https://de-shop.isotec.info/thumbnail/43/bc/99/1757340694/93964_400x400.png"
   },
   {
    "id": "muetze",
@@ -335,7 +362,10 @@
    "basisQty": 1,
    "soll": {},
    "minOrder": 4,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Strickmuetze-E.S.-Iconic-mit-ISOTEC-Stick/SW10785",
+   "imageUrl": "https://de-shop.isotec.info/media/54/be/7b/1757339709/7810915.png"
   },
   {
    "id": "cap",
@@ -350,7 +380,205 @@
    "basisQty": 1,
    "soll": {},
    "minOrder": 4,
-   "active": true
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Cap-E.S.-Classic-mit-ISOTEC-Stick/SW10784",
+   "imageUrl": "https://de-shop.isotec.info/media/8b/67/94/1760955416/7820811%20inkl.%20Logo.png"
+  },
+  {
+   "id": "latzhose",
+   "name": "Latzhose E.S. Motion",
+   "category": "Hosen",
+   "icon": "👖",
+   "sizes": [
+    "42",
+    "44",
+    "46",
+    "48",
+    "50",
+    "52",
+    "54",
+    "56",
+    "58",
+    "60",
+    "62",
+    "64"
+   ],
+   "price": 70.73,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Latzhose-E.S.-Motion-mit-ISOTEC-Stick/SW10773",
+   "imageUrl": "https://de-shop.isotec.info/thumbnail/e6/af/bc/1757325797/Latzhose_400x400.png"
+  },
+  {
+   "id": "polo-silverfresh",
+   "name": "Funktions Polo-Shirt Silverfresh",
+   "category": "Oberteile",
+   "icon": "👕",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": 30.73,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/E.S.-Funktions-Polo-Shirt-Poly-Silverfresh-mit-ISOTEC-Stick/SW10782",
+   "imageUrl": "https://de-shop.isotec.info/thumbnail/cf/52/57/1757338479/89263_400x400.png"
+  },
+  {
+   "id": "polo-cotton",
+   "name": "Polo-Shirt Cotton E.S. Active",
+   "category": "Oberteile",
+   "icon": "👕",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": 28.73,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Polo-Shirt-Cotton-E.S.-Active-mit-ISOTEC-Stick/SW10781",
+   "imageUrl": "https://de-shop.isotec.info/media/82/4c/61/1760955484/89660%20inkl.%20Logo.png"
+  },
+  {
+   "id": "softshelljacke-light",
+   "name": "Softshell Jacke Dryplexx Softlight",
+   "category": "Oberteile",
+   "icon": "🧥",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": 47.73,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Softshell-Jacke-Dryplexx-Softlight-mit-ISOTEC-Stick/SW10776",
+   "imageUrl": "https://de-shop.isotec.info/media/1b/f0/77/1760955617/78119%20inkl.%20Logo.png"
+  },
+  {
+   "id": "kapuzenstrickjacke",
+   "name": "Hybrid Kapuzenstrickjacke Motion Ten",
+   "category": "Oberteile",
+   "icon": "🧥",
+   "sizes": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "3XL"
+   ],
+   "price": 87.73,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Hybrid-Kapuzenstrickjacke-E.S.-Motion-Ten-mit-ISOTEC-Stick/SW10778",
+   "imageUrl": "https://de-shop.isotec.info/media/7e/1e/99/1760955769/66119%20inkl.%20Logo.png"
+  },
+  {
+   "id": "schuhe-umbriel-mid",
+   "name": "S3 Sicherheitsschuhe Umbriel II Mid",
+   "category": "Schuhe",
+   "icon": "🥾",
+   "sizes": [
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50"
+   ],
+   "price": 64.9,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/S3-Sicherheitsschuhe-E.S.-Umbriel-II-Mid/93749",
+   "imageUrl": "https://de-shop.isotec.info/media/e1/02/a3/1757340052/93749.png"
+  },
+  {
+   "id": "schuhe-umbriel-low",
+   "name": "S3 Sicherheitshalbschuhe Umbriel II Low",
+   "category": "Schuhe",
+   "icon": "👟",
+   "sizes": [
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50"
+   ],
+   "price": 56.9,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/S3-Sicherheitshalbschuhe-E.S.-Umbriel-II-Low/93748",
+   "imageUrl": "https://de-shop.isotec.info/media/16/65/6a/1757340432/93748.png"
+  },
+  {
+   "id": "knieschoner",
+   "name": "Knieschoner Knee Pad Ergonomic",
+   "category": "Zubehör",
+   "icon": "🦵",
+   "sizes": [
+    "Einheitsgröße"
+   ],
+   "price": 9.9,
+   "basisQty": 0,
+   "soll": {},
+   "minOrder": 0,
+   "active": true,
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/e.s.-Knee-Pad-Ergonomic/8371610",
+   "imageUrl": "https://de-shop.isotec.info/thumbnail/27/c4/e1/1757510973/e_s_Knee_Pad_Ergonomic-306494-4-638730484990956191.jpg_400x400.webp"
   }
  ],
  "employees": [
