@@ -58,7 +58,7 @@ export default function Bestellungen() {
                 <th>Größe</th>
                 <th className="num">Menge</th>
                 <th>Status</th>
-                <th>Geliefert am</th>
+                <th className="hide-sm">Geliefert am</th>
                 <th></th>
               </tr>
             </thead>
@@ -84,7 +84,7 @@ export default function Bestellungen() {
                       {o.status === 'Geliefert' && <span className="badge badge-ok">Geliefert</span>}
                       {o.status === 'Storniert' && <span className="badge">Storniert</span>}
                     </td>
-                    <td>{fmtDate(o.deliveryDate)}</td>
+                    <td className="hide-sm">{fmtDate(o.deliveryDate)}</td>
                     <td style={{ whiteSpace: 'nowrap', textAlign: 'right' }}>
                       {o.status === 'Bestellt' && (
                         <>

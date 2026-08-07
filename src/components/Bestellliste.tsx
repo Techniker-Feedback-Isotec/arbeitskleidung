@@ -81,10 +81,10 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
                 <th>Artikel</th>
                 <th>Größe</th>
                 <th className="num">Ist</th>
-                <th className="num">Unterwegs</th>
+                <th className="num hide-sm">Unterwegs</th>
                 <th className="num">Soll</th>
                 <th className="num">Fehlt</th>
-                <th className="num">Mindestbestellmenge</th>
+                <th className="num hide-sm">Mindestbestellmenge</th>
               </tr>
             </thead>
             <tbody>
@@ -124,12 +124,12 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
                     </td>
                     <td><span className="badge">{r.size}</span></td>
                     <td className="num">{r.ist}</td>
-                    <td className="num">{r.unterwegs > 0 ? r.unterwegs : '–'}</td>
+                    <td className="num hide-sm">{r.unterwegs > 0 ? r.unterwegs : '–'}</td>
                     <td className="num">{r.soll}</td>
                     <td className="num">
                       {r.fehlt > 0 ? <b style={{ color: 'var(--red)' }}>{r.fehlt}</b> : '–'}
                     </td>
-                    <td className="num muted">{r.article.minOrder > 0 ? r.article.minOrder : '–'}</td>
+                    <td className="num muted hide-sm">{r.article.minOrder > 0 ? r.article.minOrder : '–'}</td>
                   </tr>
                 )
               })}

@@ -94,7 +94,7 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
                 <tr>
                   <th>Artikel</th>
                   <th>Größe</th>
-                  <th className="num">Auf Lager</th>
+                  <th className="num hide-sm">Auf Lager</th>
                   <th className="num">Menge</th>
                   <th></th>
                 </tr>
@@ -259,7 +259,7 @@ function IssueRow({
           ))}
         </select>
       </td>
-      <td className="num">
+      <td className="num hide-sm">
         {size === '' ? '–' : notEnough ? <b style={{ color: 'var(--red)' }}>{ist}</b> : ist}
       </td>
       <td className="num">

@@ -979,20 +979,130 @@ section:first-of-type .bestand-cat { margin-top: 4px; }
 .muted { color: var(--ink-muted); }
 .small { font-size: 0.84rem; }
 
+/* ---------- Mobil ---------- */
 @media (max-width: 860px) {
   .shell { flex-direction: column; }
+
+  /* Kompakter, klebender Kopf mit Icon-Navigation */
   .sidebar {
     width: 100%;
     height: auto;
-    position: static;
-    flex-direction: row;
-    align-items: center;
-    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    flex-direction: column;
+    border-right: none;
+    border-bottom: 1px solid var(--grey);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
   }
-  .sidebar-brand { border-bottom: none; padding: 10px 14px; }
-  .sidebar-brand .app-claim, .sidebar-foot { display: none; }
-  .nav { flex-direction: row; }
-  .nav-item { white-space: nowrap; }
-  .content { padding: 18px 14px 50px; }
-  .bullet-row { grid-template-columns: 110px 1fr 80px; }
+
+  .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px 4px;
+    border-bottom: none;
+  }
+
+  .sidebar-brand img { height: 20px; }
+  .sidebar-brand .app-title { margin: 0; font-size: 0.98rem; }
+  .sidebar-brand .app-claim { display: none; }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 2px 8px 6px;
+    gap: 2px;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-item {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 9px;
+    font-size: 0.66rem;
+    font-weight: 600;
+    min-width: 62px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .nav-item .nav-icon { width: auto; }
+
+  .nav-item .nav-badge {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    margin-left: 0;
+  }
+
+  .nav-extern-arrow { display: none; }
+  .nav-sep { display: none; }
+  .sidebar-contacts, .sidebar-foot { display: none; }
+
+  /* Inhalt */
+  .content { padding: 14px 12px 46px; }
+  .page-head h1 { font-size: 1.25rem; }
+  .page-head { margin-bottom: 14px; gap: 10px; }
+  .card { padding: 14px; border-radius: 8px; margin-bottom: 14px; }
+
+  .kpi-row { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+  .kpi { padding: 10px 12px; }
+  .kpi .kpi-value { font-size: 1.3rem; }
+  .kpi .kpi-sub { font-size: 0.72rem; }
+
+  table.data { font-size: 0.84rem; }
+  table.data th, table.data td { padding: 7px 7px; }
+  .hide-sm { display: none !important; }
+
+  .thumb { width: 32px !important; height: 32px !important; }
+
+  /* Formulare in Tabellen kompakter (Warenausgabe) */
+  table.data input[type='number'] { width: 46px !important; }
+  table.data select { padding: 7px 6px; }
+  table.data .btn-sm { padding: 6px 9px; font-size: 0.8rem; }
+
+  /* Letzte Spalte (Aktions-Button) bleibt beim horizontalen Scrollen sichtbar */
+  table.data td:last-child,
+  table.data th:last-child {
+    position: sticky;
+    right: 0;
+    background: var(--white);
+    box-shadow: -6px 0 6px -6px rgba(0, 0, 0, 0.15);
+  }
+
+  table.data th:last-child { background: var(--white); }
+  table.data tr.cat-row td { position: static; box-shadow: none; }
+  table.data tr.row-alert td:last-child { background: var(--red-soft); }
+
+  .modal-backdrop { padding: 14px 8px; }
+  .modal { padding: 16px 14px; }
+
+  .contact-chip { font-size: 0.8rem; padding: 5px 12px 5px 6px; }
+  .contact-chip .contact-topic { display: none; }
+
+  .bullet-row { grid-template-columns: 105px 1fr 76px; font-size: 0.84rem; }
+  .bullet-row-lg { grid-template-columns: 118px 1fr 74px; font-size: 0.9rem; padding: 7px 0; }
+  .bullet-row-lg .bullet-track { height: 18px; }
+  .bullet-row-lg .bullet-nums { font-size: 0.9rem; }
+
+  .basis-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 9px; }
+  .basis-img .thumb { width: 58px !important; height: 58px !important; }
+  .basis-tile { padding: 12px 6px 8px; }
+  .basis-name { font-size: 0.72rem; }
+
+  .bestand-head { flex-wrap: wrap; gap: 10px; }
+  .bestand-progress { width: 100%; order: 3; }
+  .size-tile { min-width: 56px; padding: 5px 6px 4px; }
+  .size-tile .tile-count { font-size: 1.1rem; }
+
+  .person-grid { grid-template-columns: 1fr; gap: 9px; }
+  .grid-2 { grid-template-columns: 1fr; gap: 14px; }
+
+  .page-actions { width: 100%; }
+  .page-actions .btn-primary, .page-actions .btn-secondary { flex: 1 1 auto; text-align: center; }
 }
