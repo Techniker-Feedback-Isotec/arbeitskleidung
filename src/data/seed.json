@@ -204,7 +204,8 @@
    },
    "minOrder": 10,
    "active": true,
-   "supplier": "Mascot"
+   "supplier": "Mascot",
+   "imageUrl": "artikel/stretchhose-grau.jpg"
   },
   {
    "id": "stretchhose-weiss",
