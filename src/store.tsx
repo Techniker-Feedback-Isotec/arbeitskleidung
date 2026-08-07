@@ -273,6 +273,21 @@ function migrateDb(db: DB): DB {
     applied.add('mascot-auftrag-2026-06-23')
   }
 
+  // Artikelpflege 07.08.2026: Mascot-Hose heißt "Hose" (72,10 netto),
+  // aktiv = aktuell genutzt (Basisausstattung + explizit aktuelle Artikel)
+  if (!applied.has('artikelpflege-2026-08-07')) {
+    const seedNow = new Map(seedArticles.map((a) => [a.id, a]))
+    next = {
+      ...next,
+      articles: next.articles.map((a) => {
+        const s = seedNow.get(a.id)
+        if (!s) return a
+        return { ...a, name: s.name, price: s.price, active: s.active }
+      }),
+    }
+    applied.add('artikelpflege-2026-08-07')
+  }
+
   return { ...next, migrations: [...applied] }
 }
 

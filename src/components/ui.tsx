@@ -1,4 +1,11 @@
 import React, { createContext, useCallback, useContext, useState } from 'react'
+import {
+  IconCatHose,
+  IconCatKopf,
+  IconCatOberteil,
+  IconCatSchuh,
+  IconCatZubehoer,
+} from './icons'
 
 /* ---------- Toasts ---------- */
 
@@ -92,18 +99,31 @@ export function Avatar({ id, name, big }: { id: string; name: string; big?: bool
   return <Initials name={name} big={big} />
 }
 
-/** Artikelbild (Thumbnail), sonst Symbol */
+const CAT_ICONS: Record<string, () => React.ReactElement> = {
+  Oberteile: IconCatOberteil,
+  Hosen: IconCatHose,
+  Schuhe: IconCatSchuh,
+  Kopfbedeckung: IconCatKopf,
+  Zubehör: IconCatZubehoer,
+}
+
+/** Artikelbild (Thumbnail); ohne Foto ein Kategorie-Icon im Linienstil */
 export function ArtThumb({
   imageUrl,
-  icon,
+  category,
   size = 40,
 }: {
   imageUrl?: string
-  icon: string
+  category?: string
   size?: number
 }) {
   if (imageUrl) {
     return <img className="thumb" style={{ width: size, height: size }} src={imageUrl} alt="" />
   }
-  return <span className="article-icon" style={{ fontSize: size * 0.55 }}>{icon}</span>
+  const Icon = CAT_ICONS[category ?? ''] ?? IconCatZubehoer
+  return (
+    <span className="thumb thumb-fallback" style={{ width: size, height: size }}>
+      <Icon />
+    </span>
+  )
 }

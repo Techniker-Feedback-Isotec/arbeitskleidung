@@ -3,7 +3,7 @@ import type { Article, Category, Supplier } from '../types'
 import { CATEGORIES, SIZE_PRESETS, SUPPLIERS } from '../types'
 import { useStore } from '../store'
 import { fmtEuroCent, totalSollOf, totalStockOf } from '../lib/selectors'
-import { Modal, useToast } from './ui'
+import { ArtThumb, Modal, useToast } from './ui'
 
 /** Artikelverwaltung: einfach neue Artikel anlegen, Soll-Bestände & Preise pflegen */
 export default function Artikel() {
@@ -20,7 +20,10 @@ export default function Artikel() {
       <div className="page-head">
         <div>
           <h1>Artikel</h1>
-          <p className="page-sub">Sortiment, Soll-Bestände, Preise und Basisausstattung</p>
+          <p className="page-sub">
+            Sortiment, Soll-Bestände, Preise und Basisausstattung. Aktive Artikel = aktuell
+            genutzte Kleidung, deaktivierte = Altbestand.
+          </p>
         </div>
         <div className="page-actions">
           <button className="btn-primary" onClick={() => setEditing('new')}>+ Neuer Artikel</button>
@@ -30,7 +33,7 @@ export default function Artikel() {
       <div className="filter-row">
         <label className="small" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <input type="checkbox" checked={showInactive} onChange={(e) => setShowInactive(e.target.checked)} />
-          Deaktivierte anzeigen
+          Altbestand anzeigen
         </label>
       </div>
 
@@ -41,6 +44,7 @@ export default function Artikel() {
               <tr>
                 <th></th>
                 <th>Artikel</th>
+                <th>Status</th>
                 <th>Kategorie</th>
                 <th>Bestellweg</th>
                 <th>Größen</th>
@@ -54,12 +58,11 @@ export default function Artikel() {
             <tbody>
               {articles.map((a) => (
                 <tr key={a.id} className="clickable" onClick={() => setEditing(a)}>
-                  <td className="article-icon">
-                    {a.imageUrl ? <img className="thumb" src={a.imageUrl} alt="" /> : a.icon}
+                  <td>
+                    <ArtThumb imageUrl={a.imageUrl} category={a.category} />
                   </td>
                   <td>
                     <b>{a.name}</b>
-                    {!a.active && <span className="badge" style={{ marginLeft: 8 }}>deaktiviert</span>}
                     {a.shopUrl && (
                       <>
                         {' '}
@@ -74,6 +77,11 @@ export default function Artikel() {
                         </a>
                       </>
                     )}
+                  </td>
+                  <td>
+                    {a.active
+                      ? <span className="badge badge-ok">Aktuell genutzt</span>
+                      : <span className="badge">Altbestand</span>}
                   </td>
                   <td>{a.category}</td>
                   <td className="muted small">{a.supplier ?? '–'}</td>
@@ -114,8 +122,6 @@ function slugify(name: string): string {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 }
-
-const ICONS = ['👕', '🧥', '🦺', '👖', '🩳', '👟', '🥾', '🧢', '🧤', '🥽', '🦵', '🎽']
 
 function ArticleModal({ article, onClose }: { article: Article | null; onClose: () => void }) {
   const { db, dispatch } = useStore()
@@ -177,12 +183,6 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
           <label>Kategorie</label>
           <select value={category} onChange={(e) => setCategory(e.target.value as Category)}>
             {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
-          </select>
-        </div>
-        <div className="field">
-          <label>Symbol</label>
-          <select value={icon} onChange={(e) => setIcon(e.target.value)}>
-            {ICONS.map((i) => <option key={i} value={i}>{i}</option>)}
           </select>
         </div>
       </div>
@@ -248,7 +248,7 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
         {!isNew && (
           <label className="small" style={{ display: 'flex', alignItems: 'center', gap: 6, paddingBottom: 8 }}>
             <input type="checkbox" checked={active} onChange={(e) => setActive(e.target.checked)} />
-            Aktiv
+            Aktuell genutzt (sonst Altbestand)
           </label>
         )}
       </div>
@@ -291,7 +291,7 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
               }
             }}
           >
-            🗑 Löschen
+            Löschen
           </button>
         )}
         <button className="btn-ghost" onClick={onClose}>Abbrechen</button>

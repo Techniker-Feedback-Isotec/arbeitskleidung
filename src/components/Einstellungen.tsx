@@ -53,8 +53,8 @@ export default function Einstellungen() {
           Mach regelmäßig ein Backup, besonders bevor du den Browser-Cache leerst oder den Rechner wechselst.
         </p>
         <div className="page-actions" style={{ marginTop: 12 }}>
-          <button className="btn-primary" onClick={exportJson}>⬇️ Backup herunterladen (JSON)</button>
-          <button className="btn-secondary" onClick={() => fileRef.current?.click()}>⬆️ Backup einspielen</button>
+          <button className="btn-primary" onClick={exportJson}>Backup herunterladen (JSON)</button>
+          <button className="btn-secondary" onClick={() => fileRef.current?.click()}>Backup einspielen</button>
           <input
             ref={fileRef}
             type="file"
@@ -92,7 +92,7 @@ export default function Einstellungen() {
             }
           }}
         >
-          ↩️ Auf Excel-Stand zurücksetzen
+          Auf Excel-Stand zurücksetzen
         </button>
       </div>
     </>

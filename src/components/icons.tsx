@@ -90,6 +90,51 @@ export const IconEinstellungen = () => (
   </Svg>
 )
 
+export const IconTrash = () => (
+  <Svg>
+    <path d="M4.5 6.5h15" />
+    <path d="M9 6.5V4.5h6v2" />
+    <path d="M6.5 6.5 7.5 20h9l1-13.5" />
+    <path d="M10 10.5v6M14 10.5v6" />
+  </Svg>
+)
+
+/* Kategorie-Icons für Artikel ohne Foto (gleicher Linienstil wie das Menü) */
+
+export const IconCatOberteil = () => (
+  <Svg>
+    <path d="M9 4.5 4 8l2 3 2-1.2V20h8v-10L18 11l2-3-5-3.5a3 3 0 0 1-6 0Z" />
+  </Svg>
+)
+
+export const IconCatHose = () => (
+  <Svg>
+    <path d="M7 4h10l1.5 16h-5L12 11.5 10.5 20h-5L7 4Z" />
+    <path d="M7 8h10" />
+  </Svg>
+)
+
+export const IconCatSchuh = () => (
+  <Svg>
+    <path d="M4 15V8.5c2 1.5 4 2 6 1.5l1.5 2c3.5.5 7 2 8.5 4v2H4v-3Z" />
+    <path d="M4 15.5c5 0 12 .5 16 2.5" />
+  </Svg>
+)
+
+export const IconCatKopf = () => (
+  <Svg>
+    <path d="M5 13a7 7 0 0 1 14 0v1.5H5V13Z" />
+    <path d="M3.5 17c5.5 1.8 11.5 1.8 17 0" />
+  </Svg>
+)
+
+export const IconCatZubehoer = () => (
+  <Svg>
+    <rect x="6" y="4" width="12" height="7" rx="2.5" />
+    <rect x="7.5" y="13" width="9" height="7" rx="2.5" />
+  </Svg>
+)
+
 export const IconShop = () => (
   <Svg>
     <path d="M4 9.5 5.5 4h13L20 9.5" />

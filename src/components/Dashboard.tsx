@@ -15,6 +15,37 @@ import {
 } from '../lib/selectors'
 import { BulletChart, ColumnChart, HBarChart } from './charts'
 import { ArtThumb } from './ui'
+import { fmtEuroCent } from '../lib/selectors'
+
+/** Visuelle Übersicht der Basisausstattung: was jeder Techniker standardmäßig bekommt */
+function BasisAusstattung() {
+  const { db } = useStore()
+  const items = db.articles
+    .filter((a) => a.active && a.basisQty > 0)
+    .sort((a, b) => b.basisQty - a.basisQty || a.name.localeCompare(b.name, 'de'))
+  if (items.length === 0) return null
+  const value = items.reduce((s, a) => s + (a.price ?? 0) * a.basisQty, 0)
+  const pieces = items.reduce((s, a) => s + a.basisQty, 0)
+  return (
+    <div className="card">
+      <h2>Basisausstattung pro Techniker</h2>
+      <p className="card-hint">
+        {pieces} Teile · Warenwert {fmtEuroCent(value)} – Mengen pflegst du am Artikel.
+      </p>
+      <div className="basis-grid">
+        {items.map((a) => (
+          <div className="basis-tile" key={a.id} title={a.price != null ? `${a.basisQty}× ${fmtEuroCent(a.price)}` : a.name}>
+            <span className="basis-img">
+              <ArtThumb imageUrl={a.imageUrl} category={a.category} size={74} />
+              <span className="basis-qty">{a.basisQty}×</span>
+            </span>
+            <span className="basis-name">{a.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function Dashboard({ go }: { go: (p: Page) => void }) {
   const { db } = useStore()
@@ -67,6 +98,8 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
         </div>
       </div>
 
+      <BasisAusstattung />
+
       <div className="grid-2">
         <div className="card">
           <h2>Ausgegebene Teile pro Monat</h2>
@@ -108,7 +141,7 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
                       <td>{emp?.name ?? '?'}</td>
                       <td>
                         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                          <ArtThumb imageUrl={art?.imageUrl} icon={art?.icon ?? '❔'} size={30} />
+                          <ArtThumb imageUrl={art?.imageUrl} category={art?.category} size={30} />
                           <span>
                             {art?.name ?? '?'} {i.size && <span className="badge">{i.size}</span>}
                             {i.type === 'rueckgabe' && <span className="badge badge-warn"> Rückgabe</span>}

@@ -154,6 +154,14 @@ body {
   flex-shrink: 0;
 }
 
+.thumb-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  background: var(--light);
+}
+
 .thumb-lg {
   width: 96px;
   height: 96px;
@@ -537,6 +545,57 @@ input[type='number'] { width: 90px; }
   font-size: 0.82rem;
 }
 
+/* ---------- Basisausstattung (Dashboard) ---------- */
+.basis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+  gap: 12px;
+}
+
+.basis-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
+  padding: 14px 8px 10px;
+  text-align: center;
+  background: var(--white);
+  transition: border-color 0.15s;
+}
+
+.basis-tile:hover { border-color: var(--red); }
+
+.basis-img {
+  position: relative;
+  display: inline-flex;
+}
+
+.basis-img .thumb {
+  border: none;
+}
+
+.basis-qty {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 2px 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.basis-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--brown);
+}
+
 /* ---------- Lagerbestand ---------- */
 .bestand-cat {
   font-size: 0.95rem;
@@ -642,6 +701,9 @@ section:first-of-type .bestand-cat { margin-top: 4px; }
 .size-tile.tile-zero { opacity: 0.5; }
 
 .size-tile .stock-input { width: 52px; margin: 2px 0; }
+
+.bestand-dead { opacity: 0.75; background: #fbfaf9; }
+.bestand-dead .bestand-name { color: var(--ink-muted); }
 
 /* ---------- Mitarbeiter ---------- */
 .person-grid {

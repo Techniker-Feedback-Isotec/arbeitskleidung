@@ -3,7 +3,7 @@ import type { Page } from '../types'
 import { INTRANET_SHOP_URL } from '../types'
 import { useStore, today } from '../store'
 import { shortageRows } from '../lib/selectors'
-import { useToast } from './ui'
+import { ArtThumb, useToast } from './ui'
 
 /** Berechnete Bestellliste: Soll − Ist − Unterwegs, mit Übernahme in Bestellungen */
 export default function Bestellliste({ go }: { go: (p: Page) => void }) {
@@ -51,10 +51,10 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
         </div>
         <div className="page-actions">
           <a className="btn-secondary" style={{ textDecoration: 'none' }} href={INTRANET_SHOP_URL} target="_blank" rel="noreferrer">
-            🛍️ Intranet-Shop öffnen ↗
+            Intranet-Shop öffnen ↗
           </a>
           <button className="btn-primary" disabled={selected.size === 0} onClick={orderSelected}>
-            🛒 {selected.size > 0 ? `${selected.size} Positionen bestellen` : 'Auswahl bestellen'}
+            {selected.size > 0 ? `${selected.size} Positionen bestellen` : 'Auswahl bestellen'}
           </button>
         </div>
       </div>
@@ -106,9 +106,7 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
                     </td>
                     <td>
                       <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        {r.article.imageUrl
-                          ? <img className="thumb" src={r.article.imageUrl} alt="" />
-                          : <span className="article-icon">{r.article.icon}</span>}
+                        <ArtThumb imageUrl={r.article.imageUrl} category={r.article.category} />
                         <span>
                           {r.article.name}
                           {r.article.shopUrl && (
@@ -137,7 +135,7 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
               {rows.length === 0 && (
                 <tr>
                   <td colSpan={8} className="empty">
-                    🎉 Alles im Soll – aktuell keine Fehlmengen.
+                    Alles im Soll – aktuell keine Fehlmengen.
                   </td>
                 </tr>
               )}

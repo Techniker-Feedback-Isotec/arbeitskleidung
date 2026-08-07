@@ -168,14 +168,14 @@
     "XXL": 2
    },
    "minOrder": 4,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/Softshell-Weste-Dryplexx-Softlight-mit-ISOTEC-Stick/SW10777",
    "imageUrl": "https://de-shop.isotec.info/media/1d/dc/f5/1757336406/77989.png"
   },
   {
    "id": "stretchhose-grau",
-   "name": "Stretchhose grau",
+   "name": "Hose",
    "category": "Hosen",
    "icon": "👖",
    "sizes": [
@@ -192,7 +192,7 @@
     "62",
     "64"
    ],
-   "price": 64.89,
+   "price": 72.1,
    "basisQty": 4,
    "soll": {
     "48": 6,
@@ -230,7 +230,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true
+   "active": false
   },
   {
    "id": "bundhose-weiss",
@@ -259,7 +259,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/Bundhose-E.S.-Motion-mit-ISOTEC-Stick/65181",
    "imageUrl": "https://de-shop.isotec.info/media/e9/22/e8/1760954470/65281%20inkl.%20Logo.png"
@@ -287,7 +287,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/Short-E.S.-Motion-mit-ISOTEC-Stick/SW10774",
    "imageUrl": "https://de-shop.isotec.info/thumbnail/65/ab/93/1757332957/Shorts_400x400.png"
@@ -316,7 +316,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/S3-Sicherheitshalbschuhe-E.S.-Kastra-II-Low/93954",
    "imageUrl": "https://de-shop.isotec.info/thumbnail/f4/84/b0/1757340873/93954_400x400.png"
@@ -345,7 +345,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/S3-Sicherheitsschuhe-E.S.-Kastra-II-Mid/93964",
    "imageUrl": "https://de-shop.isotec.info/thumbnail/43/bc/99/1757340694/93964_400x400.png"
@@ -409,7 +409,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/Latzhose-E.S.-Motion-mit-ISOTEC-Stick/SW10773",
    "imageUrl": "https://de-shop.isotec.info/thumbnail/e6/af/bc/1757325797/Latzhose_400x400.png"
@@ -432,7 +432,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/E.S.-Funktions-Polo-Shirt-Poly-Silverfresh-mit-ISOTEC-Stick/SW10782",
    "imageUrl": "https://de-shop.isotec.info/thumbnail/cf/52/57/1757338479/89263_400x400.png"
@@ -455,7 +455,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/Polo-Shirt-Cotton-E.S.-Active-mit-ISOTEC-Stick/SW10781",
    "imageUrl": "https://de-shop.isotec.info/media/82/4c/61/1760955484/89660%20inkl.%20Logo.png"
@@ -478,7 +478,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/Softshell-Jacke-Dryplexx-Softlight-mit-ISOTEC-Stick/SW10776",
    "imageUrl": "https://de-shop.isotec.info/media/1b/f0/77/1760955617/78119%20inkl.%20Logo.png"
@@ -501,7 +501,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/Hybrid-Kapuzenstrickjacke-E.S.-Motion-Ten-mit-ISOTEC-Stick/SW10778",
    "imageUrl": "https://de-shop.isotec.info/media/7e/1e/99/1760955769/66119%20inkl.%20Logo.png"
@@ -530,7 +530,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/S3-Sicherheitsschuhe-E.S.-Umbriel-II-Mid/93749",
    "imageUrl": "https://de-shop.isotec.info/media/e1/02/a3/1757340052/93749.png"
@@ -559,7 +559,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/S3-Sicherheitshalbschuhe-E.S.-Umbriel-II-Low/93748",
    "imageUrl": "https://de-shop.isotec.info/media/16/65/6a/1757340432/93748.png"
@@ -576,7 +576,7 @@
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
-   "active": true,
+   "active": false,
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/e.s.-Knee-Pad-Ergonomic/8371610",
    "imageUrl": "https://de-shop.isotec.info/thumbnail/27/c4/e1/1757510973/e_s_Knee_Pad_Ergonomic-306494-4-638730484990956191.jpg_400x400.webp"
@@ -597,6 +597,34 @@
    "supplier": "Amazon",
    "shopUrl": "https://www.amazon.de/dp/B07GSQBJ4Z",
    "imageUrl": "https://m.media-amazon.com/images/I/81VD+Mg0WRL._AC_SY450_.jpg"
+  },
+  {
+   "id": "bundhose-motion-ten",
+   "name": "Bundhose e.s. motion ten",
+   "category": "Hosen",
+   "icon": "👖",
+   "sizes": [
+    "42",
+    "44",
+    "46",
+    "48",
+    "50",
+    "52",
+    "54",
+    "56",
+    "58",
+    "60",
+    "62",
+    "64"
+   ],
+   "soll": {},
+   "minOrder": 0,
+   "price": 89.13,
+   "basisQty": 0,
+   "active": true,
+   "supplier": "Engelbert Strauss",
+   "shopUrl": "https://www.strauss.com/de/de/bundhosen/bundhose-e-s-motion-ten-3311140-66091-2.html",
+   "imageUrl": "https://cdn.strauss.com/de/assets/pdp/images/Original/product/1.Release.3311140/Bundhose_e_s_motion_ten-205891-0-637624683297450392.png"
   }
  ],
  "employees": [

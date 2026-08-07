@@ -30,7 +30,7 @@ export default function Bestellungen() {
         </div>
         <div className="page-actions">
           <a className="btn-secondary" style={{ textDecoration: 'none' }} href={INTRANET_SHOP_URL} target="_blank" rel="noreferrer">
-            🛍️ Intranet-Shop öffnen ↗
+            Intranet-Shop öffnen ↗
           </a>
           <button className="btn-primary" onClick={() => setShowNew(true)}>+ Bestellung erfassen</button>
         </div>
@@ -69,7 +69,7 @@ export default function Bestellungen() {
                     <td>{fmtDate(o.orderDate)}</td>
                     <td>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                        <ArtThumb imageUrl={art?.imageUrl} icon={art?.icon ?? '❔'} size={30} />
+                        <ArtThumb imageUrl={art?.imageUrl} category={art?.category} size={30} />
                         <span>
                           {art?.name ?? o.articleId}
                           {o.note && <span className="small muted" style={{ display: 'block' }}>{o.note}</span>}

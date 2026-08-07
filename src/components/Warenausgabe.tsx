@@ -3,6 +3,7 @@ import type { Page } from '../types'
 import { useStore, today } from '../store'
 import { articleById, employeeById, fmtDate, stockOf } from '../lib/selectors'
 import { ArtThumb, Avatar, useToast } from './ui'
+import { IconTrash } from './icons'
 
 /** Warenausgabe: Mitarbeiter wählen → Artikel mit passender Größe ausgeben */
 export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void; employeeId?: string }) {
@@ -121,7 +122,7 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
         </div>
       ) : (
         <div className="card">
-          <p className="empty">👆 Wähle oben einen Mitarbeiter, um Kleidung auszugeben.</p>
+          <p className="empty">Wähle oben einen Mitarbeiter, um Kleidung auszugeben.</p>
         </div>
       )}
 
@@ -159,7 +160,7 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
                     <td>{emp?.name ?? '?'}</td>
                     <td>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                        <ArtThumb imageUrl={art?.imageUrl} icon={art?.icon ?? '❔'} size={30} />
+                        <ArtThumb imageUrl={art?.imageUrl} category={art?.category} size={30} />
                         {art?.name ?? '?'}
                       </span>
                     </td>
@@ -183,7 +184,7 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
                           }
                         }}
                       >
-                        🗑
+                        <IconTrash />
                       </button>
                     </td>
                   </tr>
@@ -239,7 +240,7 @@ function IssueRow({
     <tr>
       <td>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-          <ArtThumb imageUrl={article.imageUrl} icon={article.icon} />
+          <ArtThumb imageUrl={article.imageUrl} category={article.category} />
           {article.name}
         </span>
         {profileSize && !article.sizes.includes(profileSize) && (

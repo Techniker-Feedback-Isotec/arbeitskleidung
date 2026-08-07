@@ -42,9 +42,9 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
         </div>
         <div className="page-actions">
           <button className="btn-ghost" onClick={() => go({ name: 'mitarbeiter' })}>← Übersicht</button>
-          <button className="btn-secondary" onClick={() => setShowBasis(true)}>🎒 Basisausstattung ausgeben</button>
+          <button className="btn-secondary" onClick={() => setShowBasis(true)}>Basisausstattung ausgeben</button>
           <button className="btn-primary" onClick={() => go({ name: 'ausgabe', employeeId: employee.id })}>
-            🤝 Warenausgabe
+            Warenausgabe
           </button>
         </div>
       </div>
@@ -63,7 +63,7 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
                   <tr key={a.id}>
                     <td>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                        <ArtThumb imageUrl={a.imageUrl} icon={a.icon} size={30} />
+                        <ArtThumb imageUrl={a.imageUrl} category={a.category} size={30} />
                         {a.name}
                       </span>
                     </td>
@@ -104,7 +104,7 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
                     <tr key={r.article!.id}>
                       <td>
                         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                          <ArtThumb imageUrl={r.article!.imageUrl} icon={r.article!.icon} size={30} />
+                          <ArtThumb imageUrl={r.article!.imageUrl} category={r.article!.category} size={30} />
                           {r.article!.name}
                         </span>
                       </td>
@@ -138,7 +138,7 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
                     <td>{fmtDate(i.date)}</td>
                     <td>
                       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                        <ArtThumb imageUrl={art?.imageUrl} icon={art?.icon ?? '❔'} size={30} />
+                        <ArtThumb imageUrl={art?.imageUrl} category={art?.category} size={30} />
                         {art?.name ?? '?'}
                       </span>
                     </td>
@@ -182,7 +182,7 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
                 }
               }}
             >
-              🗑 Löschen
+              Endgültig löschen
             </button>
           )}
         </div>
@@ -251,7 +251,7 @@ function BasisModal({ employeeId, onClose }: { employeeId: string; onClose: () =
                 <tr key={r.article.id}>
                   <td>
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                      <ArtThumb imageUrl={r.article.imageUrl} icon={r.article.icon} size={30} />
+                      <ArtThumb imageUrl={r.article.imageUrl} category={r.article.category} size={30} />
                       {r.article.name}
                     </span>
                   </td>
@@ -290,7 +290,7 @@ function BasisModal({ employeeId, onClose }: { employeeId: string; onClose: () =
       </div>
       {shortages.length > 0 && (
         <p className="small" style={{ color: 'var(--warn)', marginTop: 10 }}>
-          ⚠️ Bei {shortages.length} Artikel(n) reicht der Bestand nicht – die Ausgabe ist trotzdem möglich,
+          Achtung: Bei {shortages.length} Artikel(n) reicht der Bestand nicht – die Ausgabe ist trotzdem möglich,
           der Bestand geht dann auf 0 und die Fehlmenge erscheint in der Bestellliste.
         </p>
       )}
