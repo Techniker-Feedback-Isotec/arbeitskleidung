@@ -101,6 +101,8 @@ export interface Order {
   deliveryDate?: string
   note?: string
   seed?: boolean
+  /** Datum, an dem die Lieferung geprüft und bestätigt wurde */
+  confirmedAt?: string
 }
 
 export interface DB {

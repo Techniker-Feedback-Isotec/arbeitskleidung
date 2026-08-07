@@ -86,6 +86,8 @@ export function buildSeedDb(): DB {
     deliveryDate: so.status === 'Geliefert' ? (so.date ?? seed.seedDate) : undefined,
     note: so.note,
     seed: true,
+    // Historische Belege gelten als geprüft – die Lieferprüfung startet mit neuen Bestellungen
+    confirmedAt: so.status === 'Geliefert' ? (so.date ?? seed.seedDate) : undefined,
   }))
 
   return {
@@ -105,6 +107,15 @@ export type Action =
   | { type: 'ISSUE_DELETE'; id: string }
   | { type: 'ORDER_ADD'; order: Omit<Order, 'id'> }
   | { type: 'ORDER_DELIVER'; id: string; deliveryDate: string }
+  | { type: 'ORDER_CONFIRM'; id: string; date: string }
+  | {
+      type: 'ORDER_CORRECT'
+      id: string
+      actualQty: number
+      note: string
+      keepRestOpen: boolean
+      date: string
+    }
   | { type: 'ORDER_CANCEL'; id: string }
   | { type: 'ORDER_DELETE'; id: string }
   | { type: 'STOCK_SET'; articleId: string; size: string; qty: number }
@@ -164,6 +175,44 @@ export function reducer(db: DB, action: Action): DB {
           o.id === action.id ? { ...o, status: 'Geliefert', deliveryDate: action.deliveryDate } : o,
         ),
       }
+    }
+    case 'ORDER_CONFIRM': {
+      return {
+        ...db,
+        orders: db.orders.map((o) => (o.id === action.id ? { ...o, confirmedAt: action.date } : o)),
+      }
+    }
+    case 'ORDER_CORRECT': {
+      const order = db.orders.find((o) => o.id === action.id)
+      if (!order || order.status !== 'Geliefert') return db
+      const actual = Math.max(0, action.actualQty)
+      const delta = actual - order.qty
+      let stock = db.stock
+      // Seed-Belege sind im Excel-Bestand bereits enthalten – nur App-Buchungen korrigieren den Bestand
+      if (!order.seed && delta !== 0) {
+        stock = addStock(stock, order.articleId, order.size, delta)
+      }
+      const noteParts = [order.note, `Abweichung: ${actual} statt ${order.qty} geliefert`, action.note].filter(Boolean)
+      let orders = db.orders.map((o) =>
+        o.id === action.id
+          ? { ...o, qty: actual, note: noteParts.join(' · '), confirmedAt: action.date }
+          : o,
+      )
+      if (action.keepRestOpen && delta < 0) {
+        orders = [
+          {
+            id: uid(),
+            articleId: order.articleId,
+            size: order.size,
+            qty: -delta,
+            status: 'Bestellt' as const,
+            orderDate: action.date,
+            note: 'Nachlieferung (Abweichung bei Lieferprüfung)',
+          },
+          ...orders,
+        ]
+      }
+      return { ...db, stock, orders }
     }
     case 'ORDER_CANCEL': {
       const order = db.orders.find((o) => o.id === action.id)
@@ -379,6 +428,19 @@ function migrateDb(db: DB): DB {
       ),
     }
     applied.add('short-split-2026-08-07')
+  }
+
+  // Lieferprüfung eingeführt: historische (Seed-)Lieferungen gelten als geprüft
+  if (!applied.has('lieferpruefung-2026-08-07')) {
+    next = {
+      ...next,
+      orders: next.orders.map((o) =>
+        o.seed && o.status === 'Geliefert' && !o.confirmedAt
+          ? { ...o, confirmedAt: o.deliveryDate ?? o.orderDate }
+          : o,
+      ),
+    }
+    applied.add('lieferpruefung-2026-08-07')
   }
 
   return { ...next, migrations: [...applied] }

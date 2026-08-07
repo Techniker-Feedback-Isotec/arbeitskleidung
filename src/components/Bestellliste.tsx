@@ -11,32 +11,45 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
   const toast = useToast()
   const [onlyMissing, setOnlyMissing] = useState(true)
   const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [qtyOverride, setQtyOverride] = useState<Record<string, number>>({})
 
   const rows = shortageRows(db).filter((r) => (onlyMissing ? r.fehlt > 0 : true))
   const key = (r: { article: { id: string }; size: string }) => `${r.article.id}|${r.size}`
+  /** Bestellmenge: standardmäßig die Fehlmenge, manuell anpassbar */
+  const orderQty = (r: (typeof rows)[number]) => qtyOverride[key(r)] ?? r.fehlt
   const missingRows = rows.filter((r) => r.fehlt > 0)
   const allSelected = missingRows.length > 0 && missingRows.every((r) => selected.has(key(r)))
+  const selectedRows = rows.filter((r) => selected.has(key(r)) && orderQty(r) > 0)
 
   function toggleAll() {
     setSelected(allSelected ? new Set() : new Set(missingRows.map(key)))
   }
 
+  function setQty(k: string, qty: number) {
+    setQtyOverride({ ...qtyOverride, [k]: Math.max(0, qty) })
+    // Wer eine Menge einträgt, will die Position bestellen
+    const next = new Set(selected)
+    if (qty > 0) next.add(k)
+    else next.delete(k)
+    setSelected(next)
+  }
+
   function orderSelected() {
-    const toOrder = missingRows.filter((r) => selected.has(key(r)))
-    for (const r of toOrder) {
+    for (const r of selectedRows) {
       dispatch({
         type: 'ORDER_ADD',
         order: {
           articleId: r.article.id,
           size: r.size,
-          qty: r.fehlt,
+          qty: orderQty(r),
           status: 'Bestellt',
           orderDate: today(),
         },
       })
     }
     setSelected(new Set())
-    toast(`${toOrder.length} Positionen als Bestellung angelegt.`)
+    setQtyOverride({})
+    toast(`${selectedRows.length} Positionen als Bestellung ausgelöst.`)
     go({ name: 'bestellungen' })
   }
 
@@ -54,8 +67,10 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
           <a className="btn-secondary" style={{ textDecoration: 'none' }} href={INTRANET_SHOP_URL} target="_blank" rel="noreferrer">
             Intranet-Shop öffnen ↗
           </a>
-          <button className="btn-primary" disabled={selected.size === 0} onClick={orderSelected}>
-            {selected.size > 0 ? `${selected.size} Positionen bestellen` : 'Auswahl bestellen'}
+          <button className="btn-primary" disabled={selectedRows.length === 0} onClick={orderSelected}>
+            {selectedRows.length > 0
+              ? `${selectedRows.length} Positionen (${selectedRows.reduce((s, r) => s + orderQty(r), 0)} Teile) bestellen`
+              : 'Auswahl bestellen'}
           </button>
         </div>
       </div>
@@ -85,6 +100,7 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
                 <th className="num">Soll</th>
                 <th className="num">Fehlt</th>
                 <th className="num hide-sm">Mindestbestellmenge</th>
+                <th className="num">Bestellmenge</th>
               </tr>
             </thead>
             <tbody>
@@ -93,17 +109,15 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
                 return (
                   <tr key={k} className={r.fehlt > 0 ? 'row-alert' : ''}>
                     <td>
-                      {r.fehlt > 0 && (
-                        <input
-                          type="checkbox"
-                          checked={selected.has(k)}
-                          onChange={(e) => {
-                            const next = new Set(selected)
-                            e.target.checked ? next.add(k) : next.delete(k)
-                            setSelected(next)
-                          }}
-                        />
-                      )}
+                      <input
+                        type="checkbox"
+                        checked={selected.has(k)}
+                        onChange={(e) => {
+                          const next = new Set(selected)
+                          e.target.checked ? next.add(k) : next.delete(k)
+                          setSelected(next)
+                        }}
+                      />
                     </td>
                     <td>
                       <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -130,12 +144,21 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
                       {r.fehlt > 0 ? <b style={{ color: 'var(--red)' }}>{r.fehlt}</b> : '–'}
                     </td>
                     <td className="num muted hide-sm">{r.article.minOrder > 0 ? r.article.minOrder : '–'}</td>
+                    <td className="num">
+                      <input
+                        type="number"
+                        min={0}
+                        value={orderQty(r)}
+                        style={{ width: 60 }}
+                        onChange={(e) => setQty(k, Number(e.target.value))}
+                      />
+                    </td>
                   </tr>
                 )
               })}
               {rows.length === 0 && (
                 <tr>
-                  <td colSpan={8} className="empty">
+                  <td colSpan={9} className="empty">
                     Alles im Soll – aktuell keine Fehlmengen.
                   </td>
                 </tr>

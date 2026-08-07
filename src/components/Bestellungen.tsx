@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import type { OrderStatus } from '../types'
-import { CONTACT_EINKAUF, INTRANET_SHOP_URL } from '../types'
+import type { Order, OrderStatus } from '../types'
+import { CONTACT_EINKAUF } from '../types'
 import { useStore, today } from '../store'
 import { articleById, fmtDate } from '../lib/selectors'
 import { ArtThumb, ContactChip, Modal, useToast } from './ui'
 
-/** Einkauf: offene und gelieferte Bestellungen, Wareneingang buchen */
+/** Bestellübersicht: Status verfolgen, Wareneingang buchen, Lieferungen prüfen.
+    Bestellungen werden über die Bestellliste ausgelöst. */
 export default function Bestellungen() {
   const { db, dispatch } = useStore()
   const toast = useToast()
-  const [filter, setFilter] = useState<OrderStatus | 'alle'>('Bestellt')
-  const [showNew, setShowNew] = useState(false)
+  const [filter, setFilter] = useState<OrderStatus | 'alle'>('Geliefert')
+  const [correcting, setCorrecting] = useState<Order | null>(null)
 
   const orders = db.orders
     .filter((o) => (filter === 'alle' ? true : o.status === filter))
@@ -18,6 +19,7 @@ export default function Bestellungen() {
     .sort((a, b) => (a.orderDate < b.orderDate ? 1 : -1))
 
   const openCount = db.orders.filter((o) => o.status === 'Bestellt').length
+  const unconfirmed = db.orders.filter((o) => o.status === 'Geliefert' && !o.confirmedAt).length
 
   return (
     <>
@@ -25,27 +27,25 @@ export default function Bestellungen() {
         <div>
           <h1>Bestellungen</h1>
           <p className="page-sub">
-            {openCount > 0 ? `${openCount} Positionen offen – beim Eintreffen „Geliefert" buchen, dann wandert die Ware in den Bestand.` : 'Keine offenen Bestellungen.'}
+            Übersicht aller Bestellvorgänge – neue Bestellungen löst du über die Bestellliste aus.
+            {openCount > 0 && <> {openCount} Positionen unterwegs.</>}
           </p>
         </div>
         <div className="page-actions">
           <ContactChip contact={CONTACT_EINKAUF} />
-          <a className="btn-secondary" style={{ textDecoration: 'none' }} href={INTRANET_SHOP_URL} target="_blank" rel="noreferrer">
-            Intranet-Shop öffnen ↗
-          </a>
-          <button className="btn-primary" onClick={() => setShowNew(true)}>+ Bestellung erfassen</button>
         </div>
       </div>
 
       <div className="card">
         <div className="filter-row">
-          {(['Bestellt', 'Geliefert', 'Zurückgesendet', 'Storniert', 'alle'] as const).map((f) => (
+          {(['Geliefert', 'Bestellt', 'Zurückgesendet', 'Storniert', 'alle'] as const).map((f) => (
             <button
               key={f}
               className={`btn-sm ${filter === f ? 'btn-primary' : 'btn-ghost'}`}
               onClick={() => setFilter(f)}
             >
               {f === 'alle' ? 'Alle' : f}
+              {f === 'Geliefert' && unconfirmed > 0 && ` (${unconfirmed} ungeprüft)`}
             </button>
           ))}
         </div>
@@ -93,7 +93,7 @@ export default function Bestellungen() {
                             className="btn-secondary btn-sm"
                             onClick={() => {
                               dispatch({ type: 'ORDER_DELIVER', id: o.id, deliveryDate: today() })
-                              toast('Wareneingang gebucht – Bestand aktualisiert.')
+                              toast('Wareneingang gebucht – Bestand aktualisiert. Bitte Lieferung prüfen.')
                             }}
                           >
                             ✓ Geliefert
@@ -107,6 +107,32 @@ export default function Bestellungen() {
                           </button>
                         </>
                       )}
+                      {o.status === 'Geliefert' && !o.confirmedAt && (
+                        <>
+                          <button
+                            className="btn-secondary btn-sm"
+                            title="Bestätigt, dass die Lieferung mit der Bestellung übereinstimmt"
+                            onClick={() => {
+                              dispatch({ type: 'ORDER_CONFIRM', id: o.id, date: today() })
+                              toast('Lieferung bestätigt.')
+                            }}
+                          >
+                            ✓ Lieferung bestätigen
+                          </button>{' '}
+                          <button
+                            className="btn-ghost btn-sm"
+                            title="Gelieferte Menge weicht von der Bestellung ab"
+                            onClick={() => setCorrecting(o)}
+                          >
+                            Abweichung
+                          </button>
+                        </>
+                      )}
+                      {o.status === 'Geliefert' && o.confirmedAt && (
+                        <span className="badge badge-ok" title={`Geprüft am ${fmtDate(o.confirmedAt)}`}>
+                          ✓ Geprüft
+                        </span>
+                      )}
                     </td>
                   </tr>
                 )
@@ -117,92 +143,91 @@ export default function Bestellungen() {
             </tbody>
           </table>
         </div>
+        {filter === 'Geliefert' && (
+          <p className="chart-caption">
+            Künftig setzt das Einkaufspostfach den Status automatisch über die Versand- und
+            Lieferbestätigungen – die Prüfung „Lieferung bestätigen" bleibt der manuelle Abgleich
+            mit der tatsächlich angekommenen Ware.
+          </p>
+        )}
       </div>
 
-      {showNew && <NewOrderModal onClose={() => setShowNew(false)} />}
+      {correcting && <DeviationModal order={correcting} onClose={() => setCorrecting(null)} />}
     </>
   )
 }
 
-function NewOrderModal({ onClose }: { onClose: () => void }) {
+/** Abweichung bei der Lieferprüfung erfassen */
+function DeviationModal({ order, onClose }: { order: Order; onClose: () => void }) {
   const { db, dispatch } = useStore()
   const toast = useToast()
-  const articles = db.articles.filter((a) => a.active)
-  const [articleId, setArticleId] = useState(articles[0]?.id ?? '')
-  const article = articles.find((a) => a.id === articleId)
-  const [size, setSize] = useState(article?.sizes[0] ?? '')
-  const [qty, setQty] = useState(1)
-  const [date, setDate] = useState(today())
-  const [status, setStatus] = useState<OrderStatus>('Bestellt')
-
-  function selectArticle(id: string) {
-    setArticleId(id)
-    const a = articles.find((x) => x.id === id)
-    setSize(a?.sizes[0] ?? '')
-  }
+  const art = articleById(db, order.articleId)
+  const [actual, setActual] = useState(order.qty)
+  const [note, setNote] = useState('')
+  const [keepRestOpen, setKeepRestOpen] = useState(true)
+  const missing = Math.max(0, order.qty - actual)
 
   function save() {
-    if (!article || !size || qty < 1) return
     dispatch({
-      type: 'ORDER_ADD',
-      order: {
-        articleId,
-        size,
-        qty,
-        status,
-        orderDate: date,
-        deliveryDate: status === 'Geliefert' ? date : undefined,
-      },
+      type: 'ORDER_CORRECT',
+      id: order.id,
+      actualQty: actual,
+      note: note.trim(),
+      keepRestOpen: keepRestOpen && missing > 0,
+      date: today(),
     })
     toast(
-      status === 'Geliefert'
-        ? 'Lieferung erfasst – Bestand aktualisiert.'
-        : status === 'Zurückgesendet'
-          ? 'Rücksendung erfasst – Bestand reduziert.'
-          : 'Bestellung erfasst.',
+      missing > 0 && keepRestOpen
+        ? `Korrigiert – ${missing} Stück bleiben als offene Bestellung stehen.`
+        : 'Lieferung korrigiert und bestätigt.',
     )
     onClose()
   }
 
   return (
-    <Modal title="Bestellung erfassen" onClose={onClose}>
-      <div className="form-row" style={{ marginBottom: 14 }}>
+    <Modal title="Abweichung bei der Lieferung" onClose={onClose}>
+      <p className="small">
+        {art?.name} · Größe {order.size} · bestellt: <b>{order.qty} Stück</b>
+      </p>
+      <div className="form-row" style={{ margin: '14px 0' }}>
         <div className="field">
-          <label>Artikel</label>
-          <select value={articleId} onChange={(e) => selectArticle(e.target.value)}>
-            {articles.map((a) => (
-              <option key={a.id} value={a.id}>{a.name}</option>
-            ))}
-          </select>
+          <label>Tatsächlich geliefert</label>
+          <input
+            type="number"
+            min={0}
+            value={actual}
+            onChange={(e) => setActual(Number(e.target.value))}
+            autoFocus
+          />
         </div>
-        <div className="field">
-          <label>Größe</label>
-          <select value={size} onChange={(e) => setSize(e.target.value)}>
-            {article?.sizes.map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
-        </div>
-        <div className="field">
-          <label>Menge</label>
-          <input type="number" min={1} value={qty} onChange={(e) => setQty(Number(e.target.value))} />
-        </div>
-        <div className="field">
-          <label>Bestelldatum</label>
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        <div className="field" style={{ flex: '1 1 220px' }}>
+          <label>Anmerkung (optional)</label>
+          <input
+            type="text"
+            value={note}
+            style={{ width: '100%' }}
+            placeholder="z. B. falsche Größe geliefert"
+            onChange={(e) => setNote(e.target.value)}
+          />
         </div>
       </div>
-      <div className="field">
-        <label>Vorgang</label>
-        <select value={status} onChange={(e) => setStatus(e.target.value as OrderStatus)}>
-          <option value="Bestellt">Bestellt (Ware unterwegs)</option>
-          <option value="Geliefert">Bereits geliefert (in den Bestand buchen)</option>
-          <option value="Zurückgesendet">Rücksendung / Falschbestellung (aus dem Bestand buchen)</option>
-        </select>
-      </div>
+      {missing > 0 && (
+        <label className="small" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <input
+            type="checkbox"
+            checked={keepRestOpen}
+            onChange={(e) => setKeepRestOpen(e.target.checked)}
+          />
+          Fehlende {missing} Stück als offene Bestellung (Nachlieferung) stehen lassen
+        </label>
+      )}
+      <p className="field-hint" style={{ marginTop: 10 }}>
+        Der Lagerbestand wird auf die tatsächlich gelieferte Menge korrigiert
+        {order.seed ? ' (bei Alt-Belegen aus der Excel bleibt der Bestand unverändert)' : ''}.
+      </p>
       <div className="modal-actions">
         <button className="btn-ghost" onClick={onClose}>Abbrechen</button>
-        <button className="btn-primary" onClick={save}>Speichern</button>
+        <button className="btn-primary" onClick={save}>Korrigieren & bestätigen</button>
       </div>
     </Modal>
   )
