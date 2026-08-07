@@ -903,7 +903,7 @@
   },
   {
    "id": "dzevit",
-   "name": "Dzevit",
+   "name": "Dzevit Veliji",
    "active": true,
    "sizes": {}
   },
@@ -948,6 +948,12 @@
     "softshellweste": "XL",
     "weste": "XL"
    }
+  },
+  {
+   "id": "mustafa-duygun",
+   "name": "Mustafa Duygun",
+   "active": true,
+   "sizes": {}
   }
  ],
  "stock": {

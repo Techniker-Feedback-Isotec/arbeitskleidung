@@ -288,6 +288,20 @@ function migrateDb(db: DB): DB {
     applied.add('artikelpflege-2026-08-07')
   }
 
+  // Mitarbeiterpflege 07.08.2026: Mustafa Duygun neu, Dzevit mit vollem Namen
+  if (!applied.has('mitarbeiter-2026-08-07')) {
+    const seedEmployees = buildSeedDb().employees
+    const haveIds = new Set(next.employees.map((e) => e.id))
+    next = {
+      ...next,
+      employees: [
+        ...next.employees.map((e) => (e.id === 'dzevit' ? { ...e, name: 'Dzevit Veliji' } : e)),
+        ...seedEmployees.filter((e) => !haveIds.has(e.id)),
+      ],
+    }
+    applied.add('mitarbeiter-2026-08-07')
+  }
+
   return { ...next, migrations: [...applied] }
 }
 
