@@ -10,7 +10,6 @@ import {
   fmtEuroCent,
   issuesPerMonth,
   shortageRows,
-  stockCoverage,
   stockValue,
   totalSollOf,
   totalStockOf,
@@ -44,57 +43,6 @@ function BasisAusstattung() {
           </div>
         ))}
       </div>
-    </div>
-  )
-}
-
-/** Lagerreichweite: wie lange reicht der Bestand beim aktuellen Verbrauch? */
-function Reichweite() {
-  const { db } = useStore()
-  const rows = stockCoverage(db).filter((r) => r.perMonth > 0)
-  return (
-    <div className="card">
-      <h2>Lagerreichweite</h2>
-      <p className="card-hint">
-        Ø-Verbrauch der letzten 90 Tage – wie viele Monate reicht der Bestand noch?
-      </p>
-      {rows.length > 0 ? (
-        <div className="table-wrap">
-          <table className="data">
-            <thead>
-              <tr>
-                <th>Artikel</th>
-                <th className="num">Ø / Monat</th>
-                <th className="num">Bestand</th>
-                <th className="num">Reicht noch</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r) => {
-                const m = r.months!
-                const badge =
-                  m < 1 ? 'badge-red' : m < 2 ? 'badge-warn' : 'badge-ok'
-                const label = m >= 12 ? '12+ Monate' : `~${m < 1 ? m.toFixed(1) : Math.round(m)} Monate`
-                return (
-                  <tr key={r.article.id}>
-                    <td>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                        <ArtThumb imageUrl={r.article.imageUrl} category={r.article.category} size={30} />
-                        {r.article.name}
-                      </span>
-                    </td>
-                    <td className="num">{r.perMonth < 1 ? r.perMonth.toFixed(1) : Math.round(r.perMonth)} Stück</td>
-                    <td className="num">{r.stock}</td>
-                    <td className="num"><span className={`badge ${badge}`}>{label}</span></td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <p className="empty">In den letzten 90 Tagen wurde nichts ausgegeben.</p>
-      )}
     </div>
   )
 }
@@ -217,14 +165,11 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
         <BulletChart data={bullets} large />
       </div>
 
-      <div className="grid-2">
-        <div className="card">
-          <h2>Ausgegebene Teile pro Monat</h2>
-          <ColumnChart
-            data={months.map((m) => ({ label: m.label, value: m.qty, hint: m.month }))}
-          />
-        </div>
-        <Reichweite />
+      <div className="card">
+        <h2>Ausgegebene Teile pro Monat</h2>
+        <ColumnChart
+          data={months.map((m) => ({ label: m.label, value: m.qty, hint: m.month }))}
+        />
       </div>
     </>
   )

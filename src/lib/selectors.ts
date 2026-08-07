@@ -113,37 +113,3 @@ export function issuesPerMonth(db: DB, months: number): { month: string; label: 
   return out
 }
 
-export interface CoverageRow {
-  article: Article
-  /** Ø ausgegebene Stück pro Monat (letzte 90 Tage) */
-  perMonth: number
-  stock: number
-  /** Reichweite in Monaten; null = aktuell kein Verbrauch */
-  months: number | null
-}
-
-/** Lagerreichweite: Bestand geteilt durch Ø-Verbrauch der letzten 90 Tage */
-export function stockCoverage(db: DB): CoverageRow[] {
-  const since = new Date()
-  since.setDate(since.getDate() - 90)
-  const sinceIso = since.toISOString().slice(0, 10)
-  const used = new Map<string, number>()
-  for (const i of db.issues) {
-    if (i.type !== 'ausgabe' || i.date < sinceIso) continue
-    used.set(i.articleId, (used.get(i.articleId) ?? 0) + i.qty)
-  }
-  return db.articles
-    .filter((a) => a.active)
-    .map((a) => {
-      const perMonth = (used.get(a.id) ?? 0) / 3
-      const stock = totalStockOf(db, a.id)
-      return {
-        article: a,
-        perMonth,
-        stock,
-        months: perMonth > 0 ? stock / perMonth : null,
-      }
-    })
-    .filter((r) => r.perMonth > 0 || r.stock > 0)
-    .sort((x, y) => (x.months ?? Infinity) - (y.months ?? Infinity))
-}
