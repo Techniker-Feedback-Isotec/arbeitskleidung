@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import type { Page } from '../types'
-import { INTRANET_SHOP_URL } from '../types'
+import { CONTACT_EINKAUF, INTRANET_SHOP_URL } from '../types'
 import { useStore, today } from '../store'
 import { shortageRows } from '../lib/selectors'
-import { ArtThumb, useToast } from './ui'
+import { ArtThumb, ContactChip, useToast } from './ui'
 
 /** Berechnete Bestellliste: Soll − Ist − Unterwegs, mit Übernahme in Bestellungen */
 export default function Bestellliste({ go }: { go: (p: Page) => void }) {
@@ -50,6 +50,7 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
           </p>
         </div>
         <div className="page-actions">
+          <ContactChip contact={CONTACT_EINKAUF} />
           <a className="btn-secondary" style={{ textDecoration: 'none' }} href={INTRANET_SHOP_URL} target="_blank" rel="noreferrer">
             Intranet-Shop öffnen ↗
           </a>

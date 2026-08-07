@@ -3,7 +3,8 @@ import type { Page } from './types'
 import { INTRANET_SHOP_URL } from './types'
 import { useStore } from './store'
 import { shortageRows } from './lib/selectors'
-import { ToastProvider } from './components/ui'
+import { CONTACT_AUSGABE, CONTACT_EINKAUF } from './types'
+import { ContactChip, ToastProvider } from './components/ui'
 import {
   IconArtikel,
   IconAusgabe,
@@ -76,6 +77,11 @@ export default function App() {
               <span className="nav-extern-arrow">↗</span>
             </a>
           </nav>
+          <div className="sidebar-contacts">
+            <p className="sidebar-contacts-title">Ansprechpartnerinnen</p>
+            <ContactChip contact={CONTACT_AUSGABE} />
+            <ContactChip contact={CONTACT_EINKAUF} />
+          </div>
           <div className="sidebar-foot">IMMER BESSER.</div>
         </aside>
         <main className="content">

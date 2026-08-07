@@ -9,6 +9,29 @@ export type Supplier = (typeof SUPPLIERS)[number]
 /** ISOTEC-Intranet: Strauss-Lieferantenbereich (Login erforderlich) */
 export const INTRANET_SHOP_URL = 'https://de-shop.isotec.info/Lieferanten/STRAUSS/'
 
+/** Ansprechpartnerinnen rund um die Arbeitskleidung */
+export interface Contact {
+  /** Foto-Slug (Datei in src/assets/mitarbeiter) */
+  id: string
+  name: string
+  role: string
+  topic: string
+}
+
+export const CONTACT_AUSGABE: Contact = {
+  id: 'yesim-celik',
+  name: 'Yesim Celik',
+  role: 'Technischer Innendienst',
+  topic: 'Ausgabe & Organisation der Arbeitskleidung',
+}
+
+export const CONTACT_EINKAUF: Contact = {
+  id: 'lisa-morscheck',
+  name: 'Lisa Morscheck',
+  role: 'Finanzen & Einkauf',
+  topic: 'Bestellung & Einkauf',
+}
+
 /** Vordefinierte Größenraster für neue Artikel */
 export const SIZE_PRESETS: Record<string, string[]> = {
   'Konfektion (XS–3XL)': ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL'],

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import type { Article } from '../types'
+import { CONTACT_AUSGABE } from '../types'
 import { useStore } from '../store'
 import { stockOf, totalSollOf, totalStockOf } from '../lib/selectors'
-import { ArtThumb, useToast } from './ui'
+import { ArtThumb, ContactChip, useToast } from './ui'
 
 /** Lagerbestand: Artikelkarten mit Foto und Größenkacheln, Inventur-Modus zum Direktkorrigieren */
 export default function Bestand() {
@@ -97,6 +98,7 @@ export default function Bestand() {
           </p>
         </div>
         <div className="page-actions">
+          <ContactChip contact={CONTACT_AUSGABE} />
           <label className="small" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <input type="checkbox" checked={compact} onChange={(e) => setCompact(e.target.checked)} />
             Leere Größen ausblenden

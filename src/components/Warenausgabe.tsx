@@ -2,7 +2,8 @@ import React, { useMemo, useState } from 'react'
 import type { Page } from '../types'
 import { useStore, today } from '../store'
 import { articleById, employeeById, fmtDate, stockOf } from '../lib/selectors'
-import { ArtThumb, Avatar, useToast } from './ui'
+import { CONTACT_AUSGABE } from '../types'
+import { ArtThumb, Avatar, ContactChip, useToast } from './ui'
 import { IconTrash } from './icons'
 
 /** Warenausgabe: Mitarbeiter wählen → Artikel mit passender Größe ausgeben */
@@ -44,6 +45,7 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
           <h1>Warenausgabe</h1>
           <p className="page-sub">Kleidung an Mitarbeiter ausgeben – Größen kommen aus dem Mitarbeiterprofil</p>
         </div>
+        <ContactChip contact={CONTACT_AUSGABE} />
       </div>
 
       <div className="card">

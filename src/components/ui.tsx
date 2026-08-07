@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from 'react'
+import type { Contact } from '../types'
 import {
   IconCatHose,
   IconCatKopf,
@@ -98,6 +99,21 @@ export function Avatar({ id, name, big, small }: { id: string; name: string; big
   const cls = big ? ' big' : small ? ' small' : ''
   if (url) return <img className={`avatar${cls}`} src={url} alt={name} />
   return <Initials name={name} big={big} small={small} />
+}
+
+/* ---------- Ansprechpartnerin ---------- */
+
+/** Kompakter Hinweis, wer für ein Thema zuständig ist */
+export function ContactChip({ contact }: { contact: Contact }) {
+  return (
+    <div className="contact-chip" title={contact.topic}>
+      <Avatar id={contact.id} name={contact.name} small />
+      <span>
+        <b>{contact.name}</b> · {contact.role}
+        <span className="contact-topic">{contact.topic}</span>
+      </span>
+    </div>
+  )
 }
 
 const CAT_ICONS: Record<string, () => React.ReactElement> = {

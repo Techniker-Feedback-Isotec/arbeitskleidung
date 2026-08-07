@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import type { OrderStatus } from '../types'
-import { INTRANET_SHOP_URL } from '../types'
+import { CONTACT_EINKAUF, INTRANET_SHOP_URL } from '../types'
 import { useStore, today } from '../store'
 import { articleById, fmtDate } from '../lib/selectors'
-import { ArtThumb, Modal, useToast } from './ui'
+import { ArtThumb, ContactChip, Modal, useToast } from './ui'
 
 /** Einkauf: offene und gelieferte Bestellungen, Wareneingang buchen */
 export default function Bestellungen() {
@@ -29,6 +29,7 @@ export default function Bestellungen() {
           </p>
         </div>
         <div className="page-actions">
+          <ContactChip contact={CONTACT_EINKAUF} />
           <a className="btn-secondary" style={{ textDecoration: 'none' }} href={INTRANET_SHOP_URL} target="_blank" rel="noreferrer">
             Intranet-Shop öffnen ↗
           </a>
