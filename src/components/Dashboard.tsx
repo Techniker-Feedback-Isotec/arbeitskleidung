@@ -14,6 +14,7 @@ import {
   employeeById,
 } from '../lib/selectors'
 import { BulletChart, ColumnChart, HBarChart } from './charts'
+import { ArtThumb } from './ui'
 
 export default function Dashboard({ go }: { go: (p: Page) => void }) {
   const { db } = useStore()
@@ -106,8 +107,13 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
                       <td>{fmtDate(i.date)}</td>
                       <td>{emp?.name ?? '?'}</td>
                       <td>
-                        {art?.name ?? '?'} {i.size && <span className="badge">{i.size}</span>}
-                        {i.type === 'rueckgabe' && <span className="badge badge-warn"> Rückgabe</span>}
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                          <ArtThumb imageUrl={art?.imageUrl} icon={art?.icon ?? '❔'} size={30} />
+                          <span>
+                            {art?.name ?? '?'} {i.size && <span className="badge">{i.size}</span>}
+                            {i.type === 'rueckgabe' && <span className="badge badge-warn"> Rückgabe</span>}
+                          </span>
+                        </span>
                       </td>
                       <td className="num">{i.qty}</td>
                     </tr>

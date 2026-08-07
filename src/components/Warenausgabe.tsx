@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import type { Page } from '../types'
 import { useStore, today } from '../store'
 import { articleById, employeeById, fmtDate, stockOf } from '../lib/selectors'
-import { Initials, useToast } from './ui'
+import { ArtThumb, Avatar, useToast } from './ui'
 
 /** Warenausgabe: Mitarbeiter wählen → Artikel mit passender Größe ausgeben */
 export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void; employeeId?: string }) {
@@ -47,6 +47,7 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
 
       <div className="card">
         <div className="form-row">
+          {employee && <Avatar id={employee.id} name={employee.name} />}
           <div className="field">
             <label>Mitarbeiter</label>
             <select value={empId} onChange={(e) => setEmpId(e.target.value)}>
@@ -77,11 +78,12 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
 
       {employee ? (
         <div className="card">
-          <h2>
-            <Initials name={employee.name} /> &nbsp;{type === 'ausgabe' ? 'Ausgabe an' : 'Rückgabe von'} {employee.name}
+          <h2 style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <Avatar id={employee.id} name={employee.name} />
+            {type === 'ausgabe' ? 'Ausgabe an' : 'Rückgabe von'} {employee.name}
           </h2>
           <p className="card-hint">
-            Größe ist vorausgewählt aus dem Profil. Menge eintragen und ausgeben – der Lagerbestand wird sofort verrechnet.
+            Größe ist vorausgewählt aus dem Profil (★). Menge eintragen und ausgeben – der Lagerbestand wird sofort verrechnet.
           </p>
           <div className="table-wrap">
             <table className="data">
@@ -95,14 +97,23 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
                 </tr>
               </thead>
               <tbody>
-                {articles.map((a) => (
-                  <IssueRow
-                    key={a.id + empId + type}
-                    articleId={a.id}
-                    employeeIdSel={empId}
-                    date={date}
-                    type={type}
-                  />
+                {[...new Set(articles.map((a) => a.category))].map((cat) => (
+                  <React.Fragment key={cat}>
+                    <tr className="cat-row">
+                      <td colSpan={5}>{cat}</td>
+                    </tr>
+                    {articles
+                      .filter((a) => a.category === cat)
+                      .map((a) => (
+                        <IssueRow
+                          key={a.id + empId + type}
+                          articleId={a.id}
+                          employeeIdSel={empId}
+                          date={date}
+                          type={type}
+                        />
+                      ))}
+                  </React.Fragment>
                 ))}
               </tbody>
             </table>
@@ -146,7 +157,12 @@ export default function Warenausgabe({ go, employeeId }: { go: (p: Page) => void
                   <tr key={i.id}>
                     <td>{fmtDate(i.date)}</td>
                     <td>{emp?.name ?? '?'}</td>
-                    <td>{art?.icon} {art?.name ?? '?'}</td>
+                    <td>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        <ArtThumb imageUrl={art?.imageUrl} icon={art?.icon ?? '❔'} size={30} />
+                        {art?.name ?? '?'}
+                      </span>
+                    </td>
                     <td>{i.size ? <span className="badge">{i.size}</span> : '–'}</td>
                     <td className="num">{i.qty}</td>
                     <td>
@@ -222,10 +238,10 @@ function IssueRow({
   return (
     <tr>
       <td>
-        {article.imageUrl
-          ? <img className="thumb" src={article.imageUrl} alt="" style={{ marginRight: 8 }} />
-          : <span className="article-icon">{article.icon}</span>}{' '}
-        {article.name}
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+          <ArtThumb imageUrl={article.imageUrl} icon={article.icon} />
+          {article.name}
+        </span>
         {profileSize && !article.sizes.includes(profileSize) && (
           <span className="badge badge-warn" title="Profilgröße passt nicht zum Größenraster"> Profil: {profileSize}</span>
         )}

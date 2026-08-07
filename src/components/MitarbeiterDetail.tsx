@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import type { Page } from '../types'
 import { useStore, today } from '../store'
 import { articleById, equipmentOf, fmtDate, issuesOf, stockOf } from '../lib/selectors'
-import { Initials, Modal, useToast } from './ui'
+import { ArtThumb, Avatar, Modal, useToast } from './ui'
 
 /** Profil eines Mitarbeiters: Größen, aktuelle Ausstattung, Historie */
 export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page) => void }) {
@@ -32,7 +32,7 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
     <>
       <div className="page-head">
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <Initials name={employee.name} big />
+          <Avatar id={employee.id} name={employee.name} big />
           <div>
             <h1>{employee.name}{!employee.active && <span className="badge" style={{ marginLeft: 10 }}>ehemalig</span>}</h1>
             <p className="page-sub">
@@ -61,7 +61,12 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
               <tbody>
                 {articles.map((a) => (
                   <tr key={a.id}>
-                    <td>{a.icon} {a.name}</td>
+                    <td>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        <ArtThumb imageUrl={a.imageUrl} icon={a.icon} size={30} />
+                        {a.name}
+                      </span>
+                    </td>
                     <td>
                       <select
                         value={employee.sizes[a.id] ?? ''}
@@ -97,7 +102,12 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
                 <tbody>
                   {equipment.map((r) => (
                     <tr key={r.article!.id}>
-                      <td>{r.article!.icon} {r.article!.name}</td>
+                      <td>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                          <ArtThumb imageUrl={r.article!.imageUrl} icon={r.article!.icon} size={30} />
+                          {r.article!.name}
+                        </span>
+                      </td>
                       <td className="num"><b>{r.qty}</b></td>
                       <td className="num muted">{r.article!.basisQty > 0 ? r.article!.basisQty : '–'}</td>
                     </tr>
@@ -126,7 +136,12 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
                 return (
                   <tr key={i.id}>
                     <td>{fmtDate(i.date)}</td>
-                    <td>{art?.icon} {art?.name ?? '?'}</td>
+                    <td>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        <ArtThumb imageUrl={art?.imageUrl} icon={art?.icon ?? '❔'} size={30} />
+                        {art?.name ?? '?'}
+                      </span>
+                    </td>
                     <td>{i.size ? <span className="badge">{i.size}</span> : '–'}</td>
                     <td className="num">{i.qty}</td>
                     <td>
@@ -234,7 +249,12 @@ function BasisModal({ employeeId, onClose }: { employeeId: string; onClose: () =
               const stock = r.size ? stockOf(db, r.article.id, r.size) : null
               return (
                 <tr key={r.article.id}>
-                  <td>{r.article.icon} {r.article.name}</td>
+                  <td>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                      <ArtThumb imageUrl={r.article.imageUrl} icon={r.article.icon} size={30} />
+                      {r.article.name}
+                    </span>
+                  </td>
                   <td>
                     <select
                       value={r.size}

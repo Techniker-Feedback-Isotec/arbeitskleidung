@@ -4,6 +4,17 @@ import { INTRANET_SHOP_URL } from './types'
 import { useStore } from './store'
 import { shortageRows } from './lib/selectors'
 import { ToastProvider } from './components/ui'
+import {
+  IconArtikel,
+  IconAusgabe,
+  IconBestellliste,
+  IconBestellungen,
+  IconDashboard,
+  IconEinstellungen,
+  IconLager,
+  IconMitarbeiter,
+  IconShop,
+} from './components/icons'
 import logo from './isotec-logo.png'
 import Dashboard from './components/Dashboard'
 import Bestand from './components/Bestand'
@@ -15,15 +26,15 @@ import MitarbeiterDetail from './components/MitarbeiterDetail'
 import Artikel from './components/Artikel'
 import Einstellungen from './components/Einstellungen'
 
-const NAV: { page: Page['name']; label: string; icon: string }[] = [
-  { page: 'dashboard', label: 'Dashboard', icon: '📊' },
-  { page: 'ausgabe', label: 'Warenausgabe', icon: '🤝' },
-  { page: 'bestand', label: 'Lagerbestand', icon: '📦' },
-  { page: 'bestellliste', label: 'Bestellliste', icon: '🛒' },
-  { page: 'bestellungen', label: 'Bestellungen', icon: '🚚' },
-  { page: 'mitarbeiter', label: 'Mitarbeiter', icon: '👥' },
-  { page: 'artikel', label: 'Artikel', icon: '🏷️' },
-  { page: 'einstellungen', label: 'Einstellungen', icon: '⚙️' },
+const NAV: { page: Page['name']; label: string; icon: React.ReactNode }[] = [
+  { page: 'dashboard', label: 'Dashboard', icon: <IconDashboard /> },
+  { page: 'ausgabe', label: 'Warenausgabe', icon: <IconAusgabe /> },
+  { page: 'bestand', label: 'Lagerbestand', icon: <IconLager /> },
+  { page: 'bestellliste', label: 'Bestellliste', icon: <IconBestellliste /> },
+  { page: 'bestellungen', label: 'Bestellungen', icon: <IconBestellungen /> },
+  { page: 'mitarbeiter', label: 'Mitarbeiter', icon: <IconMitarbeiter /> },
+  { page: 'artikel', label: 'Artikel', icon: <IconArtikel /> },
+  { page: 'einstellungen', label: 'Einstellungen', icon: <IconEinstellungen /> },
 ]
 
 export default function App() {
@@ -60,7 +71,7 @@ export default function App() {
               rel="noreferrer"
               title="ISOTEC-Intranet, Lieferantenbereich Strauss (Login erforderlich)"
             >
-              <span className="nav-icon">🛍️</span>
+              <span className="nav-icon"><IconShop /></span>
               Intranet-Shop
               <span className="nav-extern-arrow">↗</span>
             </a>

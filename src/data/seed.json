@@ -192,7 +192,7 @@
     "62",
     "64"
    ],
-   "price": 59.9,
+   "price": 64.89,
    "basisQty": 4,
    "soll": {
     "48": 6,
@@ -579,6 +579,23 @@
    "supplier": "Intranet (Strauss)",
    "shopUrl": "https://de-shop.isotec.info/e.s.-Knee-Pad-Ergonomic/8371610",
    "imageUrl": "https://de-shop.isotec.info/thumbnail/27/c4/e1/1757510973/e_s_Knee_Pad_Ergonomic-306494-4-638730484990956191.jpg_400x400.webp"
+  },
+  {
+   "id": "knieschoner-fento",
+   "name": "FENTO Original Knieschoner",
+   "category": "Zubehör",
+   "icon": "🦵",
+   "sizes": [
+    "Einheitsgröße"
+   ],
+   "soll": {},
+   "minOrder": 0,
+   "price": 97.0,
+   "basisQty": 0,
+   "active": true,
+   "supplier": "Amazon",
+   "shopUrl": "https://www.amazon.de/dp/B07GSQBJ4Z",
+   "imageUrl": "https://m.media-amazon.com/images/I/81VD+Mg0WRL._AC_SY450_.jpg"
   }
  ],
  "employees": [
@@ -2212,6 +2229,54 @@
    "size": "M",
    "status": "Geliefert",
    "date": "2026-01-14"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 13,
+   "size": "48",
+   "status": "Geliefert",
+   "date": "2026-06-23",
+   "note": "MASCOT Bundhose ULTIMATE STRETCH schwarz, Art. 18479-311-09 (Auftrag 23.06.2026, 72,10 € −10 %)"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 13,
+   "size": "50",
+   "status": "Geliefert",
+   "date": "2026-06-23",
+   "note": "MASCOT Bundhose ULTIMATE STRETCH schwarz, Art. 18479-311-09 (Auftrag 23.06.2026, 72,10 € −10 %)"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 29,
+   "size": "52",
+   "status": "Geliefert",
+   "date": "2026-06-23",
+   "note": "MASCOT Bundhose ULTIMATE STRETCH schwarz, Art. 18479-311-09 (Auftrag 23.06.2026, 72,10 € −10 %)"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 5,
+   "size": "54",
+   "status": "Geliefert",
+   "date": "2026-06-23",
+   "note": "MASCOT Bundhose ULTIMATE STRETCH schwarz, Art. 18479-311-09 (Auftrag 23.06.2026, 72,10 € −10 %)"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 13,
+   "size": "56",
+   "status": "Geliefert",
+   "date": "2026-06-23",
+   "note": "MASCOT Bundhose ULTIMATE STRETCH schwarz, Art. 18479-311-09 (Auftrag 23.06.2026, 72,10 € −10 %)"
+  },
+  {
+   "articleId": "stretchhose-grau",
+   "qty": 13,
+   "size": "58",
+   "status": "Geliefert",
+   "date": "2026-06-23",
+   "note": "MASCOT Bundhose ULTIMATE STRETCH schwarz, Art. 18479-311-09 (Auftrag 23.06.2026, 72,10 € −10 %)"
   }
  ],
  "exportedFrom": "Arbeitsausstattung neu.xlsm",

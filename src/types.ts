@@ -3,7 +3,7 @@ export type Category = 'Oberteile' | 'Hosen' | 'Schuhe' | 'Kopfbedeckung' | 'Zub
 export const CATEGORIES: Category[] = ['Oberteile', 'Hosen', 'Schuhe', 'Kopfbedeckung', 'Zubehör']
 
 /** Bestellwege für Arbeitskleidung */
-export const SUPPLIERS = ['Intranet (Strauss)', 'Engelbert Strauss', 'Mascot', 'Sonstige'] as const
+export const SUPPLIERS = ['Intranet (Strauss)', 'Engelbert Strauss', 'Mascot', 'Amazon', 'Sonstige'] as const
 export type Supplier = (typeof SUPPLIERS)[number]
 
 /** ISOTEC-Intranet: Strauss-Lieferantenbereich (Login erforderlich) */
@@ -86,6 +86,8 @@ export interface DB {
   stock: Record<string, Record<string, number>>
   issues: Issue[]
   orders: Order[]
+  /** Bereits eingespielte Daten-Nachträge (Migrationsschlüssel) */
+  migrations?: string[]
 }
 
 export type Page =

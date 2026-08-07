@@ -27,6 +27,7 @@ interface SeedOrder {
   size: string | null
   status: string
   date: string | null
+  note?: string
 }
 
 function slugify(name: string): string {
@@ -78,6 +79,7 @@ export function buildSeedDb(): DB {
     status: so.status === 'Geliefert' ? 'Geliefert' : 'Bestellt',
     orderDate: so.date ?? seed.seedDate,
     deliveryDate: so.status === 'Geliefert' ? (so.date ?? seed.seedDate) : undefined,
+    note: so.note,
     seed: true,
   }))
 
@@ -252,7 +254,26 @@ function migrateDb(db: DB): DB {
   for (const s of seedArticles) {
     if (!dbIds.has(s.id)) merged.push({ ...s })
   }
-  return { ...db, articles: merged }
+  let next: DB = { ...db, articles: merged }
+
+  // Daten-Nachträge, die genau einmal in bestehende DBs eingespielt werden
+  const applied = new Set(next.migrations ?? [])
+
+  // Mascot-Auftrag 23.06.2026 (bereits ausgegeben, im Excel-Bestand enthalten -> seed, kein Bestandseffekt)
+  if (!applied.has('mascot-auftrag-2026-06-23')) {
+    const mascotOrders = buildSeedDb().orders.filter((o) => o.orderDate === '2026-06-23')
+    const have = new Set(next.orders.map((o) => `${o.articleId}|${o.size}|${o.orderDate}`))
+    next = {
+      ...next,
+      orders: [...mascotOrders.filter((o) => !have.has(`${o.articleId}|${o.size}|${o.orderDate}`)), ...next.orders],
+      articles: next.articles.map((a) =>
+        a.id === 'stretchhose-grau' ? { ...a, price: 64.89 } : a,
+      ),
+    }
+    applied.add('mascot-auftrag-2026-06-23')
+  }
+
+  return { ...next, migrations: [...applied] }
 }
 
 function loadDb(): DB {

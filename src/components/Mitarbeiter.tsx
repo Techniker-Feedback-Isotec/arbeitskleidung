@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import type { Employee, Page } from '../types'
 import { useStore } from '../store'
 import { equipmentOf } from '../lib/selectors'
-import { Initials, Modal, useToast } from './ui'
+import { Avatar, Modal, useToast } from './ui'
 
 function slugify(name: string): string {
   return name
@@ -60,7 +60,7 @@ export default function Mitarbeiter({ go }: { go: (p: Page) => void }) {
               className={`person-card${e.active ? '' : ' inactive'}`}
               onClick={() => go({ name: 'mitarbeiterDetail', id: e.id })}
             >
-              <Initials name={e.name} />
+              <Avatar id={e.id} name={e.name} />
               <div style={{ minWidth: 0 }}>
                 <p className="person-name">{e.name}</p>
                 <p className="person-sub">

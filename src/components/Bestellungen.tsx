@@ -3,7 +3,7 @@ import type { OrderStatus } from '../types'
 import { INTRANET_SHOP_URL } from '../types'
 import { useStore, today } from '../store'
 import { articleById, fmtDate } from '../lib/selectors'
-import { Modal, useToast } from './ui'
+import { ArtThumb, Modal, useToast } from './ui'
 
 /** Einkauf: offene und gelieferte Bestellungen, Wareneingang buchen */
 export default function Bestellungen() {
@@ -67,7 +67,15 @@ export default function Bestellungen() {
                 return (
                   <tr key={o.id}>
                     <td>{fmtDate(o.orderDate)}</td>
-                    <td>{art?.icon} {art?.name ?? o.articleId}</td>
+                    <td>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        <ArtThumb imageUrl={art?.imageUrl} icon={art?.icon ?? '❔'} size={30} />
+                        <span>
+                          {art?.name ?? o.articleId}
+                          {o.note && <span className="small muted" style={{ display: 'block' }}>{o.note}</span>}
+                        </span>
+                      </span>
+                    </td>
                     <td><span className="badge">{o.size}</span></td>
                     <td className="num">{o.qty}</td>
                     <td>

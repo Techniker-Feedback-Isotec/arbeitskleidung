@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useStore } from '../store'
-import { stockOf, totalStockOf } from '../lib/selectors'
-import { useToast } from './ui'
+import { stockOf, totalSollOf, totalStockOf } from '../lib/selectors'
+import { ArtThumb, useToast } from './ui'
 
-/** Lagerbestand als Matrix je Artikel × Größe, mit Inventur-Modus zum Direktkorrigieren */
+/** Lagerbestand: Artikelkarten mit Foto und Größenkacheln, Inventur-Modus zum Direktkorrigieren */
 export default function Bestand() {
   const { db, dispatch } = useStore()
   const toast = useToast()
   const [editMode, setEditMode] = useState(false)
+  const [compact, setCompact] = useState(true)
 
   const articles = db.articles.filter((a) => a.active)
   const categories = [...new Set(articles.map((a) => a.category))]
@@ -18,10 +19,14 @@ export default function Bestand() {
         <div>
           <h1>Lagerbestand</h1>
           <p className="page-sub">
-            Ist-Bestand je Größe. Rot = unter Soll, grün = Soll erreicht (kleine Zahl = Soll).
+            Ist-Bestand je Größe – rot heißt unter Soll, grün heißt Soll erreicht.
           </p>
         </div>
         <div className="page-actions">
+          <label className="small" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <input type="checkbox" checked={compact} onChange={(e) => setCompact(e.target.checked)} />
+            Leere Größen ausblenden
+          </label>
           <button
             className={editMode ? 'btn-primary' : 'btn-secondary'}
             onClick={() => {
@@ -29,77 +34,84 @@ export default function Bestand() {
               setEditMode(!editMode)
             }}
           >
-            {editMode ? '✓ Inventur beenden' : '✏️ Inventur / Korrektur'}
+            {editMode ? '✓ Inventur beenden' : 'Inventur / Korrektur'}
           </button>
         </div>
       </div>
 
       {categories.map((cat) => (
-        <div className="card" key={cat}>
-          <h2>{cat}</h2>
+        <section key={cat}>
+          <h2 className="bestand-cat">{cat}</h2>
           {articles
             .filter((a) => a.category === cat)
-            .map((a) => (
-              <div key={a.id} style={{ marginBottom: 18 }}>
-                <p style={{ margin: '0 0 6px', fontWeight: 600 }}>
-                  <span className="article-icon">{a.icon}</span> {a.name}{' '}
-                  <span className="muted small">— gesamt {totalStockOf(db, a.id)} Stück</span>
-                </p>
-                <div className="table-wrap">
-                  <table className="matrix">
-                    <thead>
-                      <tr>
-                        {a.sizes.map((s) => (
-                          <th key={s}>{s}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        {a.sizes.map((s) => {
-                          const ist = stockOf(db, a.id, s)
-                          const soll = a.soll[s] ?? 0
-                          const cls =
-                            soll > 0 && ist < soll
-                              ? 'cell-low'
-                              : soll > 0 && ist >= soll
-                                ? 'cell-ok'
-                                : ist === 0
-                                  ? 'cell-zero'
-                                  : ''
-                          return (
-                            <td key={s} className={cls}>
-                              {editMode ? (
-                                <input
-                                  className="stock-input"
-                                  type="number"
-                                  min={0}
-                                  value={ist}
-                                  onChange={(e) =>
-                                    dispatch({
-                                      type: 'STOCK_SET',
-                                      articleId: a.id,
-                                      size: s,
-                                      qty: Number(e.target.value),
-                                    })
-                                  }
-                                />
-                              ) : (
-                                <>
-                                  {ist}
-                                  {soll > 0 && <span className="soll-mini">Soll {soll}</span>}
-                                </>
-                              )}
-                            </td>
-                          )
-                        })}
-                      </tr>
-                    </tbody>
-                  </table>
+            .map((a) => {
+              const total = totalStockOf(db, a.id)
+              const soll = totalSollOf(a)
+              const pct = soll > 0 ? Math.min(100, (total / soll) * 100) : null
+              const sizes = a.sizes.filter((s) => {
+                if (!compact || editMode) return true
+                return stockOf(db, a.id, s) > 0 || (a.soll[s] ?? 0) > 0
+              })
+              return (
+                <div className="card bestand-card" key={a.id}>
+                  <div className="bestand-head">
+                    <ArtThumb imageUrl={a.imageUrl} icon={a.icon} size={54} />
+                    <div className="bestand-title">
+                      <p className="bestand-name">
+                        {a.name}
+                        {a.supplier && <span className="badge" style={{ marginLeft: 8 }}>{a.supplier}</span>}
+                        {a.shopUrl && (
+                          <>
+                            {' '}
+                            <a className="shop-link" href={a.shopUrl} target="_blank" rel="noreferrer">Shop ↗</a>
+                          </>
+                        )}
+                      </p>
+                      <p className="bestand-sub">
+                        <b>{total}</b> Stück auf Lager{soll > 0 && <> · Soll gesamt {soll}</>}
+                      </p>
+                    </div>
+                    {pct != null && (
+                      <div className="bestand-progress" title={`${total} von ${soll}`}>
+                        <span
+                          className="bestand-progress-fill"
+                          style={{ width: `${pct}%`, background: total < soll ? 'var(--red)' : 'var(--ok)' }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="size-tiles">
+                    {sizes.map((s) => {
+                      const ist = stockOf(db, a.id, s)
+                      const soll = a.soll[s] ?? 0
+                      const state =
+                        soll > 0 && ist < soll ? 'low' : soll > 0 ? 'ok' : ist === 0 ? 'zero' : ''
+                      return (
+                        <div key={s} className={`size-tile ${state ? `tile-${state}` : ''}`}>
+                          <span className="tile-size">{s}</span>
+                          {editMode ? (
+                            <input
+                              className="stock-input"
+                              type="number"
+                              min={0}
+                              value={ist}
+                              onChange={(e) =>
+                                dispatch({ type: 'STOCK_SET', articleId: a.id, size: s, qty: Number(e.target.value) })
+                              }
+                            />
+                          ) : (
+                            <span className="tile-count">{ist}</span>
+                          )}
+                          <span className="tile-soll">{soll > 0 ? `Soll ${soll}` : ' '}</span>
+                        </div>
+                      )
+                    })}
+                    {sizes.length === 0 && <p className="empty small" style={{ padding: 6 }}>Kein Bestand und kein Soll hinterlegt.</p>}
+                  </div>
                 </div>
-              </div>
-            ))}
-        </div>
+              )
+            })}
+        </section>
       ))}
     </>
   )
