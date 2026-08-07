@@ -2,6 +2,55 @@ import React, { useRef } from 'react'
 import type { DB } from '../types'
 import { useStore } from '../store'
 import { useToast } from './ui'
+import { useSync } from './Sync'
+
+/** Verbindung zur gemeinsamen Datendatei im synchronisierten SharePoint-Ordner */
+function SyncCard() {
+  const sync = useSync()
+  return (
+    <div className="card">
+      <h2>SharePoint-Synchronisation</h2>
+      {!sync.supported ? (
+        <p className="small">
+          Dieser Browser unterstützt den Dateizugriff nicht – bitte Edge oder Chrome verwenden.
+        </p>
+      ) : sync.status === 'verbunden' ? (
+        <>
+          <p className="small">
+            <span className="badge badge-ok">Verbunden</span>&nbsp; Alle Änderungen werden automatisch
+            in <b>{sync.fileName}</b> gespeichert
+            {sync.lastSaved && <> (zuletzt {sync.lastSaved.toLocaleTimeString('de-DE')} Uhr)</>}.
+            OneDrive gleicht die Datei mit SharePoint ab.
+          </p>
+          <div className="page-actions" style={{ marginTop: 12 }}>
+            <button className="btn-ghost" onClick={() => sync.disconnect()}>Verbindung trennen</button>
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="small">
+            Verbinde das Tool mit der Datendatei im SharePoint-Ordner{' '}
+            <b>Innendienst › Allgemein › Arbeitskleidung</b>. Voraussetzung: Der Ordner ist über
+            OneDrive synchronisiert (in SharePoint auf „Synchronisieren" klicken). Danach speichert
+            das Tool jede Änderung automatisch dorthin – und alle arbeiten auf demselben Stand.
+          </p>
+          <div className="page-actions" style={{ marginTop: 12 }}>
+            <button className="btn-primary" onClick={() => sync.connectExisting()}>
+              Vorhandene Datei verbinden …
+            </button>
+            <button className="btn-secondary" onClick={() => sync.createNew()}>
+              Neue Datendatei anlegen …
+            </button>
+          </div>
+          <p className="field-hint" style={{ marginTop: 10 }}>
+            Beim Anlegen wird der aktuelle Datenstand aus diesem Browser in die Datei geschrieben.
+            Beim Verbinden mit einer vorhandenen Datei übernimmt das Tool deren Inhalt.
+          </p>
+        </>
+      )}
+    </div>
+  )
+}
 
 /** Datensicherung: Export/Import als JSON, Zurücksetzen auf den Excel-Stand */
 export default function Einstellungen() {
@@ -45,6 +94,8 @@ export default function Einstellungen() {
           <p className="page-sub">Datensicherung und Werkzeuge</p>
         </div>
       </div>
+
+      <SyncCard />
 
       <div className="card">
         <h2>Wo liegen meine Daten?</h2>

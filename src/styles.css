@@ -560,6 +560,38 @@ input[type='number'] { width: 90px; }
   .bullet-row-lg { grid-template-columns: 120px 1fr 90px; }
 }
 
+/* ---------- Datei-Synchronisation ---------- */
+.sync-banner {
+  position: sticky;
+  top: 0;
+  z-index: 45;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--warn-soft);
+  border-bottom: 1px solid #f0ddb5;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+}
+
+.sync-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+
+.sync-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
 /* ---------- Ansprechpartnerinnen ---------- */
 .contact-chip {
   display: inline-flex;

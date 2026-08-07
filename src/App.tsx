@@ -5,6 +5,7 @@ import { useStore } from './store'
 import { shortageRows } from './lib/selectors'
 import { CONTACT_AUSGABE, CONTACT_EINKAUF } from './types'
 import { ContactChip, ToastProvider } from './components/ui'
+import { SyncBadge, SyncProvider } from './components/Sync'
 import {
   IconArtikel,
   IconAusgabe,
@@ -45,6 +46,7 @@ export default function App() {
 
   return (
     <ToastProvider>
+      <SyncProvider>
       <div className="shell">
         <aside className="sidebar">
           <div className="sidebar-brand">
@@ -82,7 +84,10 @@ export default function App() {
             <ContactChip contact={CONTACT_AUSGABE} />
             <ContactChip contact={CONTACT_EINKAUF} />
           </div>
-          <div className="sidebar-foot">IMMER BESSER.</div>
+          <div className="sidebar-foot">
+            <SyncBadge />
+            IMMER BESSER.
+          </div>
         </aside>
         <main className="content">
           {page.name === 'dashboard' && <Dashboard go={setPage} />}
@@ -96,6 +101,7 @@ export default function App() {
           {page.name === 'einstellungen' && <Einstellungen />}
         </main>
       </div>
+      </SyncProvider>
     </ToastProvider>
   )
 }
