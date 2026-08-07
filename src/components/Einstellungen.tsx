@@ -128,24 +128,6 @@ export default function Einstellungen() {
         </p>
       </div>
 
-      <div className="card" style={{ borderColor: '#f0c2c3' }}>
-        <h2 style={{ color: 'var(--red)' }}>Zurücksetzen</h2>
-        <p className="small">
-          Setzt alles auf den Stand der ursprünglichen Excel-Datei zurück („Arbeitsausstattung neu.xlsm",
-          eingelesen am 06.08.2026). Alle danach erfassten Vorgänge gehen verloren!
-        </p>
-        <button
-          className="btn-secondary"
-          onClick={() => {
-            if (window.confirm('Wirklich ALLE Daten auf den Excel-Stand zurücksetzen?')) {
-              dispatch({ type: 'RESET_DB' })
-              toast('Daten auf Excel-Stand zurückgesetzt.')
-            }
-          }}
-        >
-          Auf Excel-Stand zurücksetzen
-        </button>
-      </div>
     </>
   )
 }

@@ -108,7 +108,6 @@ export type Action =
   | { type: 'EMPLOYEE_SAVE'; employee: Employee }
   | { type: 'EMPLOYEE_DELETE'; id: string }
   | { type: 'IMPORT_DB'; db: DB }
-  | { type: 'RESET_DB' }
 
 function addStock(stock: DB['stock'], articleId: string, size: string, delta: number): DB['stock'] {
   const next = { ...stock, [articleId]: { ...(stock[articleId] ?? {}) } }
@@ -225,8 +224,6 @@ export function reducer(db: DB, action: Action): DB {
     }
     case 'IMPORT_DB':
       return action.db
-    case 'RESET_DB':
-      return buildSeedDb()
     default:
       return db
   }
