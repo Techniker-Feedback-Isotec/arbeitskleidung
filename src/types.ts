@@ -89,7 +89,7 @@ export interface Issue {
   seed?: boolean
 }
 
-export type OrderStatus = 'Bestellt' | 'Geliefert' | 'Storniert'
+export type OrderStatus = 'Bestellt' | 'Geliefert' | 'Zurückgesendet' | 'Storniert'
 
 export interface Order {
   id: string

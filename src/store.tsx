@@ -76,7 +76,12 @@ export function buildSeedDb(): DB {
     articleId: so.articleId,
     size: so.size ?? '?',
     qty: so.qty,
-    status: so.status === 'Geliefert' ? 'Geliefert' : 'Bestellt',
+    status:
+      so.status === 'Geliefert'
+        ? 'Geliefert'
+        : so.status === 'Zurückgesendet'
+          ? 'Zurückgesendet'
+          : 'Bestellt',
     orderDate: so.date ?? seed.seedDate,
     deliveryDate: so.status === 'Geliefert' ? (so.date ?? seed.seedDate) : undefined,
     note: so.note,
@@ -142,6 +147,9 @@ export function reducer(db: DB, action: Action): DB {
       let stock = db.stock
       if (order.status === 'Geliefert') {
         stock = addStock(stock, order.articleId, order.size, order.qty)
+      } else if (order.status === 'Zurückgesendet') {
+        // Rücksendung: Ware verlässt das Lager
+        stock = addStock(stock, order.articleId, order.size, -order.qty)
       }
       return { ...db, orders: [order, ...db.orders], stock }
     }
@@ -171,6 +179,8 @@ export function reducer(db: DB, action: Action): DB {
       let stock = db.stock
       if (!order.seed && order.status === 'Geliefert') {
         stock = addStock(stock, order.articleId, order.size, -order.qty)
+      } else if (!order.seed && order.status === 'Zurückgesendet') {
+        stock = addStock(stock, order.articleId, order.size, order.qty)
       }
       return { ...db, orders: db.orders.filter((o) => o.id !== action.id), stock }
     }
@@ -303,6 +313,39 @@ function migrateDb(db: DB): DB {
       ],
     }
     applied.add('mitarbeiter-2026-08-07')
+  }
+
+  // Strauss-Belege 01–07/2026: Rechnungen + Gutschriften nachgetragen,
+  // Excel-Fehlzuordnungen (Cargohose/Bundhose motion ten) korrigiert
+  if (!applied.has('strauss-belege-2026-08-07')) {
+    const seedDb = buildSeedDb()
+    // 1) Umbuchungen wie im Seed
+    let orders = next.orders.map((o) => {
+      if (o.articleId === 'stretchhose-grau' && ['2026-03-02', '2026-03-31', '2026-04-01'].includes(o.orderDate)) {
+        return { ...o, articleId: 'cargohose-dynashield', note: o.note ?? 'Funktions Cargohose (in Excel als Stretchhose grau geführt)' }
+      }
+      if (o.articleId === 'stretchhose-weiss' && ['2026-01-14', '2026-03-02'].includes(o.orderDate)) {
+        return { ...o, articleId: 'bundhose-motion-ten', note: o.note ?? 'Bundhose e.s. motion ten weiß (in Excel als Stretchhose weiß geführt)' }
+      }
+      return o
+    })
+    // 2) Neue Beleg-Positionen aus dem Seed übernehmen (nur fehlende)
+    const key = (o: Order) => `${o.articleId}|${o.size}|${o.qty}|${o.orderDate}|${o.status}`
+    const haveKeys = new Set(orders.map(key))
+    const additions = seedDb.orders.filter((o) => o.note && !haveKeys.has(key(o)))
+    orders = [...additions, ...orders]
+    // 3) Short = Mascot ACCELERATE Shorts (WS Bau Handel)
+    const shortSeed = seedDb.articles.find((a) => a.id === 'short')
+    next = {
+      ...next,
+      orders,
+      articles: next.articles.map((a) =>
+        a.id === 'short' && shortSeed
+          ? { ...a, supplier: shortSeed.supplier, price: shortSeed.price, shopUrl: shortSeed.shopUrl, imageUrl: shortSeed.imageUrl }
+          : a,
+      ),
+    }
+    applied.add('strauss-belege-2026-08-07')
   }
 
   return { ...next, migrations: [...applied] }

@@ -283,13 +283,13 @@
     "62",
     "64"
    ],
-   "price": 47.73,
+   "price": 53.55,
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
    "active": false,
-   "supplier": "Intranet (Strauss)",
-   "shopUrl": "https://de-shop.isotec.info/Short-E.S.-Motion-mit-ISOTEC-Stick/SW10774",
+   "supplier": "Mascot",
+   "shopUrl": "https://www.mascot.de/de/mascot-accelerate-18149-511",
    "imageUrl": "artikel/short.jpg"
   },
   {
@@ -625,6 +625,138 @@
    "supplier": "Engelbert Strauss",
    "shopUrl": "https://www.strauss.com/de/de/bundhosen/bundhose-e-s-motion-ten-3311140-66091-2.html",
    "imageUrl": "artikel/bundhose-motion-ten.png"
+  },
+  {
+   "id": "cargohose-dynashield",
+   "name": "Funktions Cargohose e.s.dynashield",
+   "category": "Hosen",
+   "icon": "👖",
+   "sizes": [
+    "42",
+    "44",
+    "46",
+    "48",
+    "50",
+    "52",
+    "54",
+    "56",
+    "58",
+    "60",
+    "62",
+    "64"
+   ],
+   "price": 59.9,
+   "supplier": "Engelbert Strauss",
+   "soll": {},
+   "minOrder": 0,
+   "basisQty": 0,
+   "active": false
+  },
+  {
+   "id": "cargohose-vision",
+   "name": "Cargohose e.s.vision stretch anthrazit",
+   "category": "Hosen",
+   "icon": "👖",
+   "sizes": [
+    "42",
+    "44",
+    "46",
+    "48",
+    "50",
+    "52",
+    "54",
+    "56",
+    "58",
+    "60",
+    "62",
+    "64"
+   ],
+   "price": 64.9,
+   "supplier": "Engelbert Strauss",
+   "soll": {},
+   "minOrder": 0,
+   "basisQty": 0,
+   "active": false
+  },
+  {
+   "id": "bundhose-motion-ten-granit",
+   "name": "Bundhose e.s. motion ten granit",
+   "category": "Hosen",
+   "icon": "👖",
+   "sizes": [
+    "42",
+    "44",
+    "46",
+    "48",
+    "50",
+    "52",
+    "54",
+    "56",
+    "58",
+    "60",
+    "62",
+    "64"
+   ],
+   "price": 69.9,
+   "supplier": "Engelbert Strauss",
+   "soll": {},
+   "minOrder": 0,
+   "basisQty": 0,
+   "active": false
+  },
+  {
+   "id": "schuhe-zardik-low",
+   "name": "S3 Sicherheitshalbschuhe Zardik low",
+   "category": "Schuhe",
+   "icon": "👟",
+   "sizes": [
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50"
+   ],
+   "price": 104.9,
+   "supplier": "Engelbert Strauss",
+   "soll": {},
+   "minOrder": 0,
+   "basisQty": 0,
+   "active": false
+  },
+  {
+   "id": "schuhe-hadar",
+   "name": "S3 Sicherheitsschuhe Hadar",
+   "category": "Schuhe",
+   "icon": "🥾",
+   "sizes": [
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50"
+   ],
+   "price": 60.9,
+   "supplier": "Engelbert Strauss",
+   "soll": {},
+   "minOrder": 0,
+   "basisQty": 0,
+   "active": false
   }
  ],
  "employees": [
@@ -1860,25 +1992,28 @@
    "date": "2026-04-01"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 8,
    "size": "52",
    "status": "Geliefert",
-   "date": "2026-04-01"
+   "date": "2026-04-01",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 12,
    "size": "56",
    "status": "Geliefert",
-   "date": "2026-04-01"
+   "date": "2026-04-01",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 16,
    "size": "58",
    "status": "Geliefert",
-   "date": "2026-04-01"
+   "date": "2026-04-01",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
    "articleId": "softshellweste",
@@ -1986,53 +2121,60 @@
    "date": "2026-03-31"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 2,
    "size": "46",
    "status": "Geliefert",
-   "date": "2026-03-31"
+   "date": "2026-03-31",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 17,
    "size": "48",
    "status": "Geliefert",
-   "date": "2026-03-31"
+   "date": "2026-03-31",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 14,
    "size": "50",
    "status": "Geliefert",
-   "date": "2026-03-31"
+   "date": "2026-03-31",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 18,
    "size": "52",
    "status": "Geliefert",
-   "date": "2026-03-31"
+   "date": "2026-03-31",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 10,
    "size": "54",
    "status": "Geliefert",
-   "date": "2026-03-31"
+   "date": "2026-03-31",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 2,
    "size": "56",
    "status": "Geliefert",
-   "date": "2026-03-31"
+   "date": "2026-03-31",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 2,
    "size": "58",
    "status": "Geliefert",
-   "date": "2026-03-31"
+   "date": "2026-03-31",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
    "articleId": "fleecejacke",
@@ -2070,11 +2212,12 @@
    "date": "2026-03-17"
   },
   {
-   "articleId": "stretchhose-grau",
+   "articleId": "cargohose-dynashield",
    "qty": 1,
    "size": "48",
    "status": "Geliefert",
-   "date": "2026-03-02"
+   "date": "2026-03-02",
+   "note": "Funktions Cargohose (in Excel als Stretchhose grau geführt)"
   },
   {
    "articleId": "shirt",
@@ -2119,39 +2262,44 @@
    "date": "2026-03-02"
   },
   {
-   "articleId": "stretchhose-weiss",
+   "articleId": "bundhose-motion-ten",
    "qty": 3,
    "size": "48",
    "status": "Geliefert",
-   "date": "2026-03-02"
+   "date": "2026-03-02",
+   "note": "Bundhose e.s. motion ten weiß (in Excel als Stretchhose weiß geführt)"
   },
   {
-   "articleId": "stretchhose-weiss",
+   "articleId": "bundhose-motion-ten",
    "qty": 3,
    "size": "50",
    "status": "Geliefert",
-   "date": "2026-03-02"
+   "date": "2026-03-02",
+   "note": "Bundhose e.s. motion ten weiß (in Excel als Stretchhose weiß geführt)"
   },
   {
-   "articleId": "stretchhose-weiss",
+   "articleId": "bundhose-motion-ten",
    "qty": 3,
    "size": "52",
    "status": "Geliefert",
-   "date": "2026-03-02"
+   "date": "2026-03-02",
+   "note": "Bundhose e.s. motion ten weiß (in Excel als Stretchhose weiß geführt)"
   },
   {
-   "articleId": "stretchhose-weiss",
+   "articleId": "bundhose-motion-ten",
    "qty": 2,
    "size": "52",
    "status": "Geliefert",
-   "date": "2026-01-14"
+   "date": "2026-01-14",
+   "note": "Bundhose e.s. motion ten weiß (in Excel als Stretchhose weiß geführt)"
   },
   {
-   "articleId": "stretchhose-weiss",
+   "articleId": "bundhose-motion-ten",
    "qty": 2,
    "size": "48",
    "status": "Geliefert",
-   "date": "2026-01-14"
+   "date": "2026-01-14",
+   "note": "Bundhose e.s. motion ten weiß (in Excel als Stretchhose weiß geführt)"
   },
   {
    "articleId": "weste",
@@ -2312,6 +2460,382 @@
    "status": "Geliefert",
    "date": "2026-06-23",
    "note": "MASCOT Bundhose ULTIMATE STRETCH schwarz, Art. 18479-311-09 (Auftrag 23.06.2026, 72,10 € −10 %)"
+  },
+  {
+   "articleId": "knieschoner",
+   "qty": 2,
+   "size": "Einheitsgröße",
+   "status": "Geliefert",
+   "date": "2026-01-27",
+   "note": "Rechnung RS2068017"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "41",
+   "status": "Geliefert",
+   "date": "2026-02-23",
+   "note": "Rechnung RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 4,
+   "size": "42",
+   "status": "Geliefert",
+   "date": "2026-02-23",
+   "note": "Rechnung RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 4,
+   "size": "43",
+   "status": "Geliefert",
+   "date": "2026-02-23",
+   "note": "Rechnung RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "44",
+   "status": "Geliefert",
+   "date": "2026-02-23",
+   "note": "Rechnung RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "45",
+   "status": "Geliefert",
+   "date": "2026-02-23",
+   "note": "Rechnung RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "46",
+   "status": "Geliefert",
+   "date": "2026-02-23",
+   "note": "Rechnung RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "47",
+   "status": "Geliefert",
+   "date": "2026-02-23",
+   "note": "Rechnung RS2110863"
+  },
+  {
+   "articleId": "schuhe-mid",
+   "qty": 2,
+   "size": "42",
+   "status": "Geliefert",
+   "date": "2026-02-23",
+   "note": "Rechnung RS2110863"
+  },
+  {
+   "articleId": "schuhe-mid",
+   "qty": 2,
+   "size": "43",
+   "status": "Geliefert",
+   "date": "2026-02-23",
+   "note": "Rechnung RS2110863"
+  },
+  {
+   "articleId": "knieschoner",
+   "qty": 3,
+   "size": "Einheitsgröße",
+   "status": "Geliefert",
+   "date": "2026-03-05",
+   "note": "Rechnung RS2131369"
+  },
+  {
+   "articleId": "bundhose-motion-ten-granit",
+   "qty": 2,
+   "size": "52",
+   "status": "Geliefert",
+   "date": "2026-05-06",
+   "note": "Rechnung R184477006 (Lisa)"
+  },
+  {
+   "articleId": "bundhose-motion-ten-granit",
+   "qty": 2,
+   "size": "54",
+   "status": "Geliefert",
+   "date": "2026-05-06",
+   "note": "Rechnung R184477006 (Lisa)"
+  },
+  {
+   "articleId": "cargohose-vision",
+   "qty": 2,
+   "size": "52",
+   "status": "Geliefert",
+   "date": "2026-05-06",
+   "note": "Rechnung R184477006 (Lisa)"
+  },
+  {
+   "articleId": "cargohose-vision",
+   "qty": 2,
+   "size": "54",
+   "status": "Geliefert",
+   "date": "2026-05-06",
+   "note": "Rechnung R184477006 (Lisa)"
+  },
+  {
+   "articleId": "schuhe-hadar",
+   "qty": 1,
+   "size": "45",
+   "status": "Geliefert",
+   "date": "2026-05-06",
+   "note": "Rechnung R184477006 (Lisa)"
+  },
+  {
+   "articleId": "knieschoner",
+   "qty": 20,
+   "size": "Einheitsgröße",
+   "status": "Geliefert",
+   "date": "2026-06-09",
+   "note": "Rechnung R184961311 (Lisa)"
+  },
+  {
+   "articleId": "schuhe-zardik-low",
+   "qty": 1,
+   "size": "42",
+   "status": "Geliefert",
+   "date": "2026-06-25",
+   "note": "Rechnung R185233519 (Lisa)"
+  },
+  {
+   "articleId": "schuhe-mid",
+   "qty": 1,
+   "size": "43",
+   "status": "Geliefert",
+   "date": "2026-06-25",
+   "note": "Rechnung R185233519 (Lisa), 116,90 €"
+  },
+  {
+   "articleId": "cargohose-vision",
+   "qty": 1,
+   "size": "50",
+   "status": "Geliefert",
+   "date": "2026-07-15",
+   "note": "Rechnung R185530514 (Lisa)"
+  },
+  {
+   "articleId": "short",
+   "qty": 8,
+   "size": "48",
+   "status": "Geliefert",
+   "date": "2026-07-20",
+   "note": "WS Bau Handel 46727, Mascot ACCELERATE Shorts schwarz, 53,55 €/Stk nach 10 % Rabatt"
+  },
+  {
+   "articleId": "short",
+   "qty": 6,
+   "size": "50",
+   "status": "Geliefert",
+   "date": "2026-07-20",
+   "note": "WS Bau Handel 46727"
+  },
+  {
+   "articleId": "short",
+   "qty": 12,
+   "size": "52",
+   "status": "Geliefert",
+   "date": "2026-07-20",
+   "note": "WS Bau Handel 46727"
+  },
+  {
+   "articleId": "short",
+   "qty": 6,
+   "size": "54",
+   "status": "Geliefert",
+   "date": "2026-07-20",
+   "note": "WS Bau Handel 46727"
+  },
+  {
+   "articleId": "short",
+   "qty": 6,
+   "size": "56",
+   "status": "Geliefert",
+   "date": "2026-07-20",
+   "note": "WS Bau Handel 46727"
+  },
+  {
+   "articleId": "short",
+   "qty": 4,
+   "size": "58",
+   "status": "Geliefert",
+   "date": "2026-07-20",
+   "note": "WS Bau Handel 46727"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "41",
+   "status": "Zurückgesendet",
+   "date": "2026-03-20",
+   "note": "Gutschrift G25607279 zu RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 4,
+   "size": "42",
+   "status": "Zurückgesendet",
+   "date": "2026-03-20",
+   "note": "Gutschrift G25607279 zu RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 4,
+   "size": "43",
+   "status": "Zurückgesendet",
+   "date": "2026-03-20",
+   "note": "Gutschrift G25607279 zu RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "44",
+   "status": "Zurückgesendet",
+   "date": "2026-03-20",
+   "note": "Gutschrift G25607279 zu RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "45",
+   "status": "Zurückgesendet",
+   "date": "2026-03-20",
+   "note": "Gutschrift G25607279 zu RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "46",
+   "status": "Zurückgesendet",
+   "date": "2026-03-20",
+   "note": "Gutschrift G25607279 zu RS2110863"
+  },
+  {
+   "articleId": "schuhe-low",
+   "qty": 1,
+   "size": "47",
+   "status": "Zurückgesendet",
+   "date": "2026-03-20",
+   "note": "Gutschrift G25607279 zu RS2110863"
+  },
+  {
+   "articleId": "schuhe-mid",
+   "qty": 2,
+   "size": "42",
+   "status": "Zurückgesendet",
+   "date": "2026-03-20",
+   "note": "Gutschrift G25607279 zu RS2110863"
+  },
+  {
+   "articleId": "schuhe-mid",
+   "qty": 2,
+   "size": "43",
+   "status": "Zurückgesendet",
+   "date": "2026-03-20",
+   "note": "Gutschrift G25607279 zu RS2110863"
+  },
+  {
+   "articleId": "cargohose-dynashield",
+   "qty": 1,
+   "size": "48",
+   "status": "Zurückgesendet",
+   "date": "2026-03-26",
+   "note": "Gutschrift G25634610 zu RS2146966 (zement/graphit)"
+  },
+  {
+   "articleId": "bundhose-motion-ten-granit",
+   "qty": 1,
+   "size": "52",
+   "status": "Zurückgesendet",
+   "date": "2026-05-26",
+   "note": "Gutschrift G25853039 zu R184477006"
+  },
+  {
+   "articleId": "bundhose-motion-ten-granit",
+   "qty": 1,
+   "size": "54",
+   "status": "Zurückgesendet",
+   "date": "2026-05-26",
+   "note": "Gutschrift G25853039 zu R184477006"
+  },
+  {
+   "articleId": "cargohose-vision",
+   "qty": 2,
+   "size": "52",
+   "status": "Zurückgesendet",
+   "date": "2026-05-26",
+   "note": "Gutschrift G25853039 zu R184477006"
+  },
+  {
+   "articleId": "cargohose-vision",
+   "qty": 2,
+   "size": "54",
+   "status": "Zurückgesendet",
+   "date": "2026-05-26",
+   "note": "Gutschrift G25853039 zu R184477006"
+  },
+  {
+   "articleId": "schuhe-hadar",
+   "qty": 1,
+   "size": "45",
+   "status": "Zurückgesendet",
+   "date": "2026-05-26",
+   "note": "Gutschrift G25853039 zu R184477006"
+  },
+  {
+   "articleId": "cargohose-dynashield",
+   "qty": 14,
+   "size": "48",
+   "status": "Zurückgesendet",
+   "date": "2026-06-18",
+   "note": "Gutschrift G25937731 zu RS2187002"
+  },
+  {
+   "articleId": "cargohose-dynashield",
+   "qty": 10,
+   "size": "50",
+   "status": "Zurückgesendet",
+   "date": "2026-06-18",
+   "note": "Gutschrift G25937731 zu RS2187002"
+  },
+  {
+   "articleId": "cargohose-dynashield",
+   "qty": 22,
+   "size": "52",
+   "status": "Zurückgesendet",
+   "date": "2026-06-18",
+   "note": "Gutschriften G25938011/G25938922"
+  },
+  {
+   "articleId": "cargohose-dynashield",
+   "qty": 9,
+   "size": "54",
+   "status": "Zurückgesendet",
+   "date": "2026-06-18",
+   "note": "Gutschrift G25938922 zu RS2187002"
+  },
+  {
+   "articleId": "cargohose-dynashield",
+   "qty": 14,
+   "size": "56",
+   "status": "Zurückgesendet",
+   "date": "2026-06-19",
+   "note": "Gutschriften G25939780/G25940559"
+  },
+  {
+   "articleId": "cargohose-dynashield",
+   "qty": 18,
+   "size": "58",
+   "status": "Zurückgesendet",
+   "date": "2026-06-19",
+   "note": "Gutschriften G25939780/G25940559"
   }
  ],
  "exportedFrom": "Arbeitsausstattung neu.xlsm",

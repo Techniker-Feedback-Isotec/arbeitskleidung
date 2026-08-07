@@ -39,7 +39,7 @@ export default function Bestellungen() {
 
       <div className="card">
         <div className="filter-row">
-          {(['Bestellt', 'Geliefert', 'Storniert', 'alle'] as const).map((f) => (
+          {(['Bestellt', 'Geliefert', 'Zurückgesendet', 'Storniert', 'alle'] as const).map((f) => (
             <button
               key={f}
               className={`btn-sm ${filter === f ? 'btn-primary' : 'btn-ghost'}`}
@@ -82,6 +82,7 @@ export default function Bestellungen() {
                     <td>
                       {o.status === 'Bestellt' && <span className="badge badge-warn">Bestellt</span>}
                       {o.status === 'Geliefert' && <span className="badge badge-ok">Geliefert</span>}
+                      {o.status === 'Zurückgesendet' && <span className="badge badge-red">Zurückgesendet</span>}
                       {o.status === 'Storniert' && <span className="badge">Storniert</span>}
                     </td>
                     <td className="hide-sm">{fmtDate(o.deliveryDate)}</td>
@@ -132,7 +133,7 @@ function NewOrderModal({ onClose }: { onClose: () => void }) {
   const [size, setSize] = useState(article?.sizes[0] ?? '')
   const [qty, setQty] = useState(1)
   const [date, setDate] = useState(today())
-  const [delivered, setDelivered] = useState(false)
+  const [status, setStatus] = useState<OrderStatus>('Bestellt')
 
   function selectArticle(id: string) {
     setArticleId(id)
@@ -148,12 +149,18 @@ function NewOrderModal({ onClose }: { onClose: () => void }) {
         articleId,
         size,
         qty,
-        status: delivered ? 'Geliefert' : 'Bestellt',
+        status,
         orderDate: date,
-        deliveryDate: delivered ? date : undefined,
+        deliveryDate: status === 'Geliefert' ? date : undefined,
       },
     })
-    toast(delivered ? 'Lieferung erfasst – Bestand aktualisiert.' : 'Bestellung erfasst.')
+    toast(
+      status === 'Geliefert'
+        ? 'Lieferung erfasst – Bestand aktualisiert.'
+        : status === 'Zurückgesendet'
+          ? 'Rücksendung erfasst – Bestand reduziert.'
+          : 'Bestellung erfasst.',
+    )
     onClose()
   }
 
@@ -185,10 +192,14 @@ function NewOrderModal({ onClose }: { onClose: () => void }) {
           <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
       </div>
-      <label className="small" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-        <input type="checkbox" checked={delivered} onChange={(e) => setDelivered(e.target.checked)} />
-        Ware ist bereits geliefert (direkt in den Bestand buchen)
-      </label>
+      <div className="field">
+        <label>Vorgang</label>
+        <select value={status} onChange={(e) => setStatus(e.target.value as OrderStatus)}>
+          <option value="Bestellt">Bestellt (Ware unterwegs)</option>
+          <option value="Geliefert">Bereits geliefert (in den Bestand buchen)</option>
+          <option value="Zurückgesendet">Rücksendung / Falschbestellung (aus dem Bestand buchen)</option>
+        </select>
+      </div>
       <div className="modal-actions">
         <button className="btn-ghost" onClick={onClose}>Abbrechen</button>
         <button className="btn-primary" onClick={save}>Speichern</button>
