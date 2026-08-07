@@ -348,6 +348,39 @@ function migrateDb(db: DB): DB {
     applied.add('strauss-belege-2026-08-07')
   }
 
+  // Short-Trennung: weiße E.S.-Short (Intranet) vs. schwarze Mascot ACCELERATE
+  if (!applied.has('short-split-2026-08-07')) {
+    const seedDb = buildSeedDb()
+    const shortSeed = seedDb.articles.find((a) => a.id === 'short')
+    next = {
+      ...next,
+      articles: next.articles.map((a) =>
+        a.id === 'short' && shortSeed
+          ? {
+              ...a,
+              name: shortSeed.name,
+              supplier: shortSeed.supplier,
+              price: shortSeed.price,
+              shopUrl: shortSeed.shopUrl,
+              imageUrl: shortSeed.imageUrl,
+            }
+          : a,
+      ),
+      orders: next.orders.map((o) =>
+        o.articleId === 'short' && o.orderDate === '2026-07-20' ? { ...o, articleId: 'short-mascot' } : o,
+      ),
+      issues: next.issues.map((i) =>
+        i.articleId === 'short' ? { ...i, articleId: 'short-mascot' } : i,
+      ),
+      employees: next.employees.map((e) =>
+        e.sizes['short'] && !e.sizes['short-mascot']
+          ? { ...e, sizes: { ...e.sizes, 'short-mascot': e.sizes['short'] } }
+          : e,
+      ),
+    }
+    applied.add('short-split-2026-08-07')
+  }
+
   return { ...next, migrations: [...applied] }
 }
 

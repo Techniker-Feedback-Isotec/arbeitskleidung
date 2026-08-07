@@ -266,7 +266,7 @@
   },
   {
    "id": "short",
-   "name": "Short",
+   "name": "Short E.S. Motion weiß",
    "category": "Hosen",
    "icon": "🩳",
    "sizes": [
@@ -283,13 +283,13 @@
     "62",
     "64"
    ],
-   "price": 53.55,
+   "price": 47.73,
    "basisQty": 0,
    "soll": {},
    "minOrder": 0,
    "active": false,
-   "supplier": "Mascot",
-   "shopUrl": "https://www.mascot.de/de/mascot-accelerate-18149-511",
+   "supplier": "Intranet (Strauss)",
+   "shopUrl": "https://de-shop.isotec.info/Short-E.S.-Motion-mit-ISOTEC-Stick/SW10774",
    "imageUrl": "artikel/short.jpg"
   },
   {
@@ -757,6 +757,34 @@
    "minOrder": 0,
    "basisQty": 0,
    "active": false
+  },
+  {
+   "id": "short-mascot",
+   "name": "Short Mascot ACCELERATE schwarz",
+   "category": "Hosen",
+   "icon": "🩳",
+   "sizes": [
+    "42",
+    "44",
+    "46",
+    "48",
+    "50",
+    "52",
+    "54",
+    "56",
+    "58",
+    "60",
+    "62",
+    "64"
+   ],
+   "soll": {},
+   "minOrder": 0,
+   "price": 53.55,
+   "basisQty": 0,
+   "active": true,
+   "supplier": "Mascot",
+   "shopUrl": "https://www.mascot.de/de/mascot-accelerate-18149-511",
+   "imageUrl": "artikel/short-mascot.jpg"
   }
  ],
  "employees": [
@@ -778,7 +806,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "XL",
-    "weste": "XL"
+    "weste": "XL",
+    "short-mascot": "52"
    }
   },
   {
@@ -799,7 +828,8 @@
     "muetze": "L/XL",
     "cap": "L/XL",
     "softshellweste": "XXL",
-    "weste": "XXL"
+    "weste": "XXL",
+    "short-mascot": "58"
    }
   },
   {
@@ -820,7 +850,8 @@
     "muetze": "L/XL",
     "cap": "L/XL",
     "softshellweste": "XL",
-    "weste": "XL"
+    "weste": "XL",
+    "short-mascot": "56"
    }
   },
   {
@@ -841,7 +872,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "M",
-    "weste": "M"
+    "weste": "M",
+    "short-mascot": "52"
    }
   },
   {
@@ -862,7 +894,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "L",
-    "weste": "L"
+    "weste": "L",
+    "short-mascot": "52"
    }
   },
   {
@@ -883,7 +916,8 @@
     "muetze": "L/XL",
     "cap": "L/XL",
     "softshellweste": "L/XL",
-    "weste": "L"
+    "weste": "L",
+    "short-mascot": "52"
    }
   },
   {
@@ -904,7 +938,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "M",
-    "weste": "M"
+    "weste": "M",
+    "short-mascot": "48"
    }
   },
   {
@@ -925,7 +960,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "L",
-    "weste": "L"
+    "weste": "L",
+    "short-mascot": "52"
    }
   },
   {
@@ -946,7 +982,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "M",
-    "weste": "M"
+    "weste": "M",
+    "short-mascot": "50"
    }
   },
   {
@@ -967,7 +1004,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "XXL",
-    "weste": "XXL"
+    "weste": "XXL",
+    "short-mascot": "58"
    }
   },
   {
@@ -988,7 +1026,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "XL",
-    "weste": "XL"
+    "weste": "XL",
+    "short-mascot": "50"
    }
   },
   {
@@ -1009,7 +1048,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "M",
-    "weste": "M"
+    "weste": "M",
+    "short-mascot": "48"
    }
   },
   {
@@ -1030,7 +1070,8 @@
     "muetze": "L/XL",
     "cap": "L/XL",
     "softshellweste": "L",
-    "weste": "L"
+    "weste": "L",
+    "short-mascot": "54"
    }
   },
   {
@@ -1057,7 +1098,8 @@
     "muetze": "L/XL",
     "cap": "L/XL",
     "softshellweste": "L/XL",
-    "weste": "XL"
+    "weste": "XL",
+    "short-mascot": "56"
    }
   },
   {
@@ -1078,7 +1120,8 @@
     "muetze": "S/M",
     "cap": "S/M",
     "softshellweste": "XL",
-    "weste": "XL"
+    "weste": "XL",
+    "short-mascot": "58"
    }
   },
   {
@@ -1298,7 +1341,7 @@
   },
   {
    "employee": "Xholian Bajrami",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "56",
    "date": "2026-07-23"
@@ -1347,7 +1390,7 @@
   },
   {
    "employee": "Edmond Gjonai",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "52",
    "date": "2026-07-23"
@@ -1438,7 +1481,7 @@
   },
   {
    "employee": "Alban Deliu",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "52",
    "date": "2026-07-23"
@@ -1487,7 +1530,7 @@
   },
   {
    "employee": "Rrahman Tasholli",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "50",
    "date": "2026-07-23"
@@ -1536,7 +1579,7 @@
   },
   {
    "employee": "Zenin Cholakov",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "58",
    "date": "2026-07-23"
@@ -1585,7 +1628,7 @@
   },
   {
    "employee": "Mohammad Jawad Sharifi",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "48",
    "date": "2026-07-23"
@@ -1634,7 +1677,7 @@
   },
   {
    "employee": "Valbon Kamberi",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "48",
    "date": "2026-07-23"
@@ -1676,7 +1719,7 @@
   },
   {
    "employee": "Shkodran Salihu",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "50",
    "date": "2026-07-23"
@@ -1725,7 +1768,7 @@
   },
   {
    "employee": "Markeljan Becurri",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "52",
    "date": "2026-07-23"
@@ -1774,7 +1817,7 @@
   },
   {
    "employee": "Niko Pepa",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "52",
    "date": "2026-07-23"
@@ -1823,7 +1866,7 @@
   },
   {
    "employee": "Valon Krasniqi",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "54",
    "date": "2026-07-23"
@@ -1865,7 +1908,7 @@
   },
   {
    "employee": "John Herich",
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 2,
    "size": "52",
    "date": "2026-07-23"
@@ -2622,7 +2665,7 @@
    "note": "Rechnung R185530514 (Lisa)"
   },
   {
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 8,
    "size": "48",
    "status": "Geliefert",
@@ -2630,7 +2673,7 @@
    "note": "WS Bau Handel 46727, Mascot ACCELERATE Shorts schwarz, 53,55 €/Stk nach 10 % Rabatt"
   },
   {
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 6,
    "size": "50",
    "status": "Geliefert",
@@ -2638,7 +2681,7 @@
    "note": "WS Bau Handel 46727"
   },
   {
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 12,
    "size": "52",
    "status": "Geliefert",
@@ -2646,7 +2689,7 @@
    "note": "WS Bau Handel 46727"
   },
   {
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 6,
    "size": "54",
    "status": "Geliefert",
@@ -2654,7 +2697,7 @@
    "note": "WS Bau Handel 46727"
   },
   {
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 6,
    "size": "56",
    "status": "Geliefert",
@@ -2662,7 +2705,7 @@
    "note": "WS Bau Handel 46727"
   },
   {
-   "articleId": "short",
+   "articleId": "short-mascot",
    "qty": 4,
    "size": "58",
    "status": "Geliefert",
