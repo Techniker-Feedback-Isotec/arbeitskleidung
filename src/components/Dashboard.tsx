@@ -2,20 +2,21 @@ import React from 'react'
 import type { Page } from '../types'
 import { useStore } from '../store'
 import {
-  fmtDate,
-  fmtEuro,
-  issuesPerMonth,
-  shortageRows,
-  stockValue,
-  topArticles,
-  totalSollOf,
-  totalStockOf,
   articleById,
   employeeById,
+  equipmentOf,
+  fmtDate,
+  fmtEuro,
+  fmtEuroCent,
+  issuesPerMonth,
+  shortageRows,
+  stockCoverage,
+  stockValue,
+  totalSollOf,
+  totalStockOf,
 } from '../lib/selectors'
-import { BulletChart, ColumnChart, HBarChart } from './charts'
-import { ArtThumb } from './ui'
-import { fmtEuroCent } from '../lib/selectors'
+import { BulletChart, ColumnChart } from './charts'
+import { ArtThumb, Avatar } from './ui'
 
 /** Visuelle Übersicht der Basisausstattung: was jeder Techniker standardmäßig bekommt */
 function BasisAusstattung() {
@@ -47,6 +48,57 @@ function BasisAusstattung() {
   )
 }
 
+/** Lagerreichweite: wie lange reicht der Bestand beim aktuellen Verbrauch? */
+function Reichweite() {
+  const { db } = useStore()
+  const rows = stockCoverage(db).filter((r) => r.perMonth > 0)
+  return (
+    <div className="card">
+      <h2>Lagerreichweite</h2>
+      <p className="card-hint">
+        Ø-Verbrauch der letzten 90 Tage – wie viele Monate reicht der Bestand noch?
+      </p>
+      {rows.length > 0 ? (
+        <div className="table-wrap">
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Artikel</th>
+                <th className="num">Ø / Monat</th>
+                <th className="num">Bestand</th>
+                <th className="num">Reicht noch</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => {
+                const m = r.months!
+                const badge =
+                  m < 1 ? 'badge-red' : m < 2 ? 'badge-warn' : 'badge-ok'
+                const label = m >= 12 ? '12+ Monate' : `~${m < 1 ? m.toFixed(1) : Math.round(m)} Monate`
+                return (
+                  <tr key={r.article.id}>
+                    <td>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        <ArtThumb imageUrl={r.article.imageUrl} category={r.article.category} size={30} />
+                        {r.article.name}
+                      </span>
+                    </td>
+                    <td className="num">{r.perMonth < 1 ? r.perMonth.toFixed(1) : Math.round(r.perMonth)} Stück</td>
+                    <td className="num">{r.stock}</td>
+                    <td className="num"><span className={`badge ${badge}`}>{label}</span></td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p className="empty">In den letzten 90 Tagen wurde nichts ausgegeben.</p>
+      )}
+    </div>
+  )
+}
+
 export default function Dashboard({ go }: { go: (p: Page) => void }) {
   const { db } = useStore()
 
@@ -56,9 +108,17 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
   const openQty = openOrders.reduce((s, o) => s + o.qty, 0)
   const activeEmployees = db.employees.filter((e) => e.active)
   const value = stockValue(db)
+  const avgPieces =
+    activeEmployees.length > 0
+      ? Math.round(
+          activeEmployees.reduce(
+            (s, e) => s + [...equipmentOf(db, e.id).values()].reduce((x, v) => x + Math.max(0, v), 0),
+            0,
+          ) / activeEmployees.length,
+        )
+      : 0
 
   const months = issuesPerMonth(db, 9)
-  const top = topArticles(db, 6)
   const bullets = db.articles
     .filter((a) => a.active && totalSollOf(a) > 0)
     .map((a) => ({ label: a.name, ist: totalStockOf(db, a.id), soll: totalSollOf(a) }))
@@ -94,11 +154,68 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
         <div className="kpi" onClick={() => go({ name: 'mitarbeiter' })}>
           <p className="kpi-label">Mitarbeiter</p>
           <p className="kpi-value">{activeEmployees.length}</p>
-          <p className="kpi-sub">aktiv im Team</p>
+          <p className="kpi-sub">aktiv · Ø {avgPieces} Teile im Einsatz</p>
+        </div>
+      </div>
+
+      <div className="card">
+        <h2>Letzte Warenausgaben</h2>
+        <div className="table-wrap">
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Datum</th>
+                <th>Mitarbeiter</th>
+                <th>Artikel</th>
+                <th>Größe</th>
+                <th className="num">Menge</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recent.map((i) => {
+                const emp = employeeById(db, i.employeeId)
+                const art = articleById(db, i.articleId)
+                return (
+                  <tr
+                    key={i.id}
+                    className="clickable"
+                    onClick={() => go({ name: 'mitarbeiterDetail', id: i.employeeId })}
+                  >
+                    <td>{fmtDate(i.date)}</td>
+                    <td>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        {emp && <Avatar id={emp.id} name={emp.name} small />}
+                        {emp?.name ?? '?'}
+                      </span>
+                    </td>
+                    <td>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                        <ArtThumb imageUrl={art?.imageUrl} category={art?.category} size={30} />
+                        <span>
+                          {art?.name ?? '?'}
+                          {i.type === 'rueckgabe' && <span className="badge badge-warn" style={{ marginLeft: 6 }}>Rückgabe</span>}
+                        </span>
+                      </span>
+                    </td>
+                    <td>{i.size ? <span className="badge">{i.size}</span> : '–'}</td>
+                    <td className="num">{i.qty}</td>
+                  </tr>
+                )
+              })}
+              {recent.length === 0 && (
+                <tr><td colSpan={5} className="empty">Noch keine Ausgaben erfasst</td></tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
 
       <BasisAusstattung />
+
+      <div className="card">
+        <h2>Bestand vs. Soll je Artikel</h2>
+        <BulletChart data={bullets} large />
+      </div>
 
       <div className="grid-2">
         <div className="card">
@@ -107,58 +224,7 @@ export default function Dashboard({ go }: { go: (p: Page) => void }) {
             data={months.map((m) => ({ label: m.label, value: m.qty, hint: m.month }))}
           />
         </div>
-        <div className="card">
-          <h2>Bestand vs. Soll je Artikel</h2>
-          <BulletChart data={bullets} />
-        </div>
-        <div className="card">
-          <h2>Meistausgegebene Artikel</h2>
-          <HBarChart data={top.map((t) => ({ label: t.article.name, value: t.qty }))} />
-        </div>
-        <div className="card">
-          <h2>Letzte Warenausgaben</h2>
-          <div className="table-wrap">
-            <table className="data">
-              <thead>
-                <tr>
-                  <th>Datum</th>
-                  <th>Mitarbeiter</th>
-                  <th>Artikel</th>
-                  <th className="num">Menge</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recent.map((i) => {
-                  const emp = employeeById(db, i.employeeId)
-                  const art = articleById(db, i.articleId)
-                  return (
-                    <tr
-                      key={i.id}
-                      className="clickable"
-                      onClick={() => go({ name: 'mitarbeiterDetail', id: i.employeeId })}
-                    >
-                      <td>{fmtDate(i.date)}</td>
-                      <td>{emp?.name ?? '?'}</td>
-                      <td>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                          <ArtThumb imageUrl={art?.imageUrl} category={art?.category} size={30} />
-                          <span>
-                            {art?.name ?? '?'} {i.size && <span className="badge">{i.size}</span>}
-                            {i.type === 'rueckgabe' && <span className="badge badge-warn"> Rückgabe</span>}
-                          </span>
-                        </span>
-                      </td>
-                      <td className="num">{i.qty}</td>
-                    </tr>
-                  )
-                })}
-                {recent.length === 0 && (
-                  <tr><td colSpan={4} className="empty">Noch keine Ausgaben erfasst</td></tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <Reichweite />
       </div>
     </>
   )

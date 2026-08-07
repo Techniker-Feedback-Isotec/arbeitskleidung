@@ -86,17 +86,18 @@ const PHOTOS = new Map<string, string>(
   }),
 )
 
-export function Initials({ name, big }: { name: string; big?: boolean }) {
+export function Initials({ name, big, small }: { name: string; big?: boolean; small?: boolean }) {
   const parts = name.trim().split(/\s+/)
   const text = (parts[0]?.[0] ?? '') + (parts.length > 1 ? parts[parts.length - 1][0] : '')
-  return <span className={`initials${big ? ' big' : ''}`}>{text.toUpperCase()}</span>
+  return <span className={`initials${big ? ' big' : small ? ' small' : ''}`}>{text.toUpperCase()}</span>
 }
 
 /** Mitarbeiter-Avatar: echtes Foto, wenn vorhanden, sonst Initialen */
-export function Avatar({ id, name, big }: { id: string; name: string; big?: boolean }) {
+export function Avatar({ id, name, big, small }: { id: string; name: string; big?: boolean; small?: boolean }) {
   const url = PHOTOS.get(id)
-  if (url) return <img className={`avatar${big ? ' big' : ''}`} src={url} alt={name} />
-  return <Initials name={name} big={big} />
+  const cls = big ? ' big' : small ? ' small' : ''
+  if (url) return <img className={`avatar${cls}`} src={url} alt={name} />
+  return <Initials name={name} big={big} small={small} />
 }
 
 const CAT_ICONS: Record<string, () => React.ReactElement> = {

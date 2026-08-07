@@ -108,8 +108,10 @@ export function HBarChart({
 /** Bullet-Diagramm: Ist-Balken gegen Soll-Marke */
 export function BulletChart({
   data,
+  large,
 }: {
   data: { label: string; ist: number; soll: number }[]
+  large?: boolean
 }) {
   const { show, hide, node } = useTooltip()
   const max = Math.max(1, ...data.map((d) => Math.max(d.ist, d.soll)))
@@ -120,7 +122,7 @@ export function BulletChart({
         return (
           <div
             key={i}
-            className="bullet-row"
+            className={`bullet-row${large ? ' bullet-row-lg' : ''}`}
             onMouseMove={(e) => show(e, `${d.label} – Ist ${d.ist} / Soll ${d.soll}`)}
             onMouseLeave={hide}
           >

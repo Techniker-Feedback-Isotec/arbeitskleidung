@@ -545,6 +545,22 @@ input[type='number'] { width: 90px; }
   font-size: 0.82rem;
 }
 
+/* Große Variante (Dashboard: Bestand vs. Soll) */
+.bullet-row-lg {
+  grid-template-columns: 210px 1fr 110px;
+  padding: 9px 0;
+  font-size: 1rem;
+}
+
+.bullet-row-lg .bullet-track { height: 22px; border-radius: 6px; }
+.bullet-row-lg .bullet-fill { border-radius: 6px; }
+.bullet-row-lg .bullet-target { top: -4px; bottom: -4px; width: 3px; }
+.bullet-row-lg .bullet-nums { font-size: 1rem; font-weight: 600; }
+
+@media (max-width: 860px) {
+  .bullet-row-lg { grid-template-columns: 120px 1fr 90px; }
+}
+
 /* ---------- Basisausstattung (Dashboard) ---------- */
 .basis-grid {
   display: grid;
@@ -754,6 +770,13 @@ section:first-of-type .bestand-cat { margin-top: 4px; }
 }
 
 .avatar.big { width: 64px; height: 64px; }
+
+.avatar.small, .initials.small {
+  width: 30px;
+  height: 30px;
+  font-size: 0.7rem;
+  border-width: 1.5px;
+}
 
 .person-card .person-name { margin: 0; font-weight: 700; font-size: 0.98rem; }
 .person-card .person-sub { margin: 1px 0 0; font-size: 0.8rem; color: var(--ink-muted); }
