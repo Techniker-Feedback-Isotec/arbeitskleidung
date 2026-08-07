@@ -21,6 +21,19 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
   const allSelected = missingRows.length > 0 && missingRows.every((r) => selected.has(key(r)))
   const selectedRows = rows.filter((r) => selected.has(key(r)) && orderQty(r) > 0)
 
+  /** Mindestbestellmenge gilt je Artikel über alle Größen zusammen */
+  const minOrderInfo = [...new Map(rows.filter((r) => r.article.minOrder > 0).map((r) => [r.article.id, r.article])).values()]
+    .map((a) => {
+      const articleRows = rows.filter((r) => r.article.id === a.id)
+      const fehltSum = articleRows.reduce((s, r) => s + r.fehlt, 0)
+      const selSum = articleRows
+        .filter((r) => selected.has(key(r)))
+        .reduce((s, r) => s + orderQty(r), 0)
+      return { article: a, fehltSum, selSum }
+    })
+    .filter((x) => x.fehltSum > 0 || x.selSum > 0)
+  const belowMin = minOrderInfo.filter((x) => x.selSum > 0 && x.selSum < x.article.minOrder)
+
   function toggleAll() {
     setSelected(allSelected ? new Set() : new Set(missingRows.map(key)))
   }
@@ -35,6 +48,14 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
   }
 
   function orderSelected() {
+    if (belowMin.length > 0) {
+      const liste = belowMin
+        .map((x) => `${x.article.name}: ${x.selSum} von mind. ${x.article.minOrder}`)
+        .join('\n')
+      if (!window.confirm(`Mindestbestellmenge (alle Größen zusammen) noch nicht erreicht:\n\n${liste}\n\nTrotzdem bestellen?`)) {
+        return
+      }
+    }
     for (const r of selectedRows) {
       dispatch({
         type: 'ORDER_ADD',
@@ -86,6 +107,25 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
             Nur Positionen mit Fehlmenge
           </label>
         </div>
+        {minOrderInfo.length > 0 && (
+          <div className="minorder-hints">
+            <span className="small muted">Mindestbestellmenge (je Artikel, alle Größen zusammen):</span>
+            {minOrderInfo.map(({ article, fehltSum, selSum }) => {
+              const cls =
+                selSum >= article.minOrder
+                  ? 'badge-ok'
+                  : selSum > 0
+                    ? 'badge-warn'
+                    : ''
+              return (
+                <span key={article.id} className={`badge ${cls}`}>
+                  {article.name}: {selSum > 0 ? `${selSum} von mind. ${article.minOrder} ausgewählt` : `mind. ${article.minOrder} · Fehlmenge gesamt ${fehltSum}`}
+                  {selSum >= article.minOrder && ' ✓'}
+                </span>
+              )
+            })}
+          </div>
+        )}
         <div className="table-wrap">
           <table className="data">
             <thead>
@@ -99,7 +139,7 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
                 <th className="num hide-sm">Unterwegs</th>
                 <th className="num">Soll</th>
                 <th className="num">Fehlt</th>
-                <th className="num hide-sm">Mindestbestellmenge</th>
+                <th className="num hide-sm" title="Gilt je Artikel über alle Größen zusammen">Mindestbestellmenge*</th>
                 <th className="num">Bestellmenge</th>
               </tr>
             </thead>
@@ -167,8 +207,9 @@ export default function Bestellliste({ go }: { go: (p: Page) => void }) {
           </table>
         </div>
         <p className="chart-caption">
-          Soll-Bestände pflegst du unter „Artikel". Die Mindestbestellmenge ist ein Hinweis des
-          Lieferanten – prüfe beim Bestellen, ob es sich lohnt, auf sie aufzurunden.
+          Soll-Bestände pflegst du unter „Artikel". *Die Mindestbestellmenge gilt je Artikel über
+          alle Größen zusammen (z. B. 2× M + 3× L = 5 Stück) – die Anzeige oben rechnet deine
+          Auswahl entsprechend zusammen.
         </p>
       </div>
     </>

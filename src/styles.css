@@ -966,6 +966,14 @@ section:first-of-type .bestand-cat { margin-top: 4px; }
   font-size: 0.92rem;
 }
 
+.minorder-hints {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: -4px 0 14px;
+}
+
 .filter-row {
   display: flex;
   flex-wrap: wrap;
@@ -1061,8 +1069,8 @@ section:first-of-type .bestand-cat { margin-top: 4px; }
 
   .thumb { width: 32px !important; height: 32px !important; }
 
-  /* Formulare in Tabellen kompakter (Warenausgabe) */
-  table.data input[type='number'] { width: 46px !important; }
+  /* Formulare in Tabellen kompakter (Warenausgabe, Bestellliste) */
+  table.data input[type='number'] { width: 56px !important; padding: 7px 5px; text-align: center; }
   table.data select { padding: 7px 6px; }
   table.data .btn-sm { padding: 6px 9px; font-size: 0.8rem; }
 
