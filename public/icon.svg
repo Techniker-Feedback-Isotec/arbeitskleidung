@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#d51317"/>
+  <!-- Arbeitsshirt-Piktogramm -->
+  <path fill="#ffffff" d="
+    M 196 110
+    C 212 148 300 148 316 110
+    L 388 138
+    L 442 226
+    L 372 268
+    L 356 240
+    L 356 412
+    L 156 412
+    L 156 240
+    L 140 268
+    L 70 226
+    L 124 138
+    Z"/>
+  <!-- Brusttasche als Detail -->
+  <rect x="238" y="298" width="112" height="14" rx="7" fill="#d51317"/>
+  <rect x="238" y="330" width="76" height="14" rx="7" fill="#d51317"/>
+</svg>
