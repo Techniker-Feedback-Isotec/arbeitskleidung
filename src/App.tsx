@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import type { Page } from './types'
-import { INTRANET_SHOP_URL } from './types'
+import { CONTACT_AUSGABE, CONTACT_EINKAUF, INTRANET_SHOP_URL } from './types'
 import { useStore } from './store'
 import { shortageRows } from './lib/selectors'
-import { CONTACT_AUSGABE, CONTACT_EINKAUF } from './types'
 import { ContactChip, ToastProvider } from './components/ui'
-import { SyncBadge, SyncProvider } from './components/Sync'
 import {
   IconArtikel,
   IconAusgabe,
@@ -39,14 +37,33 @@ const NAV: { page: Page['name']; label: string; icon: React.ReactNode }[] = [
   { page: 'einstellungen', label: 'Einstellungen', icon: <IconEinstellungen /> },
 ]
 
+/** Speicherzustand in der Seitenleiste: grün gesichert, gelb unterwegs, rot Fehler */
+function SpeicherBadge() {
+  const { status, fehler, hinweis, erneut } = useStore()
+  const text =
+    status === 'gespeichert' ? 'Gespeichert' : status === 'speichert' ? 'Speichert …' : status === 'wartet' ? 'Änderungen offen' : 'Speichern fehlgeschlagen'
+  const farbe = status === 'gespeichert' ? 'var(--ok)' : status === 'fehler' ? 'var(--red)' : 'var(--warn)'
+  return (
+    <>
+      <p className="sync-badge" title={fehler ?? undefined}>
+        <span className="sync-dot" style={{ background: farbe }} />
+        {text}
+        {status === 'fehler' && (
+          <button className="link-btn" style={{ marginLeft: 6 }} onClick={erneut}>erneut</button>
+        )}
+      </p>
+      {hinweis && <p className="sync-hinweis">{hinweis}</p>}
+    </>
+  )
+}
+
 export default function App() {
   const [page, setPage] = useState<Page>({ name: 'dashboard' })
-  const { db } = useStore()
-  const missing = shortageRows(db).filter((r) => r.fehlt > 0).length
+  const { db, ich } = useStore()
+  const fehlend = useMemo(() => shortageRows(db).filter((r) => r.fehlt > 0).length, [db])
 
   return (
     <ToastProvider>
-      <SyncProvider>
       <div className="shell">
         <aside className="sidebar">
           <div className="sidebar-brand">
@@ -63,7 +80,7 @@ export default function App() {
               >
                 <span className="nav-icon">{n.icon}</span>
                 {n.label}
-                {n.page === 'bestellliste' && missing > 0 && <span className="nav-badge">{missing}</span>}
+                {n.page === 'bestellliste' && fehlend > 0 && <span className="nav-badge">{fehlend}</span>}
               </button>
             ))}
             <hr className="nav-sep" />
@@ -85,7 +102,8 @@ export default function App() {
             <ContactChip contact={CONTACT_EINKAUF} />
           </div>
           <div className="sidebar-foot">
-            <SyncBadge />
+            <SpeicherBadge />
+            {ich.name && <p className="sync-badge" title={ich.email ?? undefined}>Angemeldet: {ich.name}</p>}
             IMMER BESSER.
           </div>
         </aside>
@@ -101,7 +119,6 @@ export default function App() {
           {page.name === 'einstellungen' && <Einstellungen />}
         </main>
       </div>
-      </SyncProvider>
     </ToastProvider>
   )
 }

@@ -7,7 +7,7 @@
 """
 import json, io
 
-P = r"C:\Users\YannFeyen\Desktop\arbeitskleidung\src\data\seed.json"
+P = r"C:\Users\YannFeyen\Desktop\arbeitskleidung\server\seed.json"
 seed = json.load(io.open(P, encoding="utf-8"))
 by_id = {a["id"]: a for a in seed["articles"]}
 

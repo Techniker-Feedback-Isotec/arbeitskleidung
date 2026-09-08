@@ -1114,3 +1114,40 @@ section:first-of-type .bestand-cat { margin-top: 4px; }
   .page-actions { width: 100%; }
   .page-actions .btn-primary, .page-actions .btn-secondary { flex: 1 1 auto; text-align: center; }
 }
+
+/* ---------- Ladebildschirm ---------- */
+.lade-schirm {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 24px;
+}
+
+.lade-titel { margin: 0; font-weight: 600; color: var(--brown); }
+
+.lade-punkt {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: lade-puls 1s ease-in-out infinite;
+}
+
+@keyframes lade-puls {
+  0%, 100% { transform: scale(0.7); opacity: 0.5; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+.sync-hinweis {
+  margin: 0 0 8px;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: var(--warn-dunkel, #8a5a00);
+  background: var(--warn-soft);
+  border-radius: 6px;
+  padding: 6px 8px;
+}

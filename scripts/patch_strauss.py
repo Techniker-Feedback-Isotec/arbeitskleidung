@@ -3,7 +3,7 @@
 Stand: 2026-08-07, ausgelesen aus dem Lieferantenbereich STRAUSS."""
 import json, io
 
-P = r"C:\Users\YannFeyen\Desktop\arbeitskleidung\src\data\seed.json"
+P = r"C:\Users\YannFeyen\Desktop\arbeitskleidung\server\seed.json"
 seed = json.load(io.open(P, encoding="utf-8"))
 
 SHOP = "https://de-shop.isotec.info"

@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import type { Page } from '../types'
-import { useStore, today } from '../store'
+import { useStore } from '../store'
+import { today } from '../lib/text'
 import { articleById, employeeById, fmtDate, stockOf } from '../lib/selectors'
 import { CONTACT_AUSGABE } from '../types'
 import { ArtThumb, Avatar, ContactChip, useToast } from './ui'

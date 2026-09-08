@@ -1,12 +1,13 @@
 {
   "name": "arbeitskleidung",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node --env-file=.env.entwicklung server/index.mjs",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "start": "node server/index.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

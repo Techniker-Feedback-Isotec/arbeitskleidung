@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react'
 import type { Page } from '../types'
-import { useStore, today } from '../store'
+import { useStore } from '../store'
+import { today } from '../lib/text'
 import { articleById, equipmentOf, fmtDate, issuesOf, stockOf } from '../lib/selectors'
-import { fileToDataUrl } from '../lib/image'
+import { bildVerkleinern } from '../lib/image'
+import { fotoHochladen, fotoLoeschen } from '../lib/api'
 import { ArtThumb, Avatar, Modal, useToast } from './ui'
 
 /** Profil eines Mitarbeiters: Größen, aktuelle Ausstattung, Historie */
@@ -16,12 +18,12 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
   async function uploadPhoto(file: File) {
     if (!employee) return
     try {
-      const photo = await fileToDataUrl(file)
+      const photo = await fotoHochladen(`ma-${employee.id}`, await bildVerkleinern(file))
       dispatch({ type: 'EMPLOYEE_SAVE', employee: { ...employee, photo } })
       toast('Foto gespeichert.')
     } catch (err) {
       console.error(err)
-      toast('Foto konnte nicht verarbeitet werden.', 'error')
+      toast((err as Error).message, 'error')
     }
   }
 
@@ -59,9 +61,10 @@ export default function MitarbeiterDetail({ id, go }: { id: string; go: (p: Page
                   {' · '}
                   <button
                     className="link-btn"
-                    onClick={() => {
+                    onClick={async () => {
                       const { photo, ...rest } = employee
                       dispatch({ type: 'EMPLOYEE_SAVE', employee: rest })
+                      if (photo?.startsWith('api/foto/')) await fotoLoeschen(`ma-${employee.id}`).catch(() => {})
                       toast('Hochgeladenes Foto entfernt.')
                     }}
                   >

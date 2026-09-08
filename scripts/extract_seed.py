@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Extrahiert die Bestandsdaten aus 'Arbeitsausstattung neu.xlsm' in src/data/seed.json."""
+"""Extrahiert die Bestandsdaten aus 'Arbeitsausstattung neu.xlsm' in server/seed.json."""
 import json, re, sys, unicodedata
 from datetime import datetime, date
 import openpyxl
 
 SRC = r"C:\Users\YannFeyen\Downloads\Arbeitsausstattung neu.xlsm"
-OUT = r"C:\Users\YannFeyen\Desktop\arbeitskleidung\src\data\seed.json"
+OUT = r"C:\Users\YannFeyen\Desktop\arbeitskleidung\server\seed.json"
 
 wb = openpyxl.load_workbook(SRC, data_only=True)
 

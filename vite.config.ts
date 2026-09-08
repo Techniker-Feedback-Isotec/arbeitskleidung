@@ -1,9 +1,21 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// BASE_PATH wird bei einem spaeteren GitHub-Pages-Deploy automatisch gesetzt.
-export default defineConfig(({ command }) => ({
+// Ausgeliefert wird auf Azure unter "/". In der Entwicklung beantwortet der
+// lokale Server (npm run server) die /api-Aufrufe, Vite leitet sie weiter.
+export default defineConfig({
   plugins: [react()],
-  base: command === 'build' ? process.env.BASE_PATH ?? '/arbeitskleidung/' : '/',
-  server: { port: 5175 },
-}))
+  base: '/',
+  server: {
+    port: 5175,
+    proxy: { '/api': 'http://localhost:8080' },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        // React getrennt, damit der Anwendungscode bei Änderungen allein neu geladen wird
+        manualChunks: { vendor: ['react', 'react-dom'] },
+      },
+    },
+  },
+})

@@ -3,7 +3,9 @@ import type { Article, Category, Supplier } from '../types'
 import { CATEGORIES, SIZE_PRESETS, SUPPLIERS } from '../types'
 import { useStore } from '../store'
 import { fmtEuroCent, totalSollOf, totalStockOf } from '../lib/selectors'
-import { fileToDataUrl } from '../lib/image'
+import { bildVerkleinern } from '../lib/image'
+import { fotoHochladen } from '../lib/api'
+import { slugify } from '../lib/text'
 import { ArtThumb, Modal, useToast } from './ui'
 
 /** Artikelverwaltung: einfach neue Artikel anlegen, Soll-Bestände & Preise pflegen */
@@ -115,22 +117,14 @@ export default function Artikel() {
   )
 }
 
-function slugify(name: string): string {
-  return name
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}
-
 function ArticleModal({ article, onClose }: { article: Article | null; onClose: () => void }) {
   const { db, dispatch } = useStore()
   const toast = useToast()
   const isNew = article === null
   const [name, setName] = useState(article?.name ?? '')
   const [category, setCategory] = useState<Category>(article?.category ?? 'Oberteile')
-  const [icon, setIcon] = useState(article?.icon ?? '👕')
+  // Symbol wird nicht mehr gewählt, Artikel ohne Foto zeigen das Kategorie-Icon
+  const icon = article?.icon ?? ''
   const [preset, setPreset] = useState<string>('Konfektion (XS–3XL)')
   const [sizesText, setSizesText] = useState(article?.sizes.join(', ') ?? SIZE_PRESETS['Konfektion (XS–3XL)'].join(', '))
   const [price, setPrice] = useState(article?.price != null ? String(article.price).replace('.', ',') : '')
@@ -245,10 +239,15 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
             onChange={async (e) => {
               const f = e.target.files?.[0]
               if (f) {
-                try {
-                  setImageUrl(await fileToDataUrl(f))
-                } catch {
-                  toast('Foto konnte nicht verarbeitet werden.', 'error')
+                const ziel = article?.id ?? slugify(name.trim())
+                if (!ziel) {
+                  toast('Bitte zuerst den Namen eintragen, dann das Foto hochladen.', 'error')
+                } else {
+                  try {
+                    setImageUrl(await fotoHochladen(`artikel-${ziel}`, await bildVerkleinern(f)))
+                  } catch (err) {
+                    toast((err as Error).message, 'error')
+                  }
                 }
               }
               e.target.value = ''
@@ -257,10 +256,10 @@ function ArticleModal({ article, onClose }: { article: Article | null; onClose: 
           <p className="field-hint">Alternativ eine Bild-URL eintragen:</p>
           <input
             type="text"
-            value={imageUrl.startsWith('data:') ? '(hochgeladenes Foto)' : imageUrl}
+            value={imageUrl.startsWith('api/foto/') || imageUrl.startsWith('data:') ? '(hochgeladenes Foto)' : imageUrl}
             style={{ width: '100%' }}
             placeholder="https://…"
-            disabled={imageUrl.startsWith('data:')}
+            disabled={imageUrl.startsWith('api/foto/') || imageUrl.startsWith('data:')}
             onChange={(e) => setImageUrl(e.target.value)}
           />
         </div>

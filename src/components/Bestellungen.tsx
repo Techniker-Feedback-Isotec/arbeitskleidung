@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import type { Order, OrderStatus } from '../types'
 import { CONTACT_EINKAUF } from '../types'
-import { useStore, today } from '../store'
+import { useStore } from '../store'
+import { today } from '../lib/text'
 import { articleById, fmtDate } from '../lib/selectors'
 import { ArtThumb, ContactChip, Modal, useToast } from './ui'
 

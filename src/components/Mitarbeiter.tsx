@@ -1,17 +1,9 @@
 import React, { useState } from 'react'
 import type { Employee, Page } from '../types'
 import { useStore } from '../store'
+import { slugify } from '../lib/text'
 import { equipmentOf } from '../lib/selectors'
 import { Avatar, Modal, useToast } from './ui'
-
-function slugify(name: string): string {
-  return name
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}
 
 /** Mitarbeiterliste mit Konfektionsgrößen-Kurzinfo */
 export default function Mitarbeiter({ go }: { go: (p: Page) => void }) {

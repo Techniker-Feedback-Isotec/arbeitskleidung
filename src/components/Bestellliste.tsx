@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import type { Page } from '../types'
 import { CONTACT_EINKAUF, INTRANET_SHOP_URL } from '../types'
-import { useStore, today } from '../store'
+import { useStore } from '../store'
+import { today } from '../lib/text'
 import { shortageRows } from '../lib/selectors'
 import { ArtThumb, ContactChip, useToast } from './ui'
 
