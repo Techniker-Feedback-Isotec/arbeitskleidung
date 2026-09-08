@@ -79,7 +79,8 @@ Eine JSON-Datei im Blob, geschrieben mit ETag:
 Die Anwendung speichert gebuendelt 600 ms nach der letzten Aenderung. Beim
 Zurueckkehren ins Fenster laedt sie fremde Aenderungen nach (`If-None-Match`,
 304 wenn nichts neu ist). Der JSON-Export in den Einstellungen bleibt als
-Sicherung.
+Sicherung, zusaetzlich haelt Soft Delete 30 Tage lang jeden ueberschriebenen
+Stand (siehe *Ruecklaeufer aus Soft Delete*).
 
 Datenstand von Hand sichern oder einspielen (PowerShell, mit Yanns Rolle):
 
@@ -116,3 +117,35 @@ Zwei Fenster: `npm run server` (Node mit `.env.entwicklung`: Datenstand in
 `.daten/arbeitskleidung.json`, Fotos in `.daten/fotos/`, feste Anmeldung als
 Entwicklung) und `npm run dev` (Vite auf Port 5175, leitet `/api` an Port 8080).
 Der Ordner `.daten/` ist nicht im Repo.
+
+## Ruecklaeufer aus Soft Delete
+
+Auf dem Speicherkonto ist seit 08.09.2026 Soft Delete fuer Blobs und Container
+mit 30 Tagen Aufbewahrung aktiv. Jedes Ueberschreiben von `arbeitskleidung.json`
+legt automatisch eine Momentaufnahme des vorherigen Standes an, Loeschen ebenso.
+Getestet: dreimal ueberschrieben, aeltesten Stand vollstaendig zurueckgeholt.
+
+Vorherige Staende auflisten (PowerShell, mit Yanns Rolle). Das `ds` bei
+`--include` ist wichtig, mit `d` allein erscheinen die Momentaufnahmen nicht:
+
+```powershell
+az storage blob list --account-name starbeitskleidung2026 --container-name daten --prefix arbeitskleidung.json --include ds --auth-mode login --query "[].{name:name, snapshot:snapshot, deleted:deleted, bytes:properties.contentLength}" -o table
+```
+
+Einen Stand zurueckholen: erst die Momentaufnahmen wieder sichtbar machen, dann
+die gewuenschte herunterladen und pruefen, danach als aktuellen Stand einspielen.
+Vor dem Einspielen den jetzigen Stand wegsichern, und die offenen Browser der
+drei Personen danach neu laden lassen.
+
+```powershell
+az storage blob undelete --account-name starbeitskleidung2026 --container-name daten --name arbeitskleidung.json --auth-mode login
+az storage blob download --account-name starbeitskleidung2026 --container-name daten --name arbeitskleidung.json --snapshot "<Zeitstempel aus der Liste>" --file "$env:USERPROFILE\Downloads\arbeitskleidung-rueck.json" --auth-mode login --overwrite
+az storage blob upload   --account-name starbeitskleidung2026 --container-name daten --name arbeitskleidung.json --file "$env:USERPROFILE\Downloads\arbeitskleidung-rueck.json" --content-type "application/json; charset=utf-8" --auth-mode login --overwrite
+```
+
+Einstellung pruefen oder erneut setzen:
+
+```powershell
+az storage account blob-service-properties show   --account-name starbeitskleidung2026 --resource-group rg-arbeitskleidung-prod --query "{blob:deleteRetentionPolicy, container:containerDeleteRetentionPolicy}" -o json
+az storage account blob-service-properties update --account-name starbeitskleidung2026 --resource-group rg-arbeitskleidung-prod --enable-delete-retention true --delete-retention-days 30 --enable-container-delete-retention true --container-delete-retention-days 30
+```
