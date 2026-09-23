@@ -57,6 +57,41 @@ az rest --method POST --url "https://graph.microsoft.com/v1.0/servicePrincipals/
 Entfernen geht im Portal unter Entra ID > Unternehmensanwendungen > ISOTEC
 Arbeitskleidung > Benutzer und Gruppen.
 
+### Zustimmung muss einmal fuer die Organisation erteilt sein
+
+Weil *Zuweisung erforderlich* eingeschaltet ist, darf **niemand ohne
+Administratorrolle die Zustimmung fuer sich selbst geben**. Wer es trotzdem
+versucht, landet bei Microsoft in der Meldung *Admin consent is required*
+(Anmeldeprotokoll: Fehlercode 90094) und kommt nie an der Anmeldung vorbei,
+obwohl die Person zugewiesen ist. Yann und Lisa merken davon nichts, weil sie
+Anwendungsadministrator beziehungsweise Cloudanwendungsadministrator sind und
+sich selbst zustimmen duerfen.
+
+Deshalb gehoert nach dem Anlegen einer solchen App **immer** die Zustimmung fuer
+die ganze Organisation dazu, einmalig, mit einem Konto mit Administratorrolle:
+
+```powershell
+az ad app permission admin-consent --id 28a50a48-e577-46ea-9557-4c5f618d4b68
+```
+
+Die App fragt nur `openid profile email` ab, also reine Anmeldedaten, keinen
+Zugriff auf Postfach oder Dateien. Pruefen, ob die Zustimmung steht (es muss
+eine Zeile mit `AllPrincipals` erscheinen):
+
+```powershell
+az rest --method get --uri "https://graph.microsoft.com/v1.0/servicePrincipals/f073fa27-814b-4848-83cf-5c80d6cb2e7b/oauth2PermissionGrants" --query "value[].{consentType:consentType, scope:scope}" -o table
+```
+
+Wenn sich jemand nicht anmelden kann, zeigt das Anmeldeprotokoll den Grund
+(Person ueber `az ad user show --id <mail> --query id -o tsv` nachschlagen):
+
+```powershell
+az rest --method get --uri "https://graph.microsoft.com/beta/auditLogs/signIns?`$filter=userId eq '<Kennung>'&`$top=10" --query "value[].{zeit:createdDateTime, app:appDisplayName, code:status.errorCode, grund:status.failureReason}" -o table
+```
+
+Fehlercode 90094 heisst fehlende Zustimmung (Befehl oben), 50105 heisst fehlende
+Zuweisung (Abschnitt darueber).
+
 Der Server liest die Anmeldung aus den Kopfzeilen `X-MS-CLIENT-PRINCIPAL` und
 `X-MS-CLIENT-PRINCIPAL-NAME` und bietet sie unter `/api/ich` an. Eine
 abgelaufene Sitzung (8 Stunden) liefert `fetch` HTML statt JSON; die Anwendung
