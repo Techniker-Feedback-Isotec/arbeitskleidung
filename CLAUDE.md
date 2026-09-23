@@ -223,14 +223,24 @@ Soft Delete ist das Sicherheitsnetz, falls doch etwas schiefgeht (Rückholweg in
 
 ## Git
 
-- Repo `github.com/Techniker-Feedback-Isotec/arbeitskleidung`, Zweig `main`.
-  **Das Repo ist öffentlich.** Nichts Neues an Personendaten, keine Live-Daten,
-  keine Sicherungsdateien und nie Zugangsdaten einchecken.
+- Der Projektordner liegt **nur bei Lisa**, Zweig `main`, mit der vollständigen
+  Historie. Es gibt **keinen Remote** und kein `git push`. Das alte GitHub-Repo
+  `Techniker-Feedback-Isotec/arbeitskleidung` ist Yanns Stand bis zum 23.09.2026, wird
+  nicht weitergeführt und ist öffentlich; dorthin nichts hochladen.
+- Keine Live-Daten, keine Sicherungsdateien und nie Zugangsdaten einchecken.
 - **Nach jedem abgeschlossenen Schritt committen**, ohne dass Lisa darum bitten muss.
   Deutsche Betreffzeile ohne Präfix, darunter kurz das **Warum**, nicht nur das Was.
   Umlaute im Commit-Text als ae/oe/ue schreiben, so hält es die Historie. Vor dem
-  Commit `git diff` auf Zugangsdaten und Personendaten prüfen. Danach `git push`.
-- Ausgeliefert wird vom Rechner, nicht aus GitHub. GitHub ist die Sicherung des Codes.
+  Commit `git diff` auf Zugangsdaten und Personendaten prüfen.
+- **Sicherung des Codes:** Weil der Ordner nur auf einem Rechner liegt, nach jedem
+  Livegang (und wenn Lisa darum bittet) eine Zip-Datei ohne `node_modules`, `dist`
+  und `.daten` in ihr OneDrive legen, Name mit Datum, zum Beispiel
+  `OneDrive - ISOTEC Morscheck\Sicherungen\arbeitskleidung-JJJJ-MM-TT.zip`. Den
+  genauen OneDrive-Pfad vorher mit `$env:OneDriveCommercial` ermitteln. Unter Windows
+  mit `tar -a -c -f <ziel>.zip --exclude=node_modules --exclude=dist --exclude=.daten arbeitskleidung`
+  aus dem Desktop heraus, das nimmt auch den versteckten Ordner `.git` mit. Den
+  Projektordner selbst nicht in OneDrive verschieben.
+- Ausgeliefert wird direkt vom Rechner.
 
 ## Offene Punkte (Stand 23.09.2026)
 

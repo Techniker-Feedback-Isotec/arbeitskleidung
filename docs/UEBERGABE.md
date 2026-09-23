@@ -17,15 +17,12 @@ Alltag aussieht.
 | Entra ID (Firmenverzeichnis) | vorhanden, Cloudanwendungsadministratorin | Personen freischalten, Zustimmung für die Anmeldung |
 | Speicherkonto `starbeitskleidung2026` | vorhanden seit 23.09.2026 | Datenstand sichern, einspielen, alte Stände zurückholen |
 | Anmeldung am Tool selbst | vorhanden | Tool benutzen |
-| GitHub | **fehlt noch** | Code sichern und Änderungen ablegen |
 | Claude | **prüfen** | Claude Code braucht einen Platz im Claude-Team-Konto der Firma |
 
-**GitHub:** Das Repo `github.com/Techniker-Feedback-Isotec/arbeitskleidung` gehört dem
-gemeinsamen Konto „Techniker-Feedback-Isotec". Lege dir auf github.com ein eigenes
-Konto mit deiner Firmenadresse an und schick Yann den Benutzernamen. Er trägt dich im
-Repo unter *Settings › Collaborators* ein, danach kommt eine Einladung per Mail, die
-du annimmst. Bis dahin kannst du den Code trotzdem schon herunterladen, weil das Repo
-öffentlich ist; nur hochladen geht erst danach.
+**Der Projektordner:** Du bekommst von Yann den kompletten Ordner als Zip-Datei,
+mit der gesamten Änderungsgeschichte. Ab dann liegt der Code nur bei dir, GitHub
+brauchst du nicht. Yann arbeitet nicht mehr daran, es gibt also keine zweite Fassung,
+mit der du dich abstimmen musst.
 
 **Claude:** Falls du Claude Code schon für andere Werkzeuge nutzt, ist nichts zu tun.
 Sonst lädt Yann dich im Claude-Team-Konto ein.
@@ -69,15 +66,21 @@ az account set --subscription cea028ba-471f-4500-aa7c-78956ff1e5c2
 
 ## 3. Projekt auf deinen Rechner holen (einmalig)
 
+Die Zip-Datei `arbeitskleidung-projekt.zip` auf den Desktop legen, rechte Maustaste,
+**Alle extrahieren**, als Ziel den Desktop wählen. Danach muss es den Ordner
+`Desktop\arbeitskleidung` geben, und darin direkt die Datei `package.json`. Liegt
+stattdessen ein Ordner in einem Ordner, den inneren `arbeitskleidung` auf den
+Desktop ziehen.
+
+Dann einmal die Bausteine laden:
+
 ```powershell
-cd $env:USERPROFILE\Desktop
-git clone https://github.com/Techniker-Feedback-Isotec/arbeitskleidung.git
-cd arbeitskleidung
+cd $env:USERPROFILE\Desktop\arbeitskleidung
 npm install
 ```
 
-Damit liegt das Projekt unter `Desktop\arbeitskleidung`. Git fragt beim ersten
-Hochladen nach der GitHub-Anmeldung, das erledigt ein Browserfenster.
+Den Ordner nicht in OneDrive legen. OneDrive kommt mit den vielen kleinen Dateien
+in `node_modules` nicht gut zurecht. Gesichert wird anders, siehe Abschnitt 5.
 
 ## 4. Erster Start mit Claude
 
@@ -122,8 +125,13 @@ Ein paar Gewohnheiten, die Claude aus der `CLAUDE.md` schon kennt:
   neu, offene Fenster danach einmal neu laden.
 - **Gestaltung am Bild entscheiden.** Wenn du unsicher bist, lass dir zwei Varianten
   bauen und wähle.
-- **Claude committet jeden fertigen Schritt** und lädt ihn zu GitHub hoch. Damit ist
-  jeder Stand gesichert und lässt sich zurückholen.
+- **Claude committet jeden fertigen Schritt.** Damit ist jeder Stand auf deinem
+  Rechner festgehalten und lässt sich zurückholen.
+- **Den Code sichern.** Der Projektordner liegt nur auf deinem Rechner. Das Tool
+  selbst läuft in Azure weiter, auch wenn dein Rechner ausfällt, aber ohne den Ordner
+  könnte niemand mehr etwas daran ändern. Deshalb nach jedem Livegang zu Claude:
+  „Sichere den Projektordner in mein OneDrive." Claude legt dann eine Zip-Datei ohne
+  die nachladbaren Teile dort ab.
 - **Keine Passwörter oder Schlüssel in den Chat.** Das Tool braucht keine. Beim
   Intranet meldest du dich immer selbst an.
 
@@ -173,5 +181,8 @@ die Datei landet in deinen Downloads.
 | `docs/AZURE.md` | Betrieb: alle Kennungen, Befehle für Freischalten, Sichern, Zurückholen |
 | `README.md` | Kurzbeschreibung |
 | `docs/UEBERGABE.md` | Diese Seite |
+
+Das alte GitHub-Repo `Techniker-Feedback-Isotec/arbeitskleidung` zeigt nur den Stand
+bis zur Übergabe und wird nicht weitergeführt.
 
 Bei Fragen, die weder Claude noch diese Dateien beantworten: Yann.

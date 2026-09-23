@@ -135,9 +135,10 @@ aber eine Meldung zeigt).
 
 ## Ausliefern
 
-Das Repo liegt weiter auf GitHub (`Techniker-Feedback-Isotec/arbeitskleidung`),
-ausgeliefert wird aber direkt vom Rechner. Die alte GitHub-Pages-Adresse leitet
-nur noch auf Azure um.
+Ausgeliefert wird direkt vom Rechner. Seit 23.09.2026 liegt der Projektordner bei
+Lisa, ohne GitHub. Das alte Repo `Techniker-Feedback-Isotec/arbeitskleidung` zeigt
+den Stand bis dahin und wird nicht weitergefuehrt; seine GitHub-Pages-Adresse
+leitet nur noch auf Azure um.
 
 ```powershell
 cd $env:USERPROFILE\Desktop\arbeitskleidung
