@@ -8,6 +8,9 @@ Artikelstamm und Dashboard.
 ISOTEC-Konto, nur zugewiesene Personen). Einrichtung und Ausliefern in
 `docs/AZURE.md`.
 
+**Softwarepflege:** seit 23.09.2026 Lisa Morscheck. Einstieg in
+`docs/UEBERGABE.md`, Arbeitsanweisung fuer Claude Code in `CLAUDE.md`.
+
 ## Aufbau
 
 - `src/` – Oberfläche (Vite, React, TypeScript, ISOTEC-Design). Alle

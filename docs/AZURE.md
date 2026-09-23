@@ -21,9 +21,14 @@ West Central, Abonnement `cea028ba-471f-4500-aa7c-78956ff1e5c2`, Mandant
 Es liegt **kein** Zugangsschluessel und **kein** Client Secret in den Einstellungen.
 Der Speicherzugang laeuft ueber die systemseitige Identitaet, die Anmeldung ueber
 die Vertrauensbeziehung der Anmelde-Identitaet (federated identity credential,
-laeuft nie ab). Yann hat zusaetzlich selbst die Rolle *Storage Blob Data
-Contributor* auf dem Speicherkonto, um den Datenstand von Hand zu sichern oder
-einzuspielen.
+laeuft nie ab). Yann und Lisa (seit 23.09.2026) haben zusaetzlich selbst die
+Rolle *Storage Blob Data Contributor* auf dem Speicherkonto, um den Datenstand
+von Hand zu sichern oder einzuspielen.
+
+Softwarepflege seit 23.09.2026: Lisa Morscheck. Sie ist Besitzerin des
+Abonnements und Cloudanwendungsadministratorin in Entra, damit sind alle
+Schritte auf dieser Seite fuer sie ohne weitere Rechte moeglich. Einstieg in
+`docs/UEBERGABE.md`.
 
 ## Anwendungseinstellungen
 
@@ -117,7 +122,7 @@ Zurueckkehren ins Fenster laedt sie fremde Aenderungen nach (`If-None-Match`,
 Sicherung, zusaetzlich haelt Soft Delete 30 Tage lang jeden ueberschriebenen
 Stand (siehe *Ruecklaeufer aus Soft Delete*).
 
-Datenstand von Hand sichern oder einspielen (PowerShell, mit Yanns Rolle):
+Datenstand von Hand sichern oder einspielen (PowerShell, mit Yanns oder Lisas Rolle):
 
 ```powershell
 az storage blob download --account-name starbeitskleidung2026 --container-name daten --name arbeitskleidung.json --file "$env:USERPROFILE\Downloads\arbeitskleidung-sicherung.json" --auth-mode login
@@ -135,7 +140,7 @@ ausgeliefert wird aber direkt vom Rechner. Die alte GitHub-Pages-Adresse leitet
 nur noch auf Azure um.
 
 ```powershell
-cd C:\Users\YannFeyen\Desktop\arbeitskleidung
+cd $env:USERPROFILE\Desktop\arbeitskleidung
 npm run build
 Compress-Archive -Path 'dist','server','package.json' -DestinationPath "$env:TEMP\arbeitskleidung-paket.zip" -Force
 az webapp deploy --name isotec-arbeitskleidung --resource-group rg-arbeitskleidung-prod --src-path "$env:TEMP\arbeitskleidung-paket.zip" --type zip
@@ -160,7 +165,7 @@ mit 30 Tagen Aufbewahrung aktiv. Jedes Ueberschreiben von `arbeitskleidung.json`
 legt automatisch eine Momentaufnahme des vorherigen Standes an, Loeschen ebenso.
 Getestet: dreimal ueberschrieben, aeltesten Stand vollstaendig zurueckgeholt.
 
-Vorherige Staende auflisten (PowerShell, mit Yanns Rolle). Das `ds` bei
+Vorherige Staende auflisten (PowerShell, mit Yanns oder Lisas Rolle). Das `ds` bei
 `--include` ist wichtig, mit `d` allein erscheinen die Momentaufnahmen nicht:
 
 ```powershell
